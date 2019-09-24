@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-17T14:19:06.536Z">
+<meta property="og:updated_time" content="2019-09-23T07:38:09.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的字符串整理">
 <meta name="twitter:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
@@ -320,6 +320,7 @@
       
         <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；<a id="more"></a><br>拓展一下scanf，scanf(“%8s”,&amp;A); printf(“%s”,A);这样只能读8位字符，并且中间有空格也只能读到空格前面的内容；<br>于是引出了gets（）：可以读取整行，直到遇到换行符号，然后丢弃换行符号；但是gets（）可能因为长度太长而溢出缓冲区。所以c99规定了fget（）函数。<br>相对应的printf（）和puts（）的区别：puts（）读取的时间比较快并且自动添加了换行符号，但是printf（）可以更方便读取多个字符串；</p>
 <h2 id="Strlen（）"><a href="#Strlen（）" class="headerlink" title="Strlen（）"></a>Strlen（）</h2><p>统计字符串长度，不包括换行符；</p>
+<h2 id="strnlen（）"><a href="#strnlen（）" class="headerlink" title="strnlen（）"></a>strnlen（）</h2><p>在strlen（）的基础上，如果strlen不遇到束符’\0’就不会停止扫描，所以使用了strnlen（）增加一个总长度来限制：<br>int main(void)<br>{<br>    char a[]={‘h’,’e’,’l’,’l’,’o’,’w’,’o’,’r’,’l’,’d’,’!’};<br>    printf(“%d\n”,strnlen(a,10));<br>    return 0;<br> }<br> 输出的结果是10；当然遇到’\0’时也会停止的。</p>
 <h2 id="Strcat（）"><a href="#Strcat（）" class="headerlink" title="Strcat（）"></a>Strcat（）</h2><p>用于拼接两个字符串，合并成一个字符串作为第一个字符串，函数返回的是第一个字符串（这个字符串已经和字符串二拼接）</p>
 <h2 id="Strncat（）"><a href="#Strncat（）" class="headerlink" title="Strncat（）"></a>Strncat（）</h2><p>因为strcat（）跟gets（）一样会溢出缓冲区所以延伸了该函数，如果太长的话字符串会追加到第一个字符串的尾部然后加上’\0’;</p>
 <p>##Strcmp（）<br>比较两个字符串是否相同（不是比较字符单引号字符双引号字符串），相同的话为0，不同的话如果第一个的ASCII比较大返回1反之返回-1；可以利用这个返回值来排序字符串。</p>
@@ -441,7 +442,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -485,7 +486,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strlen（）"><span class="nav-number">2.</span> <span class="nav-text">Strlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcat（）"><span class="nav-number">3.</span> <span class="nav-text">Strcat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncat（）"><span class="nav-number">4.</span> <span class="nav-text">Strncat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncmp（）"><span class="nav-number">5.</span> <span class="nav-text">Strncmp（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcpy（）和strncpy（）"><span class="nav-number">6.</span> <span class="nav-text">Strcpy（）和strncpy（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sprintf（）"><span class="nav-number">7.</span> <span class="nav-text">Sprintf（）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strlen（）"><span class="nav-number">2.</span> <span class="nav-text">Strlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strnlen（）"><span class="nav-number">3.</span> <span class="nav-text">strnlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcat（）"><span class="nav-number">4.</span> <span class="nav-text">Strcat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncat（）"><span class="nav-number">5.</span> <span class="nav-text">Strncat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncmp（）"><span class="nav-number">6.</span> <span class="nav-text">Strncmp（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcpy（）和strncpy（）"><span class="nav-number">7.</span> <span class="nav-text">Strcpy（）和strncpy（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sprintf（）"><span class="nav-number">8.</span> <span class="nav-text">Sprintf（）</span></a></li></ol></div>
             
 
           </div>

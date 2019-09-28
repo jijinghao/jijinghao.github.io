@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -90,22 +88,22 @@
 
 
 
-<meta name="description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCPTCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的通信协议，数据在传输前要建立连接，传输完毕后还要断开连接。客户端在收发数据前要使用 connect() 函数和服务器建立连接。建立连接的目的是保证IP地址、端口、物理链路等正确无误，为数据的传输开辟通道。 TCP">
+<meta name="description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="超级详细的TCP总结">
 <meta property="og:url" content="http://yoursite.com/2019/09/28/TCP/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCPTCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的通信协议，数据在传输前要建立连接，传输完毕后还要断开连接。客户端在收发数据前要使用 connect() 函数和服务器建立连接。建立连接的目的是保证IP地址、端口、物理链路等正确无误，为数据的传输开辟通道。 TCP">
+<meta property="og:description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCP">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulBBkt.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulBIhV.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulDoVA.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulrZqJ.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulrssg.jpg">
-<meta property="og:updated_time" content="2019-09-28T13:10:07.686Z">
+<meta property="og:updated_time" content="2019-09-28T14:24:12.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="超级详细的TCP总结">
-<meta name="twitter:description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCPTCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的通信协议，数据在传输前要建立连接，传输完毕后还要断开连接。客户端在收发数据前要使用 connect() 函数和服务器建立连接。建立连接的目的是保证IP地址、端口、物理链路等正确无误，为数据的传输开辟通道。 TCP">
+<meta name="twitter:description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCP">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/09/28/ulBBkt.jpg">
 
 
@@ -341,11 +339,30 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
             </span>
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.4k
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -364,7 +381,8 @@
 
       
         <p>最近学习的时候浏览到一个网站感觉有点无敌，传送门<a href="http://c.biancheng.net/view/2351.html" target="_blank" rel="noopener">Door</a></p>
-<h2 id="何为TCP"><a href="#何为TCP" class="headerlink" title="何为TCP"></a>何为TCP</h2><p>TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的通信协议，数据在传输前要建立连接，传输完毕后还要断开连接。<br>客户端在收发数据前要使用 connect() 函数和服务器建立连接。建立连接的目的是保证IP地址、端口、物理链路等正确无误，为数据的传输开辟通道。</p>
+<h2 id="何为TCP"><a href="#何为TCP" class="headerlink" title="何为TCP"></a>何为TCP</h2><a id="more"></a>
+<p>TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的通信协议，数据在传输前要建立连接，传输完毕后还要断开连接。<br>客户端在收发数据前要使用 connect() 函数和服务器建立连接。建立连接的目的是保证IP地址、端口、物理链路等正确无误，为数据的传输开辟通道。</p>
 <p>TCP建立连接时要传输三个数据包，俗称三次握手（Three-way Handshaking）。可以形象的比喻为下面的对话：<br>[Shake 1] 套接字A：“你好，套接字B，我这里有数据要传送给你，建立连接吧。”<br>[Shake 2] 套接字B：“好的，我这边已准备就绪。”<br>[Shake 3] 套接字A：“谢谢你受理我的请求。”</p>
 <h2 id="TCP数据报结构"><a href="#TCP数据报结构" class="headerlink" title="TCP数据报结构"></a>TCP数据报结构</h2><img src="https://s2.ax1x.com/2019/09/28/ulBBkt.jpg" alt="ulBBkt.jpg" border="0">
 
@@ -606,17 +624,17 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i> 访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+      次
     </span>
   
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i> 总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+      次
     </span>
   
 </div>

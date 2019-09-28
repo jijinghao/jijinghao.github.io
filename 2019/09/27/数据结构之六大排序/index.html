@@ -88,17 +88,20 @@
 
 
 
-<meta name="description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
+<meta name="description" content="冒泡排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单的字符串整理">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/简单的字符串整理/index.html">
+<meta property="og:title" content="数据结构之六大排序">
+<meta property="og:url" content="http://yoursite.com/2019/09/27/数据结构之六大排序/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
+<meta property="og:description" content="冒泡排序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T07:38:09.497Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uuDvgH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uKuSl4.png">
+<meta property="og:updated_time" content="2019-09-27T14:23:07.146Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单的字符串整理">
-<meta name="twitter:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
+<meta name="twitter:title" content="数据结构之六大排序">
+<meta name="twitter:description" content="冒泡排序">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/27/uuDvgH.png">
 
 
 
@@ -128,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/17/简单的字符串整理/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/27/数据结构之六大排序/">
 
 
 
 
 
-  <title>简单的字符串整理 | Johnson</title>
+  <title>数据结构之六大排序 | Johnson</title>
   
 
 
@@ -283,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/简单的字符串整理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/数据结构之六大排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -300,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单的字符串整理</h1>
+          <h1 class="post-title" itemprop="name headline">数据结构之六大排序</h1>
         
 
         <div class="post-meta">
@@ -312,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T20:27:05+08:00">
-                2019-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-27T09:55:40+08:00">
+                2019-09-27
               </time>
             
 
@@ -355,15 +358,25 @@
       
 
       
-        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；<a id="more"></a><br>拓展一下scanf，scanf(“%8s”,&amp;A); printf(“%s”,A);这样只能读8位字符，并且中间有空格也只能读到空格前面的内容；<br>于是引出了gets（）：可以读取整行，直到遇到换行符号，然后丢弃换行符号；但是gets（）可能因为长度太长而溢出缓冲区。所以c99规定了fget（）函数。<br>相对应的printf（）和puts（）的区别：puts（）读取的时间比较快并且自动添加了换行符号，但是printf（）可以更方便读取多个字符串；</p>
-<h2 id="Strlen（）"><a href="#Strlen（）" class="headerlink" title="Strlen（）"></a>Strlen（）</h2><p>统计字符串长度，不包括换行符；</p>
-<h2 id="strnlen（）"><a href="#strnlen（）" class="headerlink" title="strnlen（）"></a>strnlen（）</h2><p>在strlen（）的基础上，如果strlen不遇到束符’\0’就不会停止扫描，所以使用了strnlen（）增加一个总长度来限制：<br>int main(void)<br>{<br>    char a[]={‘h’,’e’,’l’,’l’,’o’,’w’,’o’,’r’,’l’,’d’,’!’};<br>    printf(“%d\n”,strnlen(a,10));<br>    return 0;<br> }<br> 输出的结果是10；当然遇到’\0’时也会停止的。</p>
-<h2 id="Strcat（）"><a href="#Strcat（）" class="headerlink" title="Strcat（）"></a>Strcat（）</h2><p>用于拼接两个字符串，合并成一个字符串作为第一个字符串，函数返回的是第一个字符串（这个字符串已经和字符串二拼接）</p>
-<h2 id="Strncat（）"><a href="#Strncat（）" class="headerlink" title="Strncat（）"></a>Strncat（）</h2><p>因为strcat（）跟gets（）一样会溢出缓冲区所以延伸了该函数，如果太长的话字符串会追加到第一个字符串的尾部然后加上’\0’;</p>
-<p>##Strcmp（）<br>比较两个字符串是否相同（不是比较字符单引号字符双引号字符串），相同的话为0，不同的话如果第一个的ASCII比较大返回1反之返回-1；可以利用这个返回值来排序字符串。</p>
-<h2 id="Strncmp（）"><a href="#Strncmp（）" class="headerlink" title="Strncmp（）"></a>Strncmp（）</h2><p>可以比较两个字符串至第几个参数，例如只想要比较前五个字符，strncmp（”helloworld”,”hello”,5）;</p>
-<h2 id="Strcpy（）和strncpy（）"><a href="#Strcpy（）和strncpy（）" class="headerlink" title="Strcpy（）和strncpy（）"></a>Strcpy（）和strncpy（）</h2><p>将字符串拷贝进一个临时数组，而strncpy（）就是担心缓冲区溢出；</p>
-<h2 id="Sprintf（）"><a href="#Sprintf（）" class="headerlink" title="Sprintf（）"></a>Sprintf（）</h2><p>Printf（）是打印到显示器上，该函数是打印到字符串里面，可以把多个元素组合成一个字符串</p>
+        <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><a id="more"></a>
+<h2 id="冒泡排序的基本思想"><a href="#冒泡排序的基本思想" class="headerlink" title="冒泡排序的基本思想"></a>冒泡排序的基本思想</h2><p>冒泡排序的基本思想:<br>假设我们从大到小的排序，相邻两个数字进行大小的比较然后互换位置，结果会是这一轮的比较结束后，最后一个数一定是最小的，然后继续新的一轮循环，倒数第二个数字是这一轮里面最小的，依次类推<br>排序过程如下：<br>以数组{49,38,65,97,76,13,27,49}为例<br><img src="https://s2.ax1x.com/2019/09/27/uuDvgH.png" alt="uuDvgH.png" border="0"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void Bubblesort(int k[],int n)</span><br><span class="line">&#123;</span><br><span class="line">	int i,j,temp;</span><br><span class="line">	int count1=0,count2=0;//定义两个计数器来查看效率； </span><br><span class="line">	</span><br><span class="line">	for(i=0;i&lt;n-1;i++)//比较n-1轮，肯定够是n-1嘛排到倒数第二个的时候剩下的哪一个肯定是最大的或者最小嘛</span><br><span class="line">	&#123;		</span><br><span class="line">		for(j=0;j&lt;n-i-1;j++)//每轮比较n-1-i次</span><br><span class="line">		&#123;</span><br><span class="line">			count1++ ;</span><br><span class="line">			if(k[j]&gt;k[j+1])</span><br><span class="line">			&#123;</span><br><span class="line">				count2++; </span><br><span class="line">				temp=k[j];</span><br><span class="line">				k[j]=k[j+1];</span><br><span class="line">				k[j+1]=temp;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;总共进行了%d次比较，%d次移动\n&quot;,count1,count2);</span><br><span class="line"> &#125; </span><br><span class="line"> int main(void)&#123;</span><br><span class="line"> 	int i;</span><br><span class="line"> 	int a[10]=&#123;5,2,6,0,3,9,1,7,4,8&#125;;</span><br><span class="line"> 	Bubblesort(a,10);</span><br><span class="line"> 	printf(&quot;排序的结果是:&quot;);</span><br><span class="line"> 	for(i=0;i&lt;10;i++)&#123;</span><br><span class="line"> 		printf(&quot;%d &quot;,a[i]);</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line"> 	return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><p>分析一下它的时间复杂度。当最好的情况，也就是要排序的表本身就是有序的，那么我们比较次数，根据最后改进的代码，可以推断出就是n-1次的比较，没有数据交换，时间复杂度为O(n)。当最坏的情况，即待排序表是逆序的情况，此时需要比较sigma(i=2, n, i-1)=1+2+3+…+(n-1)=n(n-1)/2次，并作等数量级的记录移动。因此，总的时间复杂度为O(n2)。</p>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><h2 id="选择排序的基本思想"><a href="#选择排序的基本思想" class="headerlink" title="选择排序的基本思想"></a>选择排序的基本思想</h2><p>选择排序算法就是通过n-i次关键字间的比较，从n-i+1个记录中选出关键字最小的记录，并和第i(1&lt;=i&lt;=n)个记录交换-&gt;简单来说，假如要从小到大排序，那么我第一个数和后面的所有数先比较，第一个数是min，比较着发现一个min小的数，那么他就是min，然后又继续比又发现比现在的min小，那么他就是现在的min了，然后比出这一趟最小的数字，比完之后再让这个数字和第一个数字交换位置(现在的min和i进行比较)，依次类推。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void Selectsort(int k[],int n)</span><br><span class="line">&#123;</span><br><span class="line">	int i,j,temp,min;</span><br><span class="line">	int count1=0,count2=0;//定义两个计数器来查看效率； </span><br><span class="line">	</span><br><span class="line">	for(i=0;i&lt;n-1;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		min=i;</span><br><span class="line">		for(j=i+1;j&lt;n;j++)//j指向i的后面一个数值； </span><br><span class="line">		&#123;</span><br><span class="line">			count1++ ;</span><br><span class="line">			if(k[j]&lt;k[min])</span><br><span class="line">			&#123;</span><br><span class="line">				min=j;//知道了这个数比min小但是先不交换位置 </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(min!=i)//在大循环外面进行交换； </span><br><span class="line">		&#123;</span><br><span class="line">			count2++; </span><br><span class="line">			temp=k[min];</span><br><span class="line">			k[min]=k[i];</span><br><span class="line">			k[i]=temp;</span><br><span class="line">		 &#125; </span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;总共进行了%d次比较，%d次移动\n&quot;,count1,count2);</span><br><span class="line"> &#125; </span><br><span class="line"> int main(void)&#123;</span><br><span class="line"> 	int i;</span><br><span class="line"> 	int a[10]=&#123;5,2,6,0,3,9,1,7,4,8&#125;;</span><br><span class="line"> 	Selectsort(a,10);</span><br><span class="line"> 	printf(&quot;排序的结果是:&quot;);</span><br><span class="line"> 	for(i=0;i&lt;10;i++)&#123;</span><br><span class="line"> 		printf(&quot;%d &quot;,a[i]);</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line"> 	return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><p>从简单选择排序的过程来看，它最大的特点就是交换移动数据次数相当少，这样也就节约了相应的时间。分析它的时间复杂度发现，无论最好最差的情况，其比较次数都是一样的多，第i趟排序需要进行n-i次关键字的比较，此时需要比较sigma(i=1, n-1, n-i)=(n-1)+(n-2)+…+1=n(n-1)/2次。而对于交换次数而言，当最好的时候，交换为0次，最差的时候，也就初始降序时，交换次数为n-1次，基于最终的排序时间是比较与交换的次数总和，因此，总的时间复杂度依然为O(n2)。</p>
+<p>应该说，尽管与冒泡排序同为O(n2)，但简单选择排序的性能上还是要略优于冒泡排序。</p>
+<h1 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h1><h2 id="直接插入排序的基本思想"><a href="#直接插入排序的基本思想" class="headerlink" title="直接插入排序的基本思想"></a>直接插入排序的基本思想</h2><p>插入排序原理很简单，讲一组数据分成两组，我分别将其称为有序组与待插入组。每次从待插入组中取出一个元素，与有序组的元素进行比较，并找到合适的位置，将该元素插到有序组当中。就这样，每次插入一个元素，有序组增加，待插入组减少。直到待插入组元素个数为0。当然，插入过程中涉及到了元素的移动。<br>为了排序方便，我们一般将数据第一个元素视为有序组，其他均为待插入组。<br>上面是比较官方的讲解，我自己是这样理解的:例如升序，取第一个值放入有序组，然后把无序组的数组拿过来比较，如果比他小就放左边大就放右边，依次类推。</p>
+<img src="https://s2.ax1x.com/2019/09/27/uKuSl4.png" alt="uKuSl4.png" border="0">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">//升序 </span><br><span class="line">void Insertsort(int k[],int n) &#123;</span><br><span class="line">	int i,j,temp;</span><br><span class="line"></span><br><span class="line">	for(i=1; i&lt;n; i++) //让J可以指向他的前一个元素 </span><br><span class="line">	&#123;</span><br><span class="line">		if(k[i]&lt;k[i-1])// 小的数字要跑到前面去； </span><br><span class="line">		&#123; </span><br><span class="line">		temp=k[i];    </span><br><span class="line">		for(j=i-1;k[j]&gt;temp;j--)//这是在有序区的比较，是从右往左的比较，如果有序区的值大于要比较的数值 ，往后移动一位。 </span><br><span class="line">		&#123;</span><br><span class="line">			k[j+1]=k[j];//若不是合适位置，有序组元素向后移动 </span><br><span class="line">		&#125; </span><br><span class="line">		 k[j+1]=temp;//循环的大小比较结束，现在这个数就是比要比较的数小的那个数，将要比较的数放到这个数的后面一位，将元素插入。 </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main(void) &#123;</span><br><span class="line">	int i;</span><br><span class="line">	int a[10]= &#123;5,2,6,0,3,9,1,7,4,8&#125;;</span><br><span class="line">	Insertsort(a,10);</span><br><span class="line">	printf(&quot;排序的结果是:&quot;);</span><br><span class="line">	for(i=0; i&lt;10; i++) &#123;</span><br><span class="line">		printf(&quot;%d &quot;,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><p>网上看了一个教程感觉挺厉害的，这个是传送门<br><a href="https://www.cnblogs.com/0zcl/p/6737944.html" target="_blank" rel="noopener">Door</a><br>简单来说就是先把堆整理成大顶堆，然后把第一个数也就是最大的那个数和最后一个数互换位置，换了位置之后重新排列大顶堆，继续和倒数第二个数交换，然后最后得出来的序列就是升序序列了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void swap(int k[],int i,int j)</span><br><span class="line">&#123;</span><br><span class="line">	int temp;</span><br><span class="line">	temp=k[i];</span><br><span class="line">	k[i]=k[j];</span><br><span class="line">	k[j]=temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void HeapAdjust(int k[],int s,int n) //s是双亲， 构建大顶堆的函数； </span><br><span class="line">&#123;</span><br><span class="line">	int i,temp;</span><br><span class="line">	temp=k[s]; </span><br><span class="line">	for(i=2*s;i&lt;=n;i=i*2) //继续往下一层遍历；</span><br><span class="line">	&#123;</span><br><span class="line">		if(i&lt;n&amp;&amp;k[i]&lt;k[i+1])//i不是最后一个节点; </span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		if(temp&gt;=k[i])</span><br><span class="line">		&#123;</span><br><span class="line">			break; //双亲大于孩子的话； </span><br><span class="line">		&#125;</span><br><span class="line">		k[s]=k[i];</span><br><span class="line">		s=i; </span><br><span class="line">	&#125; </span><br><span class="line">	k[s]=temp;	</span><br><span class="line">&#125;</span><br><span class="line">void Heapsort(int k[],int n)</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	for(i=n/2;i&gt;0;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		HeapAdjust(k,i,n);</span><br><span class="line">	&#125;</span><br><span class="line">	for(i=n;i&gt;1;i--)//第一个跟最后一个互换； </span><br><span class="line">	&#123;</span><br><span class="line">		swap(k,1,i);</span><br><span class="line">		HeapAdjust(k,1,i-1);//换了之后又要重新构建乱了的堆； </span><br><span class="line">	&#125;</span><br><span class="line"> &#125; </span><br><span class="line"></span><br><span class="line">int main(void) </span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	int a[10]= &#123;-1,5,2,6,0,3,9,1,7,4&#125;;</span><br><span class="line">	Heapsort(a,9);</span><br><span class="line">	printf(&quot;排序的结果是:&quot;);</span><br><span class="line">	for(i=1;i&lt;10;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%d &quot;,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><h2 id="希尔排序的基本思想"><a href="#希尔排序的基本思想" class="headerlink" title="希尔排序的基本思想"></a>希尔排序的基本思想</h2><p>希尔排序就是插入排序的进阶版本<br>这是传送门<a href="https://blog.csdn.net/qq_39207948/article/details/80006224" target="_blank" rel="noopener">Door</a>;</p>
 
       
     </div>
@@ -388,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/17/结构体和指针的关系/" rel="next" title="结构体和指针的关系">
-                <i class="fa fa-chevron-left"></i> 结构体和指针的关系
+              <a href="/2019/09/24/数据结构之队列/" rel="next" title="数据结构之队列">
+                <i class="fa fa-chevron-left"></i> 数据结构之队列
               </a>
             
           </div>
@@ -398,8 +411,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/18/网络基础的心得/" rel="prev" title="网络基础的心得">
-                网络基础的心得 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/28/TCP/" rel="prev" title="超级详细的TCP总结">
+                超级详细的TCP总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,7 +536,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strlen（）"><span class="nav-number">2.</span> <span class="nav-text">Strlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strnlen（）"><span class="nav-number">3.</span> <span class="nav-text">strnlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcat（）"><span class="nav-number">4.</span> <span class="nav-text">Strcat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncat（）"><span class="nav-number">5.</span> <span class="nav-text">Strncat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncmp（）"><span class="nav-number">6.</span> <span class="nav-text">Strncmp（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcpy（）和strncpy（）"><span class="nav-number">7.</span> <span class="nav-text">Strcpy（）和strncpy（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sprintf（）"><span class="nav-number">8.</span> <span class="nav-text">Sprintf（）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序的基本思想"><span class="nav-number">1.1.</span> <span class="nav-text">冒泡排序的基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.2.</span> <span class="nav-text">时间复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择排序"><span class="nav-number">2.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序的基本思想"><span class="nav-number">2.1.</span> <span class="nav-text">选择排序的基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度分析-1"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#直接插入排序"><span class="nav-number">3.</span> <span class="nav-text">直接插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接插入排序的基本思想"><span class="nav-number">3.1.</span> <span class="nav-text">直接插入排序的基本思想</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#堆排序"><span class="nav-number">4.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#希尔排序"><span class="nav-number">5.</span> <span class="nav-text">希尔排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#希尔排序的基本思想"><span class="nav-number">5.1.</span> <span class="nav-text">希尔排序的基本思想</span></a></li></ol></li></ol></div>
             
 
           </div>

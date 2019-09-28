@@ -88,17 +88,13 @@
 
 
 
-<meta name="description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
-<meta property="og:type" content="article">
-<meta property="og:title" content="简单的字符串整理">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/简单的字符串整理/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Johnson">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-23T07:38:09.497Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单的字符串整理">
-<meta name="twitter:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
+<meta name="twitter:title" content="Johnson">
 
 
 
@@ -128,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/17/简单的字符串整理/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 
 
 
-  <title>简单的字符串整理 | Johnson</title>
+  <title>Johnson</title>
   
 
 
@@ -153,7 +149,8 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,9 +265,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -283,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/简单的字符串整理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -300,7 +297,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单的字符串整理</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/07/hello-world/" itemprop="url">111</a></h1>
         
 
         <div class="post-meta">
@@ -312,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T20:27:05+08:00">
-                2019-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T19:39:44+08:00">
+                2019-09-07
               </time>
             
 
@@ -331,11 +330,6 @@
           
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
           
 
           
@@ -355,16 +349,17 @@
       
 
       
-        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；<a id="more"></a><br>拓展一下scanf，scanf(“%8s”,&amp;A); printf(“%s”,A);这样只能读8位字符，并且中间有空格也只能读到空格前面的内容；<br>于是引出了gets（）：可以读取整行，直到遇到换行符号，然后丢弃换行符号；但是gets（）可能因为长度太长而溢出缓冲区。所以c99规定了fget（）函数。<br>相对应的printf（）和puts（）的区别：puts（）读取的时间比较快并且自动添加了换行符号，但是printf（）可以更方便读取多个字符串；</p>
-<h2 id="Strlen（）"><a href="#Strlen（）" class="headerlink" title="Strlen（）"></a>Strlen（）</h2><p>统计字符串长度，不包括换行符；</p>
-<h2 id="strnlen（）"><a href="#strnlen（）" class="headerlink" title="strnlen（）"></a>strnlen（）</h2><p>在strlen（）的基础上，如果strlen不遇到束符’\0’就不会停止扫描，所以使用了strnlen（）增加一个总长度来限制：<br>int main(void)<br>{<br>    char a[]={‘h’,’e’,’l’,’l’,’o’,’w’,’o’,’r’,’l’,’d’,’!’};<br>    printf(“%d\n”,strnlen(a,10));<br>    return 0;<br> }<br> 输出的结果是10；当然遇到’\0’时也会停止的。</p>
-<h2 id="Strcat（）"><a href="#Strcat（）" class="headerlink" title="Strcat（）"></a>Strcat（）</h2><p>用于拼接两个字符串，合并成一个字符串作为第一个字符串，函数返回的是第一个字符串（这个字符串已经和字符串二拼接）</p>
-<h2 id="Strncat（）"><a href="#Strncat（）" class="headerlink" title="Strncat（）"></a>Strncat（）</h2><p>因为strcat（）跟gets（）一样会溢出缓冲区所以延伸了该函数，如果太长的话字符串会追加到第一个字符串的尾部然后加上’\0’;</p>
-<p>##Strcmp（）<br>比较两个字符串是否相同（不是比较字符单引号字符双引号字符串），相同的话为0，不同的话如果第一个的ASCII比较大返回1反之返回-1；可以利用这个返回值来排序字符串。</p>
-<h2 id="Strncmp（）"><a href="#Strncmp（）" class="headerlink" title="Strncmp（）"></a>Strncmp（）</h2><p>可以比较两个字符串至第几个参数，例如只想要比较前五个字符，strncmp（”helloworld”,”hello”,5）;</p>
-<h2 id="Strcpy（）和strncpy（）"><a href="#Strcpy（）和strncpy（）" class="headerlink" title="Strcpy（）和strncpy（）"></a>Strcpy（）和strncpy（）</h2><p>将字符串拷贝进一个临时数组，而strncpy（）就是担心缓冲区溢出；</p>
-<h2 id="Sprintf（）"><a href="#Sprintf（）" class="headerlink" title="Sprintf（）"></a>Sprintf（）</h2><p>Printf（）是打印到显示器上，该函数是打印到字符串里面，可以把多个元素组合成一个字符串</p>
-
+        
+          <p>Welcome to <a href="https://www.baidu.com" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/07/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -381,32 +376,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/09/17/结构体和指针的关系/" rel="next" title="结构体和指针的关系">
-                <i class="fa fa-chevron-left"></i> 结构体和指针的关系
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/18/网络基础的心得/" rel="prev" title="网络基础的心得">
-                网络基础的心得 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -416,11 +391,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -428,10 +406,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -452,17 +426,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,22 +478,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strlen（）"><span class="nav-number">2.</span> <span class="nav-text">Strlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strnlen（）"><span class="nav-number">3.</span> <span class="nav-text">strnlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcat（）"><span class="nav-number">4.</span> <span class="nav-text">Strcat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncat（）"><span class="nav-number">5.</span> <span class="nav-text">Strncat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncmp（）"><span class="nav-number">6.</span> <span class="nav-text">Strncmp（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcpy（）和strncpy（）"><span class="nav-number">7.</span> <span class="nav-text">Strcpy（）和strncpy（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sprintf（）"><span class="nav-number">8.</span> <span class="nav-text">Sprintf（）</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -691,10 +640,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

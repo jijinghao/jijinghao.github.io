@@ -98,7 +98,7 @@
 <meta property="og:description" content="模型各个层次的作用描述三个模型的各层作用">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/16/KiXhi8.png">
-<meta property="og:updated_time" content="2019-10-16T08:37:36.839Z">
+<meta property="og:updated_time" content="2019-10-16T08:40:37.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机与网络基础笼统总结">
 <meta name="twitter:description" content="模型各个层次的作用描述三个模型的各层作用">
@@ -378,7 +378,7 @@
       
 
       
-        <h1 id="模型各个层次的作用"><a href="#模型各个层次的作用" class="headerlink" title="模型各个层次的作用"></a>模型各个层次的作用</h1><p>描述三个模型的各层作用<a id="more"></a></p>
+        <h1 id="模型各个层次的作用"><a href="#模型各个层次的作用" class="headerlink" title="模型各个层次的作用"></a>模型各个层次的作用</h1><p>描述三个模型的各层作用 <a id="more"></a></p>
 <h2 id="物理层（Physical-Layer）"><a href="#物理层（Physical-Layer）" class="headerlink" title="物理层（Physical Layer）"></a>物理层（Physical Layer）</h2><p>常用设备包括网卡、集线器、中继器、调制解调器、网线、双绞线、同轴电缆。<br>物理层的主要功能是利用物理传输介质为数据链路层提供物理连接，以实现比特流的透明传输。<br>物理层的PDU叫做比特或者数据位</p>
 <h2 id="数据链路层（Data-Link-Layer）"><a href="#数据链路层（Data-Link-Layer）" class="headerlink" title="数据链路层（Data Link Layer）"></a>数据链路层（Data Link Layer）</h2><p>数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据的检错、重发等。<br>1&gt; 数据链路层为网络层提供可靠的数据传输；<br>2&gt; 基本数据单位为帧；<br>3&gt; 主要的协议：以太网协议；<br>4&gt; 两个重要设备名称：网桥和交换机。</p>
 <h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>通过路由选择算法为分组通过通信子网选择适当的传输路径，实现流量控制，拥塞控制与网络互联的功能。<br>网络层的PDU：数据包<br>1.网络层负责对子网间的数据包进行路由选择。此外，网络层还可以实现拥塞控制、网际互连等功能；<br>2.基本数据单位为IP数据报；<br>3.包含的主要协议：<br>IP协议（Internet Protocol，因特网互联协议）: 在IP协议中，IP协议是面向非连接的，所谓的非连接就是在数据的传递过程中，不需要检测网络是否连通，所以是不可靠的数据报协议。IP协议主要用于在主机之间的寻址和选择数据包路由。<br>ICMP协议（Internet Control Message Protocol，因特网控制报文协议）: 是面向无连接的协议，用于在IP主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。<br>包含在ip数据报中<br>ARP协议（Address Resolution Protocol，地址解析协议）： 在任何时候，一台主机有IP数据报文发送给另一台主机，它都要知道接收方的逻辑（IP）地址。但是IP地址必须封装成帧才能通过物理网络。这就意味着发送方必须有接收方的物理（MAC）地址，因此需要完成逻辑地址到物理地址的映射。而ARP协议可以接收来自IP协议的逻辑地址，将其映射为相应的物理地址，然后把物理地址递交给数据链路层。<br>RARP协议（Reverse Address Resolution Protocol，逆地址解析协议）：<br>允许局域网的物理机器从网关服务器的 ARP 表或者缓存上请求其 IP 地址。</p>

@@ -80,6 +80,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -88,13 +90,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Johnson">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="模型各个层次的作用描述三个模型的各层作用 物理层（Physical Layer）常用设备包括网卡、集线器、中继器、调制解调器、网线、双绞线、同轴电缆。物理层的主要功能是利用物理传输介质为数据链路层提供物理连接，以实现比特流的透明传输。物理层的PDU叫做比特或者数据位 数据链路层（Data Link Layer）数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构心得之线性表">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/计算机与网络基础题汇总/index.html">
 <meta property="og:site_name" content="Johnson">
+<meta property="og:description" content="模型各个层次的作用描述三个模型的各层作用 物理层（Physical Layer）常用设备包括网卡、集线器、中继器、调制解调器、网线、双绞线、同轴电缆。物理层的主要功能是利用物理传输介质为数据链路层提供物理连接，以实现比特流的透明传输。物理层的PDU叫做比特或者数据位 数据链路层（Data Link Layer）数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/16/KiXhi8.png">
+<meta property="og:updated_time" content="2019-10-16T08:13:17.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Johnson">
+<meta name="twitter:title" content="数据结构心得之线性表">
+<meta name="twitter:description" content="模型各个层次的作用描述三个模型的各层作用 物理层（Physical Layer）常用设备包括网卡、集线器、中继器、调制解调器、网线、双绞线、同轴电缆。物理层的主要功能是利用物理传输介质为数据链路层提供物理连接，以实现比特流的透明传输。物理层的PDU叫做比特或者数据位 数据链路层（Data Link Layer）数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/16/KiXhi8.png">
 
 
 
@@ -124,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/16/计算机与网络基础题汇总/">
 
 
 
 
 
-  <title>Johnson</title>
+  <title>数据结构心得之线性表 | Johnson</title>
   
 
 
@@ -149,8 +157,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,9 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -280,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/数据结构之链表（-）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/计算机与网络基础题汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -297,9 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/08/数据结构之链表（-）/" itemprop="url">数据结构心得之线性表</a></h1>
+          <h1 class="post-title" itemprop="name headline">数据结构心得之线性表</h1>
         
 
         <div class="post-meta">
@@ -311,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-08T21:59:31+08:00">
-                2019-09-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-16T14:31:15+08:00">
+                2019-10-16
               </time>
             
 
@@ -331,6 +336,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
             <div class="post-wordcount">
@@ -343,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.7k
+                  3.1k
                 </span>
               
 
@@ -368,160 +378,31 @@
       
 
       
-        
-          <h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p>线性表的顺序存储结构和线性表的链式存储结构分别是随机存取和顺序存取。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/08/数据结构之链表（-）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
+        <h1 id="模型各个层次的作用"><a href="#模型各个层次的作用" class="headerlink" title="模型各个层次的作用"></a>模型各个层次的作用</h1><p>描述三个模型的各层作用</p>
+<h2 id="物理层（Physical-Layer）"><a href="#物理层（Physical-Layer）" class="headerlink" title="物理层（Physical Layer）"></a>物理层（Physical Layer）</h2><p>常用设备包括网卡、集线器、中继器、调制解调器、网线、双绞线、同轴电缆。<br>物理层的主要功能是利用物理传输介质为数据链路层提供物理连接，以实现比特流的透明传输。<br>物理层的PDU叫做比特或者数据位</p>
+<h2 id="数据链路层（Data-Link-Layer）"><a href="#数据链路层（Data-Link-Layer）" class="headerlink" title="数据链路层（Data Link Layer）"></a>数据链路层（Data Link Layer）</h2><p>数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据的检错、重发等。<br>1&gt; 数据链路层为网络层提供可靠的数据传输；<br>2&gt; 基本数据单位为帧；<br>3&gt; 主要的协议：以太网协议；<br>4&gt; 两个重要设备名称：网桥和交换机。</p>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>通过路由选择算法为分组通过通信子网选择适当的传输路径，实现流量控制，拥塞控制与网络互联的功能。<br>网络层的PDU：数据包<br>1.网络层负责对子网间的数据包进行路由选择。此外，网络层还可以实现拥塞控制、网际互连等功能；<br>2.基本数据单位为IP数据报；<br>3.包含的主要协议：<br>IP协议（Internet Protocol，因特网互联协议）: 在IP协议中，IP协议是面向非连接的，所谓的非连接就是在数据的传递过程中，不需要检测网络是否连通，所以是不可靠的数据报协议。IP协议主要用于在主机之间的寻址和选择数据包路由。<br>ICMP协议（Internet Control Message Protocol，因特网控制报文协议）: 是面向无连接的协议，用于在IP主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。<br>包含在ip数据报中<br>ARP协议（Address Resolution Protocol，地址解析协议）： 在任何时候，一台主机有IP数据报文发送给另一台主机，它都要知道接收方的逻辑（IP）地址。但是IP地址必须封装成帧才能通过物理网络。这就意味着发送方必须有接收方的物理（MAC）地址，因此需要完成逻辑地址到物理地址的映射。而ARP协议可以接收来自IP协议的逻辑地址，将其映射为相应的物理地址，然后把物理地址递交给数据链路层。<br>RARP协议（Reverse Address Resolution Protocol，逆地址解析协议）：<br>允许局域网的物理机器从网关服务器的 ARP 表或者缓存上请求其 IP 地址。</p>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>作用：为应用进程之间提供端到端的逻辑通信。<br>传输层的PDU：报文段；<br>有关传输层的重点：<br>　　1&gt;    传输层负责将上层数据分段并提供端到端的、可靠的或不可靠的传输以及端到端的差错控制和流量控制问题；<br>　　2&gt; 包含的主要协议：TCP协议（Transmission Control Protocol，传输控制协议）、UDP协议（User Datagram Protocol，用户数据报协议）；<br>　　3&gt; 重要设备：网关。<br>TCP/IP详细看前面的文章。</p>
+<h2 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h2><p>会话层管理主机之间的会话进程，即负责建立、管理、终止进程之间的会话。会话层还利用在数据中插入校验点来实现数据的同步。</p>
+<h2 id="表达层"><a href="#表达层" class="headerlink" title="表达层"></a>表达层</h2><p>表示层对上层数据或信息进行变换以保证一个主机应用层信息可以被另一个主机的应用程序理解。表示层的数据转换包括数据的加密、压缩、格式转换等。</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>是最靠近用户的OSI层，为用户的应用程序提供网络服务的接口。将用户的操作通过应用程序转换成为服务，并匹配一个相应的服务协议发送给传输层。</p>
+<p>包含的主要协议：FTP（文件传送协议）、Telnet（远程登录协议）、DNS（域名解析协议）、SMTP（邮件传送协议），POP3协议（邮局协议），HTTP协议（Hyper Text Transfer Protocol）。</p>
+<h2 id="每一层的协议"><a href="#每一层的协议" class="headerlink" title="每一层的协议"></a>每一层的协议</h2><p>物理层：RJ45、CLOCK、IEEE802.3    （中继器，集线器）<br>数据链路：PPP、FR、HDLC、VLAN、MAC  （网桥，交换机）<br>网络层：IP、ICMP、ARP、RARP、OSPF、IPX、RIP、IGRP、 （路由器）<br>传输层：TCP、UDP、SPX （网关）<br>会话层：NFS、SQL、NETBIOS、RPC<br>表示层：JPEG、MPEG、ASCII<br>应用层：FTP、DNS、Telnet、SMTP、HTTP、WWW、NFS</p>
+<h1 id="子网掩码的作用"><a href="#子网掩码的作用" class="headerlink" title="子网掩码的作用"></a>子网掩码的作用</h1><p>子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码将某个IP地址划分成网络地址和主机地址两部分，可以和网络地址与后判断目标主机是否在同一网段，，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在远程网上。</p>
+<h1 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h1><img src="https://s2.ax1x.com/2019/10/16/KiXhi8.png" alt="KiXhi8.png" border="0">
 
-    
+<h1 id="RARP协议工作流程"><a href="#RARP协议工作流程" class="headerlink" title="RARP协议工作流程"></a>RARP协议工作流程</h1><p>（1）给主机发送一个本地的RARP广播，在此广播包中，声明自己的MAC地址并且请求任何收到此请求的RARP服务器分配一个IP地址；<br>（2）本地网段上的RARP服务器收到此请求后，检查其RARP列表，查找该MAC地址对应的IP地址；<br>（3）如果存在，RARP服务器就给源主机发送一个响应数据包并将此IP地址提供给对方主机使用；<br>（4）如果不存在，RARP服务器对此不做任何的响应；<br>（5）源主机收到从RARP服务器的响应信息，就利用得到的IP地址进行通讯；如果一直没有收到RARP服务器的响应信息，表示初始化失败。</p>
+<h1 id="ARP欺诈"><a href="#ARP欺诈" class="headerlink" title="ARP欺诈"></a>ARP欺诈</h1><p>是针对以太网地址解析协议（ARP）的一种攻击技术，通过欺骗局域网内访问者PC的网关MAC地址，使访问者PC错以为攻击者更改后的MAC地址是网关的MAC，导致网络不通。</p>
+<h1 id="TCP-UDP的区别"><a href="#TCP-UDP的区别" class="headerlink" title="TCP/UDP的区别"></a>TCP/UDP的区别</h1><p>TCP和UDP是OSI模型中的运输层中的协议。TCP提供可靠的通信传输，而UDP则常被用于让广播和细节控制交给应用的通信传输。<br>两者的区别大致如下：<br>TCP面向连接，UDP面向非连接即发送数据前不需要建立链接<br>TCP提供可靠的服务（数据传输），UDP无法保证<br>TCP面向字节流，UDP面向报文<br>TCP数据传输慢，UDP数据传输快<br>TCP提供一种面向连接的、可靠的字节流服务<br>在一个TCP连接中，仅有两方进行彼此通信，因此广播和多播不能用于TCP<br>TCP使用校验和，确认和重传机制来保证可靠传输<br>TCP使用累积确认<br>TCP使用滑动窗口机制来实现流量控制，通过动态改变窗口的大小进行拥塞控制</p>
+<h1 id="TCP和UDP应用场景"><a href="#TCP和UDP应用场景" class="headerlink" title="TCP和UDP应用场景"></a>TCP和UDP应用场景</h1><p>TCP：当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。<br>在日常生活中，常见使用TCP协议的应用如：浏览器，用的HTTP；FlashFXP，用的FTP；Outlook，用的POP、SMTP；Putty，用的Telnet、SSH；QQ文件传输</p>
+<p>UDP：当强调传输性能而不是传输的完整性时， 要求网络通讯速度能尽量的快。如：QQ语音 QQ视频等。</p>
+<h1 id="交换机的作用和原理"><a href="#交换机的作用和原理" class="headerlink" title="交换机的作用和原理"></a>交换机的作用和原理</h1><p>能为子网中提供更多的连接端口，以便连接更多的电脑，就像一根水管里流出的水你用多跟水管同时去分流，可以简单理解成，你和你舍友加起来的速度是固定的，无论分出多少个端口<br>一、学习/获取：交换机会学习收到的数据帧的源MAC地址;</p>
+<p>1、当交换机从某个端口收到数据帧时，会读取帧的源MAC地址并在MAC表中填入该MAC地址其对应的端口。<br>二、过期：通过学习过程学习到的MAC条目具有时间戮，此时间戮用于从MAC表中删除旧条目。<br>1、当某个条目在MAC表中创建之后，就会使用其时间戮作为起始值开始递减计数。计数值到0后，条目被删除;<br>2、如果在条目被删除之前，交换机从相同端口收到同一源MAC的帧时，将会刷新表中的该条目;<br>3、在时间戮计数值到0后，仍未从该端口收到该源MAC的帧时，条目将被删除。<br>三、泛洪：交换机将帧发送到除接收端口以外的其它所有端口的过程称为泛洪。<br>1、当收到目的MAC地址不在MAC表中的数据帧时，交换机不知道该往哪一个端口发送该帧，此时会泛洪;<br>2、当收到目的MAC地址为广播地址的帧时，会泛洪;<br>3、当收到目的MAC地址为组播(多播)地址的帧时，会泛洪。<br>四、选择性转发：检查帧的MAC地址后，将帧从适当的端口转发出去的过程称为选择性转发。<br>1、交换机收到数据帧后，如果该帧的MAC地址在MAC表中，则将帧转发到相应端口，而不是泛洪到所有端口。<br>五、过滤：在某些情况下，帧不会被转发。<br> 1、交换机不会将帧转发到接收帧的端口;<br> 2、交换机会丢弃损坏的帧而不转发，如没有通过CRC校验的帧等;<br> 3、由于某些安全设置帧不会被交换机转发，如基于MAC地址的ACL、VLAN等。</p>
+<h2 id="路由器的作用"><a href="#路由器的作用" class="headerlink" title="路由器的作用"></a>路由器的作用</h2><p>路由器的一个作用是连通不同的网络，另一个作用是选择信息传送的线路。<br>根据路由表分组转发数据报。</p>
+<h2 id="默认路由的作用"><a href="#默认路由的作用" class="headerlink" title="默认路由的作用"></a>默认路由的作用</h2><p>默认路由是一种特殊的静态路由，指的是当路由表中与包的目的地址之间没有匹配的表项时路由器能够做出的选择。，是对IP数据包中的目的地址找不到存在的其他路由时，路由器所选择的路由。</p>
+<h2 id="ping的过程"><a href="#ping的过程" class="headerlink" title="ping的过程"></a>ping的过程</h2><p>同网段<br>在主机A上运行“Ping 192.168.0.5”后，都发生了些什么呢? 首先，Ping命令会构建一个固定格式的ICMP请求数据包，然后由ICMP协议将这个数据包连同地址“192.168.0.5”一起交给IP层协议（和ICMP一样，实际上是一组后台运行的进程），IP层协议将以地址“192.168.0.5”作为目的地址，本机IP地址作为源地址，加上一些其他的控制信息，构建一个IP数据包，并想办法得到192.168.0.5的MAC地址（物理地址，这是数据链路层协议构建数据链路层的传输单元——帧所必需的），以便交给数据链路层构建一个数据帧。关键就在这里，IP层协议通过机器B的IP地址和自己的子网掩码，发现它跟自己属同一网络，就直接在本网络内查找这台机器的MAC，如果以前两机有过通信，在A机的ARP缓存表应该有B机IP与其MAC的映射关系，如果没有，就发一个ARP请求广播，得到B机的MAC，一并交给数据链路层。后者构建一个数据帧，目的地址是IP层传过来的物理地址，源地址则是本机的物理地址，还要附加上一些控制信息，依据以太网的介质访问规则，将它们传送出去。</p>
+<p>不同网段    主机B收到这个数据帧后，先检查它的目的地址，并和本机的物理地址对比，如符合，则接收；否则丢弃。接收后检查该数据帧，将IP数据包从帧中提取出来，交给本机的IP层协议。同样，IP层检查后，将有用的信息提取后交给ICMP协议，后者处理后，马上构建一个ICMP应答包，发送给主机A，其过程和主机A发送ICMP请求包到主机B一模一样。</p>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnson">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/DOGhead.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johnson">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/07/hello-world/" itemprop="url">111</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T19:39:44+08:00">
-                2019-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  74
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://www.baidu.com" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/07/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -538,12 +419,28 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/28/TCP/" rel="next" title="超级详细的TCP总结">
+                <i class="fa fa-chevron-left"></i> 超级详细的TCP总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -553,14 +450,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -568,6 +462,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -588,8 +486,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -640,6 +547,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模型各个层次的作用"><span class="nav-number">1.</span> <span class="nav-text">模型各个层次的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层（Physical-Layer）"><span class="nav-number">1.1.</span> <span class="nav-text">物理层（Physical Layer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层（Data-Link-Layer）"><span class="nav-number">1.2.</span> <span class="nav-text">数据链路层（Data Link Layer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层"><span class="nav-number">1.3.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层"><span class="nav-number">1.4.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#会话层"><span class="nav-number">1.5.</span> <span class="nav-text">会话层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达层"><span class="nav-number">1.6.</span> <span class="nav-text">表达层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层"><span class="nav-number">1.7.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每一层的协议"><span class="nav-number">1.8.</span> <span class="nav-text">每一层的协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子网掩码的作用"><span class="nav-number">2.</span> <span class="nav-text">子网掩码的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARP协议工作原理"><span class="nav-number">3.</span> <span class="nav-text">ARP协议工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RARP协议工作流程"><span class="nav-number">4.</span> <span class="nav-text">RARP协议工作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARP欺诈"><span class="nav-number">5.</span> <span class="nav-text">ARP欺诈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-UDP的区别"><span class="nav-number">6.</span> <span class="nav-text">TCP/UDP的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP和UDP应用场景"><span class="nav-number">7.</span> <span class="nav-text">TCP和UDP应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交换机的作用和原理"><span class="nav-number">8.</span> <span class="nav-text">交换机的作用和原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#路由器的作用"><span class="nav-number">8.1.</span> <span class="nav-text">路由器的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认路由的作用"><span class="nav-number">8.2.</span> <span class="nav-text">默认路由的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping的过程"><span class="nav-number">8.3.</span> <span class="nav-text">ping的过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -802,6 +725,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

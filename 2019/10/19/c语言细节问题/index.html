@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -90,17 +88,17 @@
 
 
 
-<meta name="description" content="两种内存分配方式的优缺点对于虚拟内存机制和分页机制为基础的动态内存管理，由于请求分页机制的存在，不能满足系统实时性方面的要求，但是他能为应用提供最多能到4G的内存空间，可以为进程空间提供保护，一个进程崩溃不会影响其他的进程。对于非虚拟内存管理机制的系统，由于可以直接操作物理内存，提高了系统实时性，再这样的系统中，开发者的参与度比另一种机制高。缺点是没有进程间的保护机制，一个进程或者任务的错误很容易">
+<meta name="description" content="两种内存分配方式的优缺点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c语言细节">
 <meta property="og:url" content="http://yoursite.com/2019/10/19/c语言细节问题/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="两种内存分配方式的优缺点对于虚拟内存机制和分页机制为基础的动态内存管理，由于请求分页机制的存在，不能满足系统实时性方面的要求，但是他能为应用提供最多能到4G的内存空间，可以为进程空间提供保护，一个进程崩溃不会影响其他的进程。对于非虚拟内存管理机制的系统，由于可以直接操作物理内存，提高了系统实时性，再这样的系统中，开发者的参与度比另一种机制高。缺点是没有进程间的保护机制，一个进程或者任务的错误很容易">
+<meta property="og:description" content="两种内存分配方式的优缺点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-24T14:21:53.094Z">
+<meta property="og:updated_time" content="2019-11-25T08:16:27.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c语言细节">
-<meta name="twitter:description" content="两种内存分配方式的优缺点对于虚拟内存机制和分页机制为基础的动态内存管理，由于请求分页机制的存在，不能满足系统实时性方面的要求，但是他能为应用提供最多能到4G的内存空间，可以为进程空间提供保护，一个进程崩溃不会影响其他的进程。对于非虚拟内存管理机制的系统，由于可以直接操作物理内存，提高了系统实时性，再这样的系统中，开发者的参与度比另一种机制高。缺点是没有进程间的保护机制，一个进程或者任务的错误很容易">
+<meta name="twitter:description" content="两种内存分配方式的优缺点">
 
 
 
@@ -351,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2k
+                  2.2k
                 </span>
               
 
@@ -376,10 +374,20 @@
       
 
       
-        <h2 id="两种内存分配方式的优缺点"><a href="#两种内存分配方式的优缺点" class="headerlink" title="两种内存分配方式的优缺点"></a>两种内存分配方式的优缺点</h2><p>对于虚拟内存机制和分页机制为基础的动态内存管理，由于请求分页机制的存在，不能满足系统实时性方面的要求，但是他能为应用提供最多能到4G的内存空间，可以为进程空间提供保护，一个进程崩溃不会影响其他的进程。对于非虚拟内存管理机制的系统，由于可以直接操作物理内存，提高了系统实时性，再这样的系统中，开发者的参与度比另一种机制高。缺点是没有进程间的保护机制，一个进程或者任务的错误很容易导致整个系统的崩溃。</p>
+        <h2 id="两种内存分配方式的优缺点"><a href="#两种内存分配方式的优缺点" class="headerlink" title="两种内存分配方式的优缺点"></a>两种内存分配方式的优缺点</h2><a id="more"></a>
+<p>对于虚拟内存机制和分页机制为基础的动态内存管理，由于请求分页机制的存在，不能满足系统实时性方面的要求，但是他能为应用提供最多能到4G的内存空间，可以为进程空间提供保护，一个进程崩溃不会影响其他的进程。对于非虚拟内存管理机制的系统，由于可以直接操作物理内存，提高了系统实时性，再这样的系统中，开发者的参与度比另一种机制高。缺点是没有进程间的保护机制，一个进程或者任务的错误很容易导致整个系统的崩溃。</p>
 <h2 id="内存溢出和内存泄漏"><a href="#内存溢出和内存泄漏" class="headerlink" title="内存溢出和内存泄漏"></a>内存溢出和内存泄漏</h2><p>系统已经不能再分配出你所需要的空间，比如你需要100M的空间，系统只剩90M了，这就叫内存溢出（你要求分配的内存超出了系统能给你的内存，系统不能满足于是产生了溢出）。<br>内存泄漏指的是堆内存的泄露，堆内存是指程序从堆中分配的，大小随机的用完后必须显示释放的内存，C++/C中有free函数可以释放内存，如果内存不释放的话，就不能再用了，这就叫内存泄露（就相当于你租了个带钥匙的柜子，你存完东西之后把柜子锁上之后，把钥匙丢了或者没有将钥匙还回去，那么结果就是这个柜子将无法供给任何人使用，也无法被垃圾回收器回收，因为找不到他的任何信息。）</p>
 <h2 id="野指针和空指针"><a href="#野指针和空指针" class="headerlink" title="野指针和空指针"></a>野指针和空指针</h2><p>没有存储任何内存地址的指针就称为空指针(NULL指针)<br>指向不可用内存区域的指针。通常对这种指针进行操作的话，将会使程序发生不可预知的错误。 （一、指针变量没有被初始化。任何指针变量刚被创建时不会自动成为NULL指针，它的缺省值是随机的，它会乱指一气。所以，指针变量在创建的同时应当被初始化，要么将指针设置为NULL，要么让它指向合法的内存。</p>
 <p>二、指针p被free或者delete之后，没有置为NULL，让人误以为p是个合法的指针。别看free和delete的名字恶狠狠的（尤其是 delete），它们只是把指针所指的内存给释放掉，但并没有把指针本身干掉。通常会用语句if(p!=NULL)进行防错处理。很遗憾，此时if语句起不到防错作用，因为即便p不是NULL指针，它也不指向合法的内存块。<br>）</p>
+<h2 id="关于sizeof和strlen"><a href="#关于sizeof和strlen" class="headerlink" title="关于sizeof和strlen"></a>关于sizeof和strlen</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char a[16]=&quot;abcaa&quot;;</span><br><span class="line">    printf(&quot;%s\n&quot;,a);</span><br><span class="line">    printf(&quot;%d %d&quot;,sizeof(a),strlen(a));</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果是：abcaa<br>        16 5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char a[]=&quot;abc\0aa&quot;;</span><br><span class="line">    printf(&quot;%s\n&quot;,a);</span><br><span class="line">    printf(&quot;%d %d&quot;,sizeof(a),strlen(a));</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果是：abc<br>        7 3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char a[]=&quot;abc\naa&quot;;</span><br><span class="line">    printf(&quot;%s\n&quot;,a);</span><br><span class="line">    printf(&quot;%d %d&quot;,sizeof(a),strlen(a));</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果是：abc<br>        aa<br>        7 6</p>
 <h2 id="请填写-bool-float-指针变量-与“零值”比较的-if-语句"><a href="#请填写-bool-float-指针变量-与“零值”比较的-if-语句" class="headerlink" title="请填写 bool , float, 指针变量 与“零值”比较的 if 语句"></a>请填写 bool , float, 指针变量 与“零值”比较的 if 语句</h2><p>1.bool flag和零值比较的if语句<br>if（flag） if（！flag）<br>2.flag和零值比较的if语句<br>if（x&lt;=-0.000001）&amp;&amp;（x&gt;=0.000001）<br>3.char *p 和零值比较的if语句<br>if（p==NULL） if（p！=NULL）</p>
 <h2 id="进程如何使用内存"><a href="#进程如何使用内存" class="headerlink" title="进程如何使用内存"></a>进程如何使用内存</h2><p>毫无疑问，所有进程（执行的程序）都必须占用一定数量的内存，它或是用来存放从磁盘载入的程序代码，或是存放取自用户输入的数据等等。不过进程对这些内存的管理方式因内存用途不一而不尽相同，有些内存是事先静态分配和统一回收的，而有些却是按需要动态分配和回收的。</p>
 <p>对任何一个普通进程来讲，它都会涉及到5种不同的数据段。稍有编程知识的朋友都能想到这几个数据段中包含有“程序代码段”、“程序数据段”、“程序堆栈段”等。不错，这几种数据段都在其中，但除了以上几种数据段之外，进程还另外包含两种数据段。下面我们来简单归纳一下进程对应的内存空间中所包含的5种不同的数据区。</p>
@@ -424,6 +432,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/20/字符串练习/" rel="prev" title="字符串回顾练习">
+                字符串回顾练习 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -502,7 +514,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种内存分配方式的优缺点"><span class="nav-number">1.</span> <span class="nav-text">两种内存分配方式的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存溢出和内存泄漏"><span class="nav-number">2.</span> <span class="nav-text">内存溢出和内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#野指针和空指针"><span class="nav-number">3.</span> <span class="nav-text">野指针和空指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请填写-bool-float-指针变量-与“零值”比较的-if-语句"><span class="nav-number">4.</span> <span class="nav-text">请填写 bool , float, 指针变量 与“零值”比较的 if 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程如何使用内存"><span class="nav-number">5.</span> <span class="nav-text">进程如何使用内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程安全"><span class="nav-number">6.</span> <span class="nav-text">线程安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表的优缺点"><span class="nav-number">7.</span> <span class="nav-text">链表的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的互斥和同步"><span class="nav-number">8.</span> <span class="nav-text">进程的互斥和同步</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种内存分配方式的优缺点"><span class="nav-number">1.</span> <span class="nav-text">两种内存分配方式的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存溢出和内存泄漏"><span class="nav-number">2.</span> <span class="nav-text">内存溢出和内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#野指针和空指针"><span class="nav-number">3.</span> <span class="nav-text">野指针和空指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于sizeof和strlen"><span class="nav-number">4.</span> <span class="nav-text">关于sizeof和strlen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请填写-bool-float-指针变量-与“零值”比较的-if-语句"><span class="nav-number">5.</span> <span class="nav-text">请填写 bool , float, 指针变量 与“零值”比较的 if 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程如何使用内存"><span class="nav-number">6.</span> <span class="nav-text">进程如何使用内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程安全"><span class="nav-number">7.</span> <span class="nav-text">线程安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表的优缺点"><span class="nav-number">8.</span> <span class="nav-text">链表的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的互斥和同步"><span class="nav-number">9.</span> <span class="nav-text">进程的互斥和同步</span></a></li></ol></div>
             
 
           </div>

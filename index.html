@@ -299,7 +299,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/12/04/linux基础/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/12/04/linux基础/" itemprop="url">linux基础</a></h1>
         
 
         <div class="post-meta">
@@ -343,7 +343,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1.8k
                 </span>
               
 
@@ -370,7 +370,29 @@
       
         
           
-            
+            <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="ctrl热键"><a href="#ctrl热键" class="headerlink" title="ctrl热键"></a>ctrl热键</h2><p>ctrl a：光标移动到bash命令行最前面<br>ctrl e：光标移动到bash命令行最后面<br>ctrl u：bash命令行全部删除</p>
+<h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p>查看当前路径</p>
+<h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p>进入不同的文件：”~” 也表示为 home 目录 的意思，”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录<br>cd -可以回去原来目录<br>绝对路径：按照顺序递归输入目录<br>相对路径：例如 cd ~/公共的</p>
+<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>touch b.txt c.txt<br>经常用于创建文件，可以单独创建也可以一起创建</p>
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><p>-a 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)<br>-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出<br>-r 将文件以相反次序显示(原定依英文字母次序)<br>-t 将文件依建立时间之先后次序列出<br>-A 同 -a ，但不列出 “.” (目前目录) 及 “..” (父目录)<br>-F 在列出的文件名称后加一符号；例如可执行档则加 “*”, 目录则加 “/“<br>-R 若目录下有文件，则以下之文件亦皆依序列出<br>其中ls -l<br>-rw-r–r– 1 jjh jjh 8980 9月  20 22:24 examples.desktop<br>字母“-”表示该文件是一个普通文件<br>字母“d”表示该文件是一个目录，字母”d”，是dirtectory(目录)的缩写<br>注意：目录或者是特殊文件，这个特殊文件存放其他文件或目录的相关信息<br>字母“l”表示该文件是一个链接文件。字母”l”是link(链接)的缩写，类似于windows下的快捷方式<br>字母“b”的表示块设备文件(block)，一般置于/dev目录下，设备文件是普通文件和程序访问硬件设备的入口，是很特殊的文件。没有文件大小，只有一个主设备号和一个辅设备号。一次传输数据为一整块的被称为块设备，如硬盘、光盘等。最小数据传输单位为一个数据块(通常一个数据块的大小为512字节)<br>字母为“c”表示该文件是一个字符设备文件(character)，一般置于/dev目录下，一次传输一个字节的设备被称为字符设备，如键盘、字符终端等，传输数据的最小单位为一个字节。<br>字母为“p”表示该文件为命令管道文件。与shell编程有关的文件。<br>字母“s”表示该文件为sock文件。与shell编程有关的文件。<br>前三个表示文件拥有者的权限，中间三个表示文件所属组拥有的权限，最后三个表示其他用户拥有的权限<br>然后是硬链接数<br>然后是所有者<br>然后是所属组<br>然后是文件大小<br>然后是时间</p>
+<h2 id="mkdir和rmkdir和rm"><a href="#mkdir和rmkdir和rm" class="headerlink" title="mkdir和rmkdir和rm"></a>mkdir和rmkdir和rm</h2><p>mkdir：一次课创建多个目录，家还是那个-p能把父目录一起创建<br>rmkdir：删除空目录 基本没软用还是用rm<br>rm：常见的是递归删除且不加提示：rm -rf xiaoshuai/</p>
+<h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><p>复制命令cp code.c code1.c  旧的 新的<br>        cp cangls /tmp/<br>        cp -r /root/movie/ /tmp/ 一般使用-a；</p>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
+<h2 id="more-less"><a href="#more-less" class="headerlink" title="more less"></a>more less</h2><p>分页显示大文件<br>more<br>空格键：下一页</p>
+<p>b：上一页</p>
+<p>Enter：向下一行</p>
+<p>q：退出<br>less<br>空格键：向下滚动一页</p>
+<p>Enter：向下滚动一行</p>
+<p>pageup：向上滚动一页</p>
+<p>pagedown：向下滚动一页</p>
+<h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><p>用树来显示文件存放</p>
+<h2 id="du-df"><a href="#du-df" class="headerlink" title="du df"></a>du df</h2><p>du：查看某个目录的大小M为单位；<br>df：显示磁盘剩余空间</p>
+<h2 id="软连接-硬链接"><a href="#软连接-硬链接" class="headerlink" title="软连接 硬链接"></a>软连接 硬链接</h2><p>创建软连接：<br>1.软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式<br>2.软链接可以 跨文件系统 ，硬链接不可以<br>3.软链接可以对一个不存在的文件名进行链接<br>4.软链接可以对目录进行链接<br>如果文件在其他文件夹必须要用软连接，文件同步发生变化，生成的是镜像不占用磁盘空间<br>给文件创建软链接，为log2013.log文件创建软链接link2013，如果log2013.log丢失，link2013将失效<br>ln -s log2019.log link2019<br>ls出来是这样的：lrwxrwxrwx 1 jjh jjh    7 12月  4 14:21 codecode -&gt; code1.c<br>创建硬链接：<br>ln log2013.log ln2013<br>对于一个文件修改其他文件也会变化，生成的是文件占用空间<br>占用的节点还是同一个当吧所有文件都删除的时候，节点被释放</p>
+<h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。</p>
+<ul>
+<li>表示增加权限、- 表示取消权限、= 表示唯一设定权限。<br>r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。<br>举例子来解释：<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod ugo+r file1.txt<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod a+r file1.txt<br>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :<br>chmod ug+w,o-w file1.txt file2.txt<br>将 ex1.py 设定为只有该文件拥有者可以执行 :<br>chmod u+x ex1.py<br>将目前目录下的所有文件与子目录皆设为任何人可读取 :<br>chmod -R a+r *<br>此外chmod也可以用数字来表示权限如 :<br>chmod 777 file<h2 id="创建用户-用户组-修改文件所属用户-文件所属组群"><a href="#创建用户-用户组-修改文件所属用户-文件所属组群" class="headerlink" title="创建用户/用户组 修改文件所属用户 文件所属组群"></a>创建用户/用户组 修改文件所属用户 文件所属组群</h2>sudo adduser/addgroup [名字]<br>sudo chown 新用户名 待修改的文件 sudo chown xiaoshuai a.out;<br>sudo chgrp g88 a.out 修改文件所属组群  <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2>find命令用法很多这里就讲一下查找文件的：<br>find 路径名 执行的动作类型 ….<br>例如查找目录及其目录下的.c文件<br>find . -name “*.c”<br>查找20M~50M的文件<br>find ./ -size +20M -size -50M<br>为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径<br>find / -type f -size 0 -exec ls -l {} \<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2>grep “#include” *.c<br>查找.c后缀中有#include字符串的文件<br>配合ps使用：ps aux|grep jjh 查找进程中区搜索与jjh相关的进程<h2 id="关于用户"><a href="#关于用户" class="headerlink" title="关于用户"></a>关于用户</h2>修改用户：sudo passwd 用户名字<br>切换用户：su 用户名<h1 id="linux各个目录"><a href="#linux各个目录" class="headerlink" title="linux各个目录"></a>linux各个目录</h1>linux”万物皆文件”<br>bin:系统可执行程序，如命令，存放二进制可执行文件<br>home:存放用户<br>dev:内核和启动程序<br>etc:设备相关文件,用户信息文件<br>lib:系统程序库文件，这个目录存放着系统最基本的动态链接共享库<br>root:管理员宿主目录(家目录)<br>media:挂载媒体设备，如光驱，U盘<br>mnt:目录是让用户临时挂载别的文件系统，如挂载windows下的某个分区，Ubuntu默认还是挂载在media<br>tmp:临时文件夹<br>usr:用户资源管理目录<h1 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h1></li>
+</ul>
+
           
         
       

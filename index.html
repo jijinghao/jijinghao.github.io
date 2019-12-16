@@ -280,6 +280,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/15/c专家编程总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johnson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/DOGhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johnson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/15/c专家编程总结/" itemprop="url">c++1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-15T19:22:01+08:00">
+                2019-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这一篇总结了看了&lt;&lt;C专家编程&gt;&gt;的总结</p>
+<h2 id="安静的改变——算数转换"><a href="#安静的改变——算数转换" class="headerlink" title="安静的改变——算数转换"></a>安静的改变——算数转换</h2><p>这个其实之前也没怎么注意<br><img src="https://s2.ax1x.com/2019/12/15/QffPL8.png" alt="QffPL8.png" border="0"></p>
+<p>数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换</p>
+<h2 id="位域-位段"><a href="#位域-位段" class="headerlink" title="位域(位段)"></a>位域(位段)</h2><p>当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新的存储单元开始，其偏移量为类型大小的整数倍。<br>比如int类型，相邻的才能存在一起也就是存在四个字节，超过了就要偏移一个类型字节的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">    struct bs&#123;</span><br><span class="line">        unsigned m: 6;</span><br><span class="line">        unsigned n: 12;</span><br><span class="line">        unsigned p: 4;</span><br><span class="line">    &#125;;</span><br><span class="line">    printf(&quot;%d\n&quot;, sizeof(struct bs));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大小是4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">    struct bs&#123;</span><br><span class="line">        unsigned m: 12;</span><br><span class="line">        unsigned char ch: 4;</span><br><span class="line">        unsigned p: 4;</span><br><span class="line">    &#125;;</span><br><span class="line">    printf(&quot;%d\n&quot;, sizeof(struct bs));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大小是12，中间有其他类型是不能存储在一起的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct bs&#123;</span><br><span class="line">    unsigned m: 12;</span><br><span class="line">    unsigned ch;</span><br><span class="line">    unsigned p: 4;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>大小是12，中间穿插非位域成员</p>
+<h2 id="switch注意"><a href="#switch注意" class="headerlink" title="switch注意"></a>switch注意</h2><p>最好每次都要加上default，因为如果case语句都不匹配的话那么就整条语句就什么都不做了失去了意义</p>
+<h2 id="char-a-和char-a"><a href="#char-a-和char-a" class="headerlink" title="char *a[]和char a[]"></a>char *a[]和char a[]</h2><p>char a[]={“China”};只能保存一个字符串<br>sizeof(a)=6；<br>char *a[]={“China”,”American”,”French”};是一个指针数组，根据我自己的理解本来一个指针就可以用来做一个数组使用，那就是数组中的数组所以可以存放多个字符串<br>sizeof(a)=12;三个指针<br>有一个值得注意的地方就是：<br>    char *a[]={“China”,”American””French”};<br>    cout&lt;&lt;a[1]&lt;&lt;”  “&lt;&lt;endl;<br>    输出来会是AmericanFrench;</p>
+<h2 id="不幸的gets"><a href="#不幸的gets" class="headerlink" title="不幸的gets"></a>不幸的gets</h2><p>gets任务是从流中读入一个字符串，但是他不检查缓冲区的了空间，当读入的字符数量超过缓冲区的数量的时候就会写入堆栈中，覆盖了原本堆栈的内容<br>所以引入了fgets</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">char *fgets(char *s, int size, FILE *stream);</span><br></pre></td></tr></table></figure>
+
+<p>s 代表要保存到的内存空间的首地址，可以是字符数组名，也可以是指向字符数组的字符指针变量名。size 代表的是读取字符串的长度。stream 表示从何种流中读取，可以是标准输入流 stdin，也可以是文件流，即从某个文件中读取，这个在后面讲文件的时候再详细介绍。标准输入流就是前面讲的输入缓冲区。所以如果是从键盘读取数据的话就是从输入缓冲区中读取数据，即从标准输入流 stdin 中读取数据，所以第三个参数为 stdin。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char str[20];  /*定义一个最大长度为19, 末尾是&apos;\0&apos;的字符数组来存储字符串*/</span><br><span class="line">    printf(&quot;请输入一个字符串:&quot;);</span><br><span class="line">    fgets(str, 7, stdin);  /*从输入流stdin即输入缓冲区中读取7个字符到字符数组str中*/</span><br><span class="line">    printf(&quot;%s\n&quot;, str);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我输入i love you;<br>输出的是i love ;</p>
+<p>那有人会问：“用 fgets() 是不是每次都要去数有多少个字符呢？这样不是很麻烦吗？”不用数！fget() 函数中的 size 如果小于字符串的长度，那么字符串将会被截取；如果 size 大于字符串的长度则多余的部分系统会自动用 ‘\0’ 填充。所以假如你定义的字符数组长度为 n，那么 fgets() 中的 size 就指定为 n–1，留一个给 ‘\0’ 就行了。<br>但是需要注意的是，如果输入的字符串长度没有超过 n–1，那么系统会将最后输入的换行符 ‘\n’ 保存进来，保存的位置是紧跟输入的字符，然后剩余的空间都用 ‘\0’ 填充。所以此时输出该字符串时 printf 中就不需要加换行符 ‘\n’ 了，因为字符串中已经有了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char str[30];</span><br><span class="line">    char *string = str;  //一定要先给指针变量初始化</span><br><span class="line">    printf(&quot;请输入字符串：&quot;);</span><br><span class="line">    fgets(string, 29, stdin);  //size指定为比字符数组元素少一就行了</span><br><span class="line">    printf(&quot;%s&quot;, string);  //printf中不需要添加&apos;\n&apos;, 因为字符串中已经有了</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果是：<br>请输入字符串：i love studying<br>i love studying<br>我们看到，printf 中没有添加换行符 ‘\n’，输出时也自动换行了。</p>
+<h2 id="union和struct以及enum"><a href="#union和struct以及enum" class="headerlink" title="union和struct以及enum"></a>union和struct以及enum</h2><p>区别一下不同<br><img src="https://s2.ax1x.com/2019/12/16/Q4CAaD.jpg" alt="Q4CAaD.jpg" border="0"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union Data &#123; int i; double x; char str[16]; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果想获得联合的空间大小，可以使用 sizeof 运算符。对上例来说，sizeof（var）会返回 16，而 sizeof（myData）则返回 1600</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">union U</span><br><span class="line">&#123;</span><br><span class="line">    char s[9];             //9个字节</span><br><span class="line">    int n; //4个字节</span><br><span class="line">    double d; //8个字节</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>此结构的容量要容纳最大的一个元素，而且要字节对齐其他元素的大小<br>union U中最大的是 9 个字节的 s[9]，但 9 不能被 4 和 8 同时整除，而16可以，且16比9大。<br>所以 联合体所占空间 为16 个字节<br><img src="https://s2.ax1x.com/2019/12/16/Q4CDdU.jpg" alt="Q4CDdU.jpg" border="0"><br>结构对象中每个成员使用内存中的不同位置。<br>来个特殊一点的，也是平常总是忘记的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct stu</span><br><span class="line">&#123;</span><br><span class="line">double c;</span><br><span class="line">char k[9]；</span><br><span class="line">&#125;a;</span><br></pre></td></tr></table></figure>
+
+<p>a的大小为24</p>
+<p>而enum<br>在实际应用中，有的变量只有几种可能取值。如人的性别只有两种可能取值，星期只有七种可能取值。在 C 语言中对这样取值比较特殊的变量可以定义为枚举类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum week&#123;</span><br><span class="line">    	sun ，mon ，tue， thu，fri，sat</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>限定枚举变量 day 的值只能是 sun ，mon ，tue， thu，fri，sat 其中一种<br>day = mon ，or day = tue ，or day = sun…………….<br>默认下，sun = 0，mon = 1，tue = 2，依次加 1；<br>枚举体的大小：<br> 和指针一样，通通占4个字节<br>Mon、Tues、Wed 这些名字都被替换成了对应的数字。这意味着，Mon、Tues、Wed 等都不是<br>变量，它们不占用数据区（常量区、全局数据区、栈区和堆区）的内存，而是直接被编译到命令里<br>面，放到代码区，所以不能用&amp;取得它们的地址。这就是枚举的本质。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/14/C++1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1557,154 +1735,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/计算机与网络基础题汇总/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnson">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/DOGhead.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johnson">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/16/计算机与网络基础题汇总/" itemprop="url">计算机与网络基础笼统总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-16T14:31:15+08:00">
-                2019-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.7k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="模型各个层次的作用"><a href="#模型各个层次的作用" class="headerlink" title="模型各个层次的作用"></a>模型各个层次的作用</h1><p>描述三个模型的各层作用
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/16/计算机与网络基础题汇总/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1752,7 +1787,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

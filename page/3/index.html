@@ -88,17 +88,13 @@
 
 
 
-<meta name="description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="内存四区">
-<meta property="og:url" content="http://yoursite.com/2019/12/03/内存四区/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Johnson">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-04T04:59:48.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内存四区">
-<meta name="twitter:description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
+<meta name="twitter:title" content="Johnson">
 
 
 
@@ -128,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/03/内存四区/">
+  <link rel="canonical" href="http://yoursite.com/page/3/">
 
 
 
 
 
-  <title>内存四区 | Johnson</title>
+  <title>Johnson</title>
   
 
 
@@ -153,7 +149,8 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,9 +265,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -283,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/内存四区/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/数据结构之链表（-）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -300,7 +297,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">内存四区</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/08/数据结构之链表（-）/" itemprop="url">数据结构心得之线性表</a></h1>
         
 
         <div class="post-meta">
@@ -312,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-03T18:39:52+08:00">
-                2019-12-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-08T21:59:31+08:00">
+                2019-09-08
               </time>
             
 
@@ -332,11 +331,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
-            </span>
-          
 
           
             <div class="post-wordcount">
@@ -349,7 +343,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  232
+                  3.7k
                 </span>
               
 
@@ -374,15 +368,18 @@
       
 
       
-        <p>内存四区的意义：<br>不同区域存储的数据，赋予不同的生命周期。<a id="more"></a></p>
-<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>由编译器自动释放，存放的是函数的参数值，局部变量(只要有局部就是栈区的)<br>不要返回局部变量的地址————</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int *func()</span><br><span class="line">&#123;</span><br><span class="line">   int a=10;</span><br><span class="line">   return &amp;a;//不能返回局部变量的地址</span><br><span class="line">&#125;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">   int *p=func();</span><br><span class="line">   cout&lt;&lt;*p&lt;&lt;endl;//第一次编译器做了保留操作，所以能打印出正确的数字；</span><br><span class="line">   cout&lt;&lt;*p&lt;&lt;endl;//第二次就不能保留了，所以打出来的是一段乱码；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="全局区"><a href="#全局区" class="headerlink" title="全局区"></a>全局区</h2><p>全局变量和静态变量(static修饰)，还包含了常量区，字符串常量和其他常量(局部常量(const修饰的局部变量)不在这里)，数据在程序结束后由操作系统释放。</p>
-<h2 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h2><p>存放CPU执行的及其命令，</p>
-
+        
+          <h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p>线性表的顺序存储结构和线性表的链式存储结构分别是随机存取和顺序存取。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/08/数据结构之链表（-）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
-    </div>
+    </p></div>
     
     
     
@@ -397,32 +394,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/11/30/通讯录/" rel="next" title="通讯录">
-                <i class="fa fa-chevron-left"></i> 通讯录
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/03/指针基础回顾/" rel="prev" title="指针基础回顾（适合0基础）">
-                指针基础回顾（适合0基础） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -432,11 +409,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -444,10 +424,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -468,17 +444,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -529,22 +496,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局区"><span class="nav-number">3.</span> <span class="nav-text">全局区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码段"><span class="nav-number">4.</span> <span class="nav-text">代码段</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -707,10 +658,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

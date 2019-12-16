@@ -80,6 +80,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -88,17 +90,21 @@
 
 
 
-<meta name="description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
+<meta name="description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结 安静的改变——算数转换这个其实之前也没怎么注意 数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换 位域(位段)当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内存四区">
-<meta property="og:url" content="http://yoursite.com/2019/12/03/内存四区/index.html">
+<meta property="og:title" content="c++1">
+<meta property="og:url" content="http://yoursite.com/2019/12/15/c专家编程总结/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
+<meta property="og:description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结 安静的改变——算数转换这个其实之前也没怎么注意 数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换 位域(位段)当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-04T04:59:48.311Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/15/QffPL8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q4CAaD.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q4CDdU.jpg">
+<meta property="og:updated_time" content="2019-12-16T05:24:55.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内存四区">
-<meta name="twitter:description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
+<meta name="twitter:title" content="c++1">
+<meta name="twitter:description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结 安静的改变——算数转换这个其实之前也没怎么注意 数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换 位域(位段)当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/15/QffPL8.png">
 
 
 
@@ -128,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/03/内存四区/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/15/c专家编程总结/">
 
 
 
 
 
-  <title>内存四区 | Johnson</title>
+  <title>c++1 | Johnson</title>
   
 
 
@@ -283,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/内存四区/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/15/c专家编程总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -300,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">内存四区</h1>
+          <h1 class="post-title" itemprop="name headline">c++1</h1>
         
 
         <div class="post-meta">
@@ -312,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-03T18:39:52+08:00">
-                2019-12-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-15T19:22:01+08:00">
+                2019-12-15
               </time>
             
 
@@ -349,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  232
+                  1.6k
                 </span>
               
 
@@ -374,12 +380,46 @@
       
 
       
-        <p>内存四区的意义：<br>不同区域存储的数据，赋予不同的生命周期。<a id="more"></a></p>
-<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>由编译器自动释放，存放的是函数的参数值，局部变量(只要有局部就是栈区的)<br>不要返回局部变量的地址————</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int *func()</span><br><span class="line">&#123;</span><br><span class="line">   int a=10;</span><br><span class="line">   return &amp;a;//不能返回局部变量的地址</span><br><span class="line">&#125;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">   int *p=func();</span><br><span class="line">   cout&lt;&lt;*p&lt;&lt;endl;//第一次编译器做了保留操作，所以能打印出正确的数字；</span><br><span class="line">   cout&lt;&lt;*p&lt;&lt;endl;//第二次就不能保留了，所以打出来的是一段乱码；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>这一篇总结了看了&lt;&lt;C专家编程&gt;&gt;的总结</p>
+<h2 id="安静的改变——算数转换"><a href="#安静的改变——算数转换" class="headerlink" title="安静的改变——算数转换"></a>安静的改变——算数转换</h2><p>这个其实之前也没怎么注意<br><img src="https://s2.ax1x.com/2019/12/15/QffPL8.png" alt="QffPL8.png" border="0"></p>
+<p>数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换</p>
+<h2 id="位域-位段"><a href="#位域-位段" class="headerlink" title="位域(位段)"></a>位域(位段)</h2><p>当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新的存储单元开始，其偏移量为类型大小的整数倍。<br>比如int类型，相邻的才能存在一起也就是存在四个字节，超过了就要偏移一个类型字节的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">    struct bs&#123;</span><br><span class="line">        unsigned m: 6;</span><br><span class="line">        unsigned n: 12;</span><br><span class="line">        unsigned p: 4;</span><br><span class="line">    &#125;;</span><br><span class="line">    printf(&quot;%d\n&quot;, sizeof(struct bs));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="全局区"><a href="#全局区" class="headerlink" title="全局区"></a>全局区</h2><p>全局变量和静态变量(static修饰)，还包含了常量区，字符串常量和其他常量(局部常量(const修饰的局部变量)不在这里)，数据在程序结束后由操作系统释放。</p>
-<h2 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h2><p>存放CPU执行的及其命令，</p>
+<p>大小是4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">    struct bs&#123;</span><br><span class="line">        unsigned m: 12;</span><br><span class="line">        unsigned char ch: 4;</span><br><span class="line">        unsigned p: 4;</span><br><span class="line">    &#125;;</span><br><span class="line">    printf(&quot;%d\n&quot;, sizeof(struct bs));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大小是12，中间有其他类型是不能存储在一起的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct bs&#123;</span><br><span class="line">    unsigned m: 12;</span><br><span class="line">    unsigned ch;</span><br><span class="line">    unsigned p: 4;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>大小是12，中间穿插非位域成员</p>
+<h2 id="switch注意"><a href="#switch注意" class="headerlink" title="switch注意"></a>switch注意</h2><p>最好每次都要加上default，因为如果case语句都不匹配的话那么就整条语句就什么都不做了失去了意义</p>
+<h2 id="char-a-和char-a"><a href="#char-a-和char-a" class="headerlink" title="char *a[]和char a[]"></a>char *a[]和char a[]</h2><p>char a[]={“China”};只能保存一个字符串<br>sizeof(a)=6；<br>char *a[]={“China”,”American”,”French”};是一个指针数组，根据我自己的理解本来一个指针就可以用来做一个数组使用，那就是数组中的数组所以可以存放多个字符串<br>sizeof(a)=12;三个指针<br>有一个值得注意的地方就是：<br>    char *a[]={“China”,”American””French”};<br>    cout&lt;&lt;a[1]&lt;&lt;”  “&lt;&lt;endl;<br>    输出来会是AmericanFrench;</p>
+<h2 id="不幸的gets"><a href="#不幸的gets" class="headerlink" title="不幸的gets"></a>不幸的gets</h2><p>gets任务是从流中读入一个字符串，但是他不检查缓冲区的了空间，当读入的字符数量超过缓冲区的数量的时候就会写入堆栈中，覆盖了原本堆栈的内容<br>所以引入了fgets</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">char *fgets(char *s, int size, FILE *stream);</span><br></pre></td></tr></table></figure>
+
+<p>s 代表要保存到的内存空间的首地址，可以是字符数组名，也可以是指向字符数组的字符指针变量名。size 代表的是读取字符串的长度。stream 表示从何种流中读取，可以是标准输入流 stdin，也可以是文件流，即从某个文件中读取，这个在后面讲文件的时候再详细介绍。标准输入流就是前面讲的输入缓冲区。所以如果是从键盘读取数据的话就是从输入缓冲区中读取数据，即从标准输入流 stdin 中读取数据，所以第三个参数为 stdin。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char str[20];  /*定义一个最大长度为19, 末尾是&apos;\0&apos;的字符数组来存储字符串*/</span><br><span class="line">    printf(&quot;请输入一个字符串:&quot;);</span><br><span class="line">    fgets(str, 7, stdin);  /*从输入流stdin即输入缓冲区中读取7个字符到字符数组str中*/</span><br><span class="line">    printf(&quot;%s\n&quot;, str);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我输入i love you;<br>输出的是i love ;</p>
+<p>那有人会问：“用 fgets() 是不是每次都要去数有多少个字符呢？这样不是很麻烦吗？”不用数！fget() 函数中的 size 如果小于字符串的长度，那么字符串将会被截取；如果 size 大于字符串的长度则多余的部分系统会自动用 ‘\0’ 填充。所以假如你定义的字符数组长度为 n，那么 fgets() 中的 size 就指定为 n–1，留一个给 ‘\0’ 就行了。<br>但是需要注意的是，如果输入的字符串长度没有超过 n–1，那么系统会将最后输入的换行符 ‘\n’ 保存进来，保存的位置是紧跟输入的字符，然后剩余的空间都用 ‘\0’ 填充。所以此时输出该字符串时 printf 中就不需要加换行符 ‘\n’ 了，因为字符串中已经有了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char str[30];</span><br><span class="line">    char *string = str;  //一定要先给指针变量初始化</span><br><span class="line">    printf(&quot;请输入字符串：&quot;);</span><br><span class="line">    fgets(string, 29, stdin);  //size指定为比字符数组元素少一就行了</span><br><span class="line">    printf(&quot;%s&quot;, string);  //printf中不需要添加&apos;\n&apos;, 因为字符串中已经有了</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果是：<br>请输入字符串：i love studying<br>i love studying<br>我们看到，printf 中没有添加换行符 ‘\n’，输出时也自动换行了。</p>
+<h2 id="union和struct以及enum"><a href="#union和struct以及enum" class="headerlink" title="union和struct以及enum"></a>union和struct以及enum</h2><p>区别一下不同<br><img src="https://s2.ax1x.com/2019/12/16/Q4CAaD.jpg" alt="Q4CAaD.jpg" border="0"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union Data &#123; int i; double x; char str[16]; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果想获得联合的空间大小，可以使用 sizeof 运算符。对上例来说，sizeof（var）会返回 16，而 sizeof（myData）则返回 1600</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">union U</span><br><span class="line">&#123;</span><br><span class="line">    char s[9];             //9个字节</span><br><span class="line">    int n; //4个字节</span><br><span class="line">    double d; //8个字节</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>此结构的容量要容纳最大的一个元素，而且要字节对齐其他元素的大小<br>union U中最大的是 9 个字节的 s[9]，但 9 不能被 4 和 8 同时整除，而16可以，且16比9大。<br>所以 联合体所占空间 为16 个字节<br><img src="https://s2.ax1x.com/2019/12/16/Q4CDdU.jpg" alt="Q4CDdU.jpg" border="0"><br>结构对象中每个成员使用内存中的不同位置。<br>来个特殊一点的，也是平常总是忘记的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct stu</span><br><span class="line">&#123;</span><br><span class="line">double c;</span><br><span class="line">char k[9]；</span><br><span class="line">&#125;a;</span><br></pre></td></tr></table></figure>
+
+<p>a的大小为24</p>
+<p>而enum<br>在实际应用中，有的变量只有几种可能取值。如人的性别只有两种可能取值，星期只有七种可能取值。在 C 语言中对这样取值比较特殊的变量可以定义为枚举类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum week&#123;</span><br><span class="line">    	sun ，mon ，tue， thu，fri，sat</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>限定枚举变量 day 的值只能是 sun ，mon ，tue， thu，fri，sat 其中一种<br>day = mon ，or day = tue ，or day = sun…………….<br>默认下，sun = 0，mon = 1，tue = 2，依次加 1；<br>枚举体的大小：<br> 和指针一样，通通占4个字节<br>Mon、Tues、Wed 这些名字都被替换成了对应的数字。这意味着，Mon、Tues、Wed 等都不是<br>变量，它们不占用数据区（常量区、全局数据区、栈区和堆区）的内存，而是直接被编译到命令里<br>面，放到代码区，所以不能用&amp;取得它们的地址。这就是枚举的本质。</p>
 
       
     </div>
@@ -404,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/30/通讯录/" rel="next" title="通讯录">
-                <i class="fa fa-chevron-left"></i> 通讯录
+              <a href="/2019/12/14/C++1/" rel="next" title="c++1">
+                <i class="fa fa-chevron-left"></i> c++1
               </a>
             
           </div>
@@ -413,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/03/指针基础回顾/" rel="prev" title="指针基础回顾（适合0基础）">
-                指针基础回顾（适合0基础） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -539,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局区"><span class="nav-number">3.</span> <span class="nav-text">全局区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码段"><span class="nav-number">4.</span> <span class="nav-text">代码段</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安静的改变——算数转换"><span class="nav-number">1.</span> <span class="nav-text">安静的改变——算数转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位域-位段"><span class="nav-number">2.</span> <span class="nav-text">位域(位段)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch注意"><span class="nav-number">3.</span> <span class="nav-text">switch注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#char-a-和char-a"><span class="nav-number">4.</span> <span class="nav-text">char *a[]和char a[]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不幸的gets"><span class="nav-number">5.</span> <span class="nav-text">不幸的gets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union和struct以及enum"><span class="nav-number">6.</span> <span class="nav-text">union和struct以及enum</span></a></li></ol></div>
             
 
           </div>

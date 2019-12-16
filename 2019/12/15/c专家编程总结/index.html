@@ -90,20 +90,20 @@
 
 
 
-<meta name="description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结 安静的改变——算数转换这个其实之前也没怎么注意 数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换 位域(位段)当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新">
+<meta name="description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c++1">
+<meta property="og:title" content="《C专家编程》的读后感">
 <meta property="og:url" content="http://yoursite.com/2019/12/15/c专家编程总结/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结 安静的改变——算数转换这个其实之前也没怎么注意 数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换 位域(位段)当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新">
+<meta property="og:description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/15/QffPL8.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q4CAaD.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q4CDdU.jpg">
-<meta property="og:updated_time" content="2019-12-16T05:24:55.525Z">
+<meta property="og:updated_time" content="2019-12-16T05:40:46.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c++1">
-<meta name="twitter:description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结 安静的改变——算数转换这个其实之前也没怎么注意 数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换 位域(位段)当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新">
+<meta name="twitter:title" content="《C专家编程》的读后感">
+<meta name="twitter:description" content="这一篇总结了看了&amp;lt;&amp;lt;C专家编程&amp;gt;&amp;gt;的总结">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/12/15/QffPL8.png">
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <title>c++1 | Johnson</title>
+  <title>《C专家编程》的读后感 | Johnson</title>
   
 
 
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">c++1</h1>
+          <h1 class="post-title" itemprop="name headline">《C专家编程》的读后感</h1>
         
 
         <div class="post-meta">
@@ -380,7 +380,7 @@
       
 
       
-        <p>这一篇总结了看了&lt;&lt;C专家编程&gt;&gt;的总结</p>
+        <p>这一篇总结了看了&lt;&lt;C专家编程&gt;&gt;的总结<a id="more"></a></p>
 <h2 id="安静的改变——算数转换"><a href="#安静的改变——算数转换" class="headerlink" title="安静的改变——算数转换"></a>安静的改变——算数转换</h2><p>这个其实之前也没怎么注意<br><img src="https://s2.ax1x.com/2019/12/15/QffPL8.png" alt="QffPL8.png" border="0"></p>
 <p>数据类型不同的操作数做运算的时候，数据会往精度更高，长度更长的的那一种类型转换</p>
 <h2 id="位域-位段"><a href="#位域-位段" class="headerlink" title="位域(位段)"></a>位域(位段)</h2><p>当相邻成员的类型相同时，如果它们的位宽之和小于类型的 sizeof 大小，那么后面的成员紧邻前一个成员存储，直到不能容纳为止；如果它们的位宽之和大于类型的 sizeof大小，那么后面的成员将从新的存储单元开始，其偏移量为类型大小的整数倍。<br>比如int类型，相邻的才能存在一起也就是存在四个字节，超过了就要偏移一个类型字节的大小</p>

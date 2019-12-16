@@ -95,10 +95,12 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="小小总结了一些常用的命令，复杂的命令还需要多多去复习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-13T14:23:50.139Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png">
+<meta property="og:updated_time" content="2019-12-16T11:00:58.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux基础">
 <meta name="twitter:description" content="小小总结了一些常用的命令，复杂的命令还需要多多去复习">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png">
 
 
 
@@ -349,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.5k
+                  2.6k
                 </span>
               
 
@@ -400,6 +402,7 @@
 <li>表示增加权限、- 表示取消权限、= 表示唯一设定权限。<br>r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。<br>举例子来解释：<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod ugo+r file1.txt<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod a+r file1.txt<br>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :<br>chmod ug+w,o-w file1.txt file2.txt<br>将 ex1.py 设定为只有该文件拥有者可以执行 :<br>chmod u+x ex1.py<br>将目前目录下的所有文件与子目录皆设为任何人可读取 :<br>chmod -R a+r *<br>此外chmod也可以用数字来表示权限如 :<br>chmod 777 file<h2 id="创建用户-用户组-修改文件所属用户-文件所属组群"><a href="#创建用户-用户组-修改文件所属用户-文件所属组群" class="headerlink" title="创建用户/用户组 修改文件所属用户 文件所属组群"></a>创建用户/用户组 修改文件所属用户 文件所属组群</h2>sudo adduser/addgroup [名字]<br>sudo chown 新用户名 待修改的文件 sudo chown xiaoshuai a.out;<br>sudo chgrp g88 a.out 修改文件所属组群  <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2>find命令用法很多这里就讲一下查找文件的：<br>find 路径名 执行的动作类型 ….<br>例如查找目录及其目录下的.c文件<br>find . -name “*.c”<br>查找20M~50M的文件<br>find ./ -size +20M -size -50M<br>为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径<br>find / -type f -size 0 -exec ls -l {} \<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2>grep “#include” *.c<br>查找.c后缀中有#include字符串的文件<br>配合ps使用：ps aux|grep jjh 查找进程中区搜索与jjh相关的进程<h2 id="关于用户"><a href="#关于用户" class="headerlink" title="关于用户"></a>关于用户</h2>修改用户：sudo passwd 用户名字<br>切换用户：su 用户名<h1 id="linux各个目录"><a href="#linux各个目录" class="headerlink" title="linux各个目录"></a>linux各个目录</h1>linux”万物皆文件”<br>bin:系统可执行程序，如命令，存放二进制可执行文件<br>home:存放用户<br>dev:内核和启动程序<br>etc:设备相关文件,用户信息文件<br>lib:系统程序库文件，这个目录存放着系统最基本的动态链接共享库<br>root:管理员宿主目录(家目录)<br>media:挂载媒体设备，如光驱，U盘<br>mnt:目录是让用户临时挂载别的文件系统，如挂载windows下的某个分区，Ubuntu默认还是挂载在media<br>tmp:临时文件夹<br>usr:用户资源管理目录<h1 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h1></li>
 </ul>
 <p>-c    只进行预处理、编译和汇编，生成.o文件<br>-S    只进行预处理和编译，生成.s文件<br>-E    只进行预处理，产生预处理后的结果到标准输出<br>-C    预处理时不删除注释信息，常与-E同时使用<br>-o    指定目标名称，常与-c、-S同时使用，默认是.out<br>-D    定义一个宏，功能等同源代码中的#define macro[defval]<br>-U    取消一个宏，功能等同源代码中的#undefine macro<br>-Idir    优先在选项后的目录中查找包含的头文件<br>-Iname    链接后缀为.out的动态链接库来编译程序<br>-Ldir    指定编译搜索库的路径<br>-g    编译器编译时加入debug信息<br>-On n=0~3编译优化，n越大优化越大<br>一般来说直接gcc gcc1.c -o gcc1或者gcc -Wall gcc.c -o gcc1</p>
+<p><a href="https://imgchr.com/i/Q5pUPJ" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png" alt="Q5pUPJ.png" border="0"></a><br>这 4 步大致的工作内容如下：<br>（1） 预处理， C 编译器对各种预处理命令进行处理，包括头文件包含、宏定义的扩<br>展、条件编译的选择等；<br>（2） 编译，将预处理得到的源代码文件，进行“翻译转换”，产生出机器语言的目标<br>程序，得到机器语言的汇编文件；<br>（3） 汇编，将汇编代码翻译成了机器码，但是还不可以运行；<br>（4） 链接，处理可重定位文件，把各种符号引用和符号定义转换成为可执行文件中<br>的合适信息，通常是虚拟地址。</p>
 <h1 id="创建静态库"><a href="#创建静态库" class="headerlink" title="创建静态库"></a>创建静态库</h1><h1 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h1><p>两个函数：<br>src=$(wildcard *.c)//找到当前目录下所有后缀为.c的文件赋值给src<br>obj=$(patsubst %.c,%.o, $(src))//把src变量里所有后缀为.c的文件替换成.o  就是将参数三src中包含参数1的部分替换成参数2的部分<br>clean:清除编译生成的中间.o文件和最终目标文件  manke clean的时候最好make clean -n 会提示你有多少文件，防止一下子全部删除了<br>三个自动变量：<br>$@:在规则的命令行中，表示目标<br>$&lt;:在规则的命令行中，表示第一个依赖条件<br>$^:在规则的命令行中，表示所有依赖条件,应用在模式规则中会把obj列表的文件依次取出，套用模式规则<br>模式规则：<br>%.o:%.c<br>    gcc -c $&lt; -o $@<br>静态模式规则：<br>$obj%.o:%.c<br>    gcc -c $&lt; -o $@</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">src=$(wildcard *.c)</span><br><span class="line">obj=$(patsubst %.c,%.o, $(src))</span><br><span class="line"></span><br><span class="line">myArgs=-Wall -g</span><br><span class="line"></span><br><span class="line">ALL:a.out</span><br><span class="line"></span><br><span class="line">a.out:$(obj)</span><br><span class="line">	gcc $^ -o $@ $(myArgs)</span><br><span class="line"></span><br><span class="line">$(obj):%.o:%.c</span><br><span class="line">	gcc -c $&lt; -o $@ $(myArgs)</span><br><span class="line"></span><br><span class="line">clean:  #方便删除修改过程中的文件，相当于更新的作用</span><br><span class="line">	-rm -rf $(obj) a.out</span><br><span class="line"></span><br><span class="line">.PHONY:clean ALL #伪目标 只要有这个声明，不管是否有“clean”文件，要运行“clean”这个目标，只有“make clean”这样</span><br></pre></td></tr></table></figure>
       

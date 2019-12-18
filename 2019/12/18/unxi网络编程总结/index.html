@@ -80,6 +80,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -88,23 +90,20 @@
 
 
 
-<meta name="description" content="栈的优缺点栈是线性表的特例">
+<meta name="description" content="抽空复习并且总结了以下网络编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构之栈">
-<meta property="og:url" content="http://yoursite.com/2019/09/24/数据结构之栈/index.html">
+<meta property="og:title" content="unxi网络编程总结">
+<meta property="og:url" content="http://yoursite.com/2019/12/18/unxi网络编程总结/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="栈的优缺点栈是线性表的特例">
+<meta property="og:description" content="抽空复习并且总结了以下网络编程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uAlD4H.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uA1OSA.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uA8BUU.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uA855D.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uAJnTf.png">
-<meta property="og:updated_time" content="2019-09-24T09:43:10.803Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/18/Q7reHO.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/18/QHr8O0.png">
+<meta property="og:updated_time" content="2019-12-18T13:11:13.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构之栈">
-<meta name="twitter:description" content="栈的优缺点栈是线性表的特例">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/24/uAlD4H.png">
+<meta name="twitter:title" content="unxi网络编程总结">
+<meta name="twitter:description" content="抽空复习并且总结了以下网络编程">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/18/Q7reHO.md.png">
 
 
 
@@ -134,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/24/数据结构之栈/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/18/unxi网络编程总结/">
 
 
 
 
 
-  <title>数据结构之栈 | Johnson</title>
+  <title>unxi网络编程总结 | Johnson</title>
   
 
 
@@ -289,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/数据结构之栈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/unxi网络编程总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -306,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构之栈</h1>
+          <h1 class="post-title" itemprop="name headline">unxi网络编程总结</h1>
         
 
         <div class="post-meta">
@@ -318,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T16:39:51+08:00">
-                2019-09-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T15:34:17+08:00">
+                2019-12-18
               </time>
             
 
@@ -355,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.3k
+                  1.4k
                 </span>
               
 
@@ -380,42 +379,43 @@
       
 
       
-        <h1 id="栈的优缺点"><a href="#栈的优缺点" class="headerlink" title="栈的优缺点"></a>栈的优缺点</h1><p>栈是线性表的特例</p>
-<a id="more"></a>
-<p>什么是栈，它是你的电脑内存的一个特别区域，它用来存储被每一个function（包括mian（）方法）创建的临时变量。栈是FILO，就是先进后出原则的结构体，它密切的被CPU管理和充分利用。每次function声明一个新的变量，它就会被“推”到栈中。然后每次一个function退出时，所有关于这个函数中定义的变量都会被释放（换句话说就是删除）。一旦栈中的变量释放，这块区域就会变成可用的，提供给其他栈中的变量。</p>
-<p>用栈存储变量的好处是，内存是被你管理的。你不用手动的创建内存，不用当你不在需要它的时候手动释放内存。另外，由于CPU组织栈内存很高效。读出和写入栈变量是很快的。</p>
-<p>理解栈的关键是理解概念，当一个function退出时，所有它的变量都会从栈中弹出,以后都会永远消失。因此栈中的变量本质是局部的。这和我们原来理解为变量作用域或者本地或者全局变量是相关的。在C中，一个公共的bug 是从你程序中的一个function外尝试访问一个在栈中的这个function的变量（在该function已经退出后）。</p>
-<p>关于栈的另一个特点我们应该记住，就是存储再栈中的变量的大小有限制。而堆上创建变量不用考虑。</p>
-<p>总结栈：</p>
-<p>a、栈的生长和伸缩就是函数压入或者推出局部变量。</p>
-<p>b、我们不用自己去管理内存，变量创建和释放都是自动的。</p>
-<p>c、栈中的变量只有在函数创建运行时存在。</p>
-<h2 id="栈的顺序存储结构"><a href="#栈的顺序存储结构" class="headerlink" title="栈的顺序存储结构"></a>栈的顺序存储结构</h2><p>我们定义一个top变量来指示栈顶元素在数组中的位置，这top就如同中学物理学过的游标卡尺的游标，如图4-4-1，它可以来回移动，意味着栈顶的top可以变大变小，但无论如何游标不能超出尺的长度。同理，若存储栈的长度为StackSize，则栈顶位置top必须小于StackSize。当栈存在一个元素时，top等于0，因此通常把空栈的判定条件定为top等于-1。<br><img src="https://s2.ax1x.com/2019/09/24/uAlD4H.png" alt="uAlD4H.png" border="0"></p>
-<h3 id="Push"><a href="#Push" class="headerlink" title="Push"></a>Push</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/* 插入元素e为新的栈顶元素 */</span><br><span class="line">Status Push(SqStack *S, SElemType e)</span><br><span class="line">&#123;</span><br><span class="line">    /* 栈满 */</span><br><span class="line">    if (S-&gt;top == MAXSIZE - 1)    </span><br><span class="line">    &#123;</span><br><span class="line">        return ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    /* 栈顶指针增加一 */</span><br><span class="line">    S-&gt;top++;                     </span><br><span class="line">    /* 将新插入元素赋值给栈顶空间 */</span><br><span class="line">    S-&gt;data[S-&gt;top] = e;          </span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>抽空复习并且总结了以下网络编程<a id="more"></a><br>TCP之前有文章已经讲得很详细了这里就不多说了。<br>进入正题直接将套接字吧！</p>
+<h2 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><strong>套接字都是成对出现</strong>的，一个文件描述符对应两个缓冲区，一个读一个写<br>ip地址：在网络环境中唯一标示一台主机<br>端口号：在主机中唯一标示一个进程<br>ip+port:网络环境中唯一标示唯一一个进程</p>
+<p><a href="https://imgchr.com/i/Q7reHO" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/18/Q7reHO.md.png" alt="Q7reHO.md.png"></a></p>
+<h3 id="网络字节序转换"><a href="#网络字节序转换" class="headerlink" title="网络字节序转换"></a>网络字节序转换</h3><p>#include &lt;arpa/inet.h&gt;<br>uint32_t htonl(uint32_t hostlong);<br>uint16_t htons(uint16_t hostshort);<br>uint32_t ntohl(uint32_t netlong);<br>uint16_t ntohs(uint16_t netshort);</p>
+<p>h表示host，n表示network，l表示32位长整数，s表示16位短整数。</p>
+<h3 id="IP地址转换函数"><a href="#IP地址转换函数" class="headerlink" title="IP地址转换函数"></a>IP地址转换函数</h3><p> #include &lt;arpa/inet.h&gt;<br> int inet_pton(int af, const char *src, void *dst);<br> const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);</p>
+<p>点十转成二进制 inet_pton  p理解为字符串，n理解为网络字节序<br>反之inet_ntop</p>
+<h3 id="sockaddr结构体"><a href="#sockaddr结构体" class="headerlink" title="sockaddr结构体"></a>sockaddr结构体</h3><p>sockaddr数据结构</p>
+<p>struct sockaddr {</p>
+<p> sa_family_t sa_family; /* address family, AF_xxx */</p>
+<p> char sa_data[14]; /* 14 bytes of protocol address */</p>
+<p>};</p>
+<p>这是早期的现在我们一般用下面的这个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr_in &#123;</span><br><span class="line"></span><br><span class="line">​ __kernel_sa_family_t sin_family; /* Address family */ 地址结构类型</span><br><span class="line"></span><br><span class="line">​ __be16 sin_port; /* Port number */ 端口号</span><br><span class="line"></span><br><span class="line">​ struct in_addr sin_addr; /* Internet address */ IP地址</span><br><span class="line"></span><br><span class="line">​ /* Pad to size of `struct sockaddr’. */</span><br><span class="line"></span><br><span class="line">​ unsigned char pad[SOCK_SIZE__ - sizeof(short int) -</span><br><span class="line"></span><br><span class="line">​ sizeof(unsigned short int) - sizeof(struct in_addr)];</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>时间复杂度是O(1)。</p>
-<h3 id="Pop"><a href="#Pop" class="headerlink" title="Pop"></a>Pop</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/* 若栈不空，则删除S的栈顶元素，用e返回其值，</span><br><span class="line">   并返回OK；否则返回ERROR */</span><br><span class="line">Status Pop(SqStack *S, SElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">    if (S-&gt;top == -1)</span><br><span class="line">        return ERROR;</span><br><span class="line">    /* 将要删除的栈顶元素赋值给e */</span><br><span class="line">    *e = S-&gt;data[S-&gt;top];    </span><br><span class="line">    /* 栈顶指针减一 */</span><br><span class="line">    S-&gt;top--;                </span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>bind函数的第二个参数还是强转成struct sockaddr*是由于历史原因结构体内容改了但是名字却不改正。</p>
+<h3 id="相关函数解析"><a href="#相关函数解析" class="headerlink" title="相关函数解析"></a>相关函数解析</h3><p>先说服务端的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;ctype.h&gt;</span><br><span class="line">#include&lt;arpa/inet.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;sys/socket.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#define SERV_PORT 6666</span><br><span class="line">#define SERV_IP &quot;127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int lfd,cfd;</span><br><span class="line">	int i;</span><br><span class="line">	int n;</span><br><span class="line">	char buf[BUFSIZ];</span><br><span class="line">	socklen_t clie_addr_len;</span><br><span class="line">	struct sockaddr_in serv_addr,clie_addr;</span><br><span class="line">	</span><br><span class="line">	lfd = socket(AF_INET,SOCK_STREAM,0);//第一个是协议，第二个是TCP或者UDP，第三个缺省</span><br><span class="line">	serv_addr.sin_family=AF_INET;   //和socke的第一个参数一样</span><br><span class="line">	serv_addr.sin_port=htons(SERV_PORT); //</span><br><span class="line">	serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);</span><br><span class="line"></span><br><span class="line">	bind(lfd,(struct sockaddr *)&amp;serv_addr,sizeof(serv_addr));</span><br><span class="line"></span><br><span class="line">	listen(lfd,128);</span><br><span class="line">    </span><br><span class="line">	clie_addr_len=sizeof(clie_addr); </span><br><span class="line">	cfd=accept(lfd,(struct sockaddr *)&amp;clie_addr,&amp;clie_addr_len);</span><br><span class="line">    while(1)</span><br><span class="line">	&#123;</span><br><span class="line">	n=read(cfd,buf,sizeof(buf));</span><br><span class="line">	for(i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		buf[i]=toupper(buf[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	write(cfd,buf,n);</span><br><span class="line">	&#125;</span><br><span class="line">	close(lfd);</span><br><span class="line">	close(cfd);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>时间复杂度是O(1)。</p>
-<h2 id="两栈共享空间"><a href="#两栈共享空间" class="headerlink" title="两栈共享空间"></a>两栈共享空间</h2><img src="https://s2.ax1x.com/2019/09/24/uA1OSA.png" alt="uA1OSA.png" border="0">
+<p><strong>socket()</strong></p>
+<p>成功：返回指向新创建的socket的文件描述符，失败：返回-1，设置errno<br>socket()打开一个网络通讯端口，如果成功的话，就像open()一样返回一个文件描述符，应用程序可以像读写文件一样用read/write在网络上收发数据，如果socket()调用出错则返回-1。对于IPv4，domain参数指定为AF_INET。对于TCP协议，type参数指定为SOCK_STREAM，表示面向流的传输协议。如果是UDP协议，则type参数指定为SOCK_DGRAM，表示面向数据报的传输协议。protocol参数的介绍从略，指定为0即可。</p>
+<p><strong>bind()</strong></p>
+<p>bind()的作用是将参数sockfd和addr绑定在一起，使sockfd这个用于网络通讯的文件描述符监听addr所描述的地址和端口号。前面讲过，<strong>struct sockaddr *是一个通用指针类型</strong>，addr参数实际上可以接受多种协议的sockaddr结构体，而它们的长度各不相同，所以需要第三个参数addrlen指定结构体的长度。</p>
+<p>bzero(&amp;servaddr, sizeof(servaddr));//将结构体清零<br>servaddr.sin_family = AF_INET;<br>servaddr.sin_addr.s_addr = htonl(INADDR_ANY);//表示本地任意IP地址 32位数从主机字节顺序转换成网络字节顺序<br>servaddr.sin_port = htons(6666); //端口号 整型变量从主机字节顺序转变成网络字节顺序</p>
+<p><strong>listen函数</strong></p>
+<p>int listen(int sockfd, int backlog);<br>第一个参数文件描述符，第二个是可以连接客户端数量<br>当有客户端发起连接时，服务器调用的accept()返回并接受这个连接，如果有大量的客户端发起连接而服务器来不及处理，尚未accept的客户端就处于连接等待状态，listen()声明sockfd处于监听状态，并且最多允许有backlog个客户端处于连接待状态，如果接收到更多的连接请求就忽略。listen()成功返回0，失败返回-1。</p>
+<p><strong>accept()</strong></p>
+<p>int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</p>
+<p>一般用客户端的文件描述符来接收<br>第一个参数是<strong>服务端</strong>文件描述符<br>第二个参数返回<strong>客户端</strong>的地址信息(struct sockaddr *)&amp;clie_addr<br>第三个参数是客户端的结构体大小</p>
+<p>三方握手完成后，服务器调用accept()接受连接，如果服务器调用accept()时还没有客户端的连接请求，就阻塞等待直到有客户端连接上来。</p>
+<p>接下来是客户端的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;ctype.h&gt;</span><br><span class="line">#include&lt;arpa/inet.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;sys/socket.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">#define SERV_PORT 6666</span><br><span class="line">#define SERV_IP &quot;127.0.0.1&quot;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int cfd;</span><br><span class="line">	int n;</span><br><span class="line">	char buf[BUFSIZ];</span><br><span class="line">	struct sockaddr_in serv_addr;</span><br><span class="line"></span><br><span class="line">	cfd=socket(AF_INET,SOCK_STREAM,0);</span><br><span class="line">	memset(&amp;serv_addr,0,sizeof(serv_addr));</span><br><span class="line">	serv_addr.sin_family=AF_INET;</span><br><span class="line">	serv_addr.sin_port=htons(SERV_PORT);</span><br><span class="line">	inet_pton(AF_INET,SERV_IP,&amp;serv_addr.sin_addr.s_addr);</span><br><span class="line"></span><br><span class="line">	connect(cfd,(struct sockaddr *)&amp;serv_addr,sizeof(serv_addr));</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		fgets(buf,sizeof(buf),stdin);</span><br><span class="line">		write(cfd,buf,strlen(buf));</span><br><span class="line">		n=read(cfd,buf,sizeof(buf));</span><br><span class="line">		write(STDOUT_FILENO,buf,n);</span><br><span class="line">	&#125;</span><br><span class="line">	close(cfd);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>数组有两个端点，两个栈有两个栈底，让一个栈的栈底为数组的始端，即下标为0处，另一个栈为数组的末端，即下标为数组长度n-1处。这样，两个栈如果增加元素，就是两端点向中间延伸。<br>关键思路是：它们是在数组的两端，向中间靠拢。top1和top2是栈1和栈2的栈顶指针，可以想象，只要它们俩不见面，两个栈就可以一直使用。</p>
-<p>从这里也就可以分析出来，栈1为空时，就是top1等于-1时；而当top2等于n时，即是栈2为空时，那什么时候栈满呢？<br>想想极端的情况，若栈2是空栈，栈1的top1等于n-1时，就是栈1满了。反之，当栈1为空栈时，top2等于0时，为栈2满。但更多的情况，其实就是我刚才说的，两个栈见面之时，也就是两个指针之间相差1时，即top1+1==top2为栈满。</p>
-<h2 id="栈的链式存储结构"><a href="#栈的链式存储结构" class="headerlink" title="栈的链式存储结构"></a>栈的链式存储结构</h2><p>栈只是栈顶来做插入和删除操作，栈顶放在链表的头部还是尾部呢？由于单链表有头指针，而栈顶指针也是必须的，那干吗不让它俩合二为一呢，所以比较好的办法是把栈顶放在单链表的头部（如图4-6-1所示）。另外，都已经有了栈顶在头部了，单链表中比较常用的头结点也就失去了意义，通常对于链栈来说，是不需要头结点的。<br><img src="https://s2.ax1x.com/2019/09/24/uA8BUU.png" alt="uA8BUU.png" border="0"></p>
-<p>对于空栈来说，链表原定义是头指针指向空，那么链栈的空其实就是top=NULL的时候。</p>
-<h3 id="Push-1"><a href="#Push-1" class="headerlink" title="Push"></a>Push</h3><img src="https://s2.ax1x.com/2019/09/24/uA855D.png" alt="uA855D.png" border="0">
-对于链栈的进栈push操作，假设元素值为e的新结点是s，top为栈顶指针。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/* 插入元素e为新的栈顶元素 */</span><br><span class="line">Status Push(LinkStack *S, SElemType e)</span><br><span class="line">&#123;</span><br><span class="line">    LinkStackPtr s </span><br><span class="line">      = (LinkStackPtr)malloc(sizeof(StackNode));</span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    /* 把当前的栈顶元素赋值给新结点的直接后继，如图中① */</span><br><span class="line">    s-&gt;next = S-&gt;top;    </span><br><span class="line">    /* 将新的结点s赋值给栈顶指针，如图中② */</span><br><span class="line">    S-&gt;top = s;          </span><br><span class="line">    S-&gt;count++;</span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Pop-1"><a href="#Pop-1" class="headerlink" title="Pop"></a>Pop</h3><img src="https://s2.ax1x.com/2019/09/24/uAJnTf.png" alt="uAJnTf.png" border="0">
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/* 若栈不空，则删除S的栈顶元素，用e返回其值，</span><br><span class="line">   并返回OK；否则返回ERROR */</span><br><span class="line">Status Pop(LinkStack *S, SElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">    LinkStackPtr p;</span><br><span class="line">    if (StackEmpty(*S))</span><br><span class="line">        return ERROR;</span><br><span class="line">    *e = S-&gt;top-&gt;data;</span><br><span class="line">    /* 将栈顶结点赋值给p，如图③ */</span><br><span class="line">    p = S-&gt;top;               </span><br><span class="line">    /* 使得栈顶指针下移一位，指向后一结点，如图④ */</span><br><span class="line">    S-&gt;top = S-&gt;top-&gt;next;    </span><br><span class="line">    /* 释放结点p */</span><br><span class="line">    free(p);                  </span><br><span class="line">    S-&gt;count--;</span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="栈的四则运算"><a href="#栈的四则运算" class="headerlink" title="栈的四则运算"></a>栈的四则运算</h2><h3 id="中缀转后缀"><a href="#中缀转后缀" class="headerlink" title="中缀转后缀"></a>中缀转后缀</h3><p>规则总结:1.遇到操作数(数字,字母)直接输出<br>         2.遇到运算符入栈,POP的情况如下:一.进栈前发现前面的优先级有比自己高或者相同的全部POP,自己入栈,前面所有的全部弹出栈留下自己一个. 二.遇到左括号,遇到优先级比自己高或者相同的POP到左括号，直到遇到右括号括号里面的全部POP出栈。<br>         3. 可以参考a + b * c + (d * e + f)<em>g<br>1）首先读到a，直接输出。<br>2）读到“+”，将其放入到栈中。<br>3）读到b，直接输出。<br>此时栈和输出的情况如下：<br>4）读到“<em>”，因为栈顶元素”+”优先级比” * “ 低，所以将” * “直接压入栈中。<br>5）读到c，直接输出。<br>6）读到” + “，因为栈顶元素” * “的优先级比它高，所以弹出” * “并输出， 同理，栈中下一个元素” + “优先级与读到的操作符” + “一样，所以也要弹出并输出。然后再将读到的” + “压入栈中。<br>7）下一个读到的为”(“，它优先级最高，所以直接放入到栈中。<br>8）读到d，将其直接输出。<br>9）读到” * “，由于只有遇到” ) “的时候左括号”(“才会弹出，所以” * “直接压入栈中。<br>10）读到e，直接输出。<br>11）读到” + “，弹出” * “并输出，然后将”+”压入栈中。<br>12）读到f，直接输出。<br>13）接下来读到“）”，则直接将栈中元素弹出并输出直到遇到”(“为止。这里右括号前只有一个操作符”+”被弹出并输出。<br>14）读到” * “，压入栈中。读到g，直接输出。<br>15）此时输入数据已经读到末尾，栈中还有两个操作符“</em>”和” + “，直接弹出并输出。<br>另外一种方法：<br>1)先按照运算符的优先级对中缀表达式加括号，变成( ( a+(b<em>c) )+( ((d</em>e)+f) *g ) )<br>2)将运算符移到括号的后面，变成((a(bc)</em>)+(((de)<em>f)+g)</em>)+<br>3)去掉括号，得到abc<em>+de*f+g</em>+</p>
-<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>1.若一序列进栈顺序为e1,e2,e3,e4,e5,问存在多少种可能的出栈序列（42）<br>解：用卡特兰公式：<br>C（n/2n）/（n+1） 那个C是排列组合实在是不好打出来只能这样表示了。。。<br>2.下列代码的运行结果是（） string</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">    Stack S;</span><br><span class="line">    Char x,y;</span><br><span class="line">    InitStack(S);</span><br><span class="line">    x=&apos;n&apos;;y=&apos;g&apos;;</span><br><span class="line">    Push(S,x);Push(S,&apos;i&apos;);Push(S,y);</span><br><span class="line">    Pop(S,x);Push(S,&apos;r&apos;);Push(S,&apos;t&apos;);Push(S,x);</span><br><span class="line">    Pop(S,x);Push(S,&apos; s&apos;);</span><br><span class="line">    while(!StackEmpty(S))&#123;Pop(S,y);printf(y);&#125;;</span><br><span class="line">        printf(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>解：考察的是栈：<br>(1)Push(S,x);Push(S,’i’);Push(S,y);执行结果：nig。<br>(2)Pop(S,x);Push(S,’r’);Push(S,’t’);Push(S,x);执行结果：ni（g）rtg 因为后进先出原则，x变量存储最近入栈的值g。<br>(3)Pop(S,x);Push(S,’ s’);执行结果ni(g)rt(g)s 同理括号里的的内容弹出，写在这里方便理解。<br>(4) while(!StackEmpty(S)){Pop(S,y);printf(y);}执行结果strin，就是讲栈s尾的内容赋值给变量y，并打印，根据后进先出原则，将上面的结果倒序。<br>(5)在第(2)中，x的变量为g，所以不难猜出，最后打印g。<br>(6)结果就是：string</p>
+<p><strong>connect()</strong></p>
+<p>请求连接，第一个参数是文件描述符，第二个是服务端的地址信息，第三个传入参数,传入sizeof(addr)大小。</p>
+<h3 id="socket流程模型"><a href="#socket流程模型" class="headerlink" title="socket流程模型"></a>socket流程模型</h3><p><img src="https://s2.ax1x.com/2019/12/18/QHr8O0.png" alt="QHr8O0.png"></p>
+<p>解析一下write和read的过程:</p>
 
       
     </div>
@@ -440,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/18/网络基础之物理层/" rel="next" title="网络基础之物理层">
-                <i class="fa fa-chevron-left"></i> 网络基础之物理层
+              <a href="/2019/12/15/c专家编程总结/" rel="next" title="《C专家编程》的读后感">
+                <i class="fa fa-chevron-left"></i> 《C专家编程》的读后感
               </a>
             
           </div>
@@ -449,10 +449,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/24/数据结构之队列/" rel="prev" title="数据结构之队列">
-                数据结构之队列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -575,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#栈的优缺点"><span class="nav-number">1.</span> <span class="nav-text">栈的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#栈的顺序存储结构"><span class="nav-number">1.1.</span> <span class="nav-text">栈的顺序存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Push"><span class="nav-number">1.1.1.</span> <span class="nav-text">Push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pop"><span class="nav-number">1.1.2.</span> <span class="nav-text">Pop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两栈共享空间"><span class="nav-number">1.2.</span> <span class="nav-text">两栈共享空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈的链式存储结构"><span class="nav-number">1.3.</span> <span class="nav-text">栈的链式存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Push-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pop-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Pop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈的四则运算"><span class="nav-number">1.4.</span> <span class="nav-text">栈的四则运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中缀转后缀"><span class="nav-number">1.4.1.</span> <span class="nav-text">中缀转后缀</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">1.5.</span> <span class="nav-text">习题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#socket"><span class="nav-number">1.</span> <span class="nav-text">socket</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络字节序转换"><span class="nav-number">1.2.</span> <span class="nav-text">网络字节序转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址转换函数"><span class="nav-number">1.3.</span> <span class="nav-text">IP地址转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sockaddr结构体"><span class="nav-number">1.4.</span> <span class="nav-text">sockaddr结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关函数解析"><span class="nav-number">1.5.</span> <span class="nav-text">相关函数解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket流程模型"><span class="nav-number">1.6.</span> <span class="nav-text">socket流程模型</span></a></li></ol></li></ol></div>
             
 
           </div>

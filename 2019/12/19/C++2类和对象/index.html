@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -92,14 +90,14 @@
 
 <meta name="description" content="C++面向对象的三大特性：封装，继承，多态。C++认为万事万物皆为对象，对象有其属性和行为。本章节很啰嗦很多很基础，但是本人觉得很有必要写清楚基础！！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类和对象">
-<meta property="og:url" content="http://yoursite.com/2019/12/19/类和对象/index.html">
+<meta property="og:title" content="C++2类和对象">
+<meta property="og:url" content="http://yoursite.com/2019/12/19/C++2类和对象/index.html">
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="C++面向对象的三大特性：封装，继承，多态。C++认为万事万物皆为对象，对象有其属性和行为。本章节很啰嗦很多很基础，但是本人觉得很有必要写清楚基础！！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-19T13:52:43.755Z">
+<meta property="og:updated_time" content="2019-12-19T14:08:11.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类和对象">
+<meta name="twitter:title" content="C++2类和对象">
 <meta name="twitter:description" content="C++面向对象的三大特性：封装，继承，多态。C++认为万事万物皆为对象，对象有其属性和行为。本章节很啰嗦很多很基础，但是本人觉得很有必要写清楚基础！！">
 
 
@@ -130,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/19/类和对象/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/19/C++2类和对象/">
 
 
 
 
 
-  <title>类和对象 | Johnson</title>
+  <title>C++2类和对象 | Johnson</title>
   
 
 
@@ -285,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/类和对象/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/C++2类和对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -302,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">类和对象</h1>
+          <h1 class="post-title" itemprop="name headline">C++2类和对象</h1>
         
 
         <div class="post-meta">
@@ -351,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.6k
+                  1.8k
                 </span>
               
 
@@ -424,7 +422,25 @@
 </li>
 </ul>
 <h1 id="对象的初始化和清理"><a href="#对象的初始化和清理" class="headerlink" title="对象的初始化和清理"></a>对象的初始化和清理</h1><p>生活中我们买的电子产品基本都会有出厂设置，在某一天我们不用的时候也会删除自己的一些数据保证安全，C++中每个对象也会有初始设置以及对象销毁前的清理数据的设置。</p>
-<h2 id="构造函数和析构函数"><a href="#构造函数和析构函数" class="headerlink" title="构造函数和析构函数"></a>构造函数和析构函数</h2>
+<h2 id="构造函数和析构函数"><a href="#构造函数和析构函数" class="headerlink" title="构造函数和析构函数"></a>构造函数和析构函数</h2><ul>
+<li><p><strong>构造函数:</strong>主要作用于创建对象时为对象的成员属性赋值，构造函数由编译器自动调用，无须手动调用。</p>
+</li>
+<li><p><strong>析构函数:</strong>主要作用于对象销毁前系统自动调用，执行一些清理工作。</p>
+<p><strong>构造函数语法：</strong>类名(){}</p>
+<ol>
+<li>构造函数，没有返回值也不写void。</li>
+<li>函数名称和类名相同。</li>
+<li>构造函数可以有参数，因此可以发生重载。</li>
+<li>程序在调用对象的时候会自动调用构造，无须手动调用，而且只会调用一次。</li>
+</ol>
+</li>
+</ul>
+<p>​       <strong>析构函数语法：</strong>~类名(){}</p>
+<p>​          1.析构函数，没有返回值也不写void</p>
+<p>​          2.函数名称和类名相同，但是需要加上符号</p>
+<p>​          3. 析构函数不可以有参数，因此不可以发生重载。</p>
+<p>​          4.程序在销毁对象的时候回自动调用析构，无须手动调用，而且只会调用一次。</p>
+
       
     </div>
     

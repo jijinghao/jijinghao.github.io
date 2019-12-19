@@ -80,6 +80,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -95,7 +97,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="C++面向对象的三大特性：封装，继承，多态。C++认为万事万物皆为对象，对象有其属性和行为。本章节很啰嗦很多很基础，但是本人觉得很有必要写清楚基础！！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-19T14:08:11.883Z">
+<meta property="og:updated_time" content="2019-12-19T15:43:28.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++2类和对象">
 <meta name="twitter:description" content="C++面向对象的三大特性：封装，继承，多态。C++认为万事万物皆为对象，对象有其属性和行为。本章节很啰嗦很多很基础，但是本人觉得很有必要写清楚基础！！">
@@ -349,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k
+                  2.1k
                 </span>
               
 
@@ -440,6 +442,10 @@
 <p>​          2.函数名称和类名相同，但是需要加上符号</p>
 <p>​          3. 析构函数不可以有参数，因此不可以发生重载。</p>
 <p>​          4.程序在销毁对象的时候回自动调用析构，无须手动调用，而且只会调用一次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class person</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	person()</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; &quot;构造函数的调用&quot; &lt;&lt; endl;//系统其实每次都会自动调用析构函数只不过&#123;&#125;里面是没有东西的</span><br><span class="line">	&#125;</span><br><span class="line">	~person()</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; &quot;析构函数的调用&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">//构造和析构都是必须有的如果我们不提供，编译器会自己提供。</span><br><span class="line">void test1()</span><br><span class="line">&#123;</span><br><span class="line">	person p;//局部变量，在栈上的数据，test1执行完毕之后，释放这个对象</span><br><span class="line">&#125;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	test1();</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	person p;//如果是这样</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">打印出来只有：构造函数的调用</span><br><span class="line">原因：person p如果在test1()里面，在函数调用完之后这个对象就被释放了，所以会调用析构函数。</span><br><span class="line">如果在main函数中，是要把主控函数执行完才能释放，但是主控函数执行完程序不就直接结束了，所以析构没办法出现。</span><br></pre></td></tr></table></figure>
+
 
       
     </div>

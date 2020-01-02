@@ -97,7 +97,9 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/18/Q7reHO.md.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/18/QHr8O0.png">
-<meta property="og:updated_time" content="2019-12-18T15:51:21.325Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/26/lEN6HK.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/26/lE04mR.md.png">
+<meta property="og:updated_time" content="2019-12-26T16:23:40.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="unix网络编程总结">
 <meta name="twitter:description" content="抽空复习并且总结了以下网络编程">
@@ -352,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  2.1k
                 </span>
               
 
@@ -380,7 +382,8 @@
         <p>抽空复习并且总结了以下网络编程<a id="more"></a><br>TCP之前有文章已经讲得很详细了这里就不多说了。<br>进入正题直接将套接字吧！</p>
 <h2 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><strong>套接字都是成对出现</strong>的，一个文件描述符对应两个缓冲区，一个读一个写<br>ip地址：在网络环境中唯一标示一台主机<br>端口号：在主机中唯一标示一个进程<br>ip+port:网络环境中唯一标示唯一一个进程</p>
 <p><a href="https://imgchr.com/i/Q7reHO" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/18/Q7reHO.md.png" alt="Q7reHO.md.png"></a></p>
-<h3 id="网络字节序转换"><a href="#网络字节序转换" class="headerlink" title="网络字节序转换"></a>网络字节序转换</h3><p>#include &lt;arpa/inet.h&gt;<br>uint32_t htonl(uint32_t hostlong);<br>uint16_t htons(uint16_t hostshort);<br>uint32_t ntohl(uint32_t netlong);<br>uint16_t ntohs(uint16_t netshort);</p>
+<h3 id="网络字节序转换"><a href="#网络字节序转换" class="headerlink" title="网络字节序转换"></a>网络字节序转换</h3><p><strong>TCP/IP协议规定，网络字节流应采用大端字节序</strong></p>
+<p>#include &lt;arpa/inet.h&gt;<br>uint32_t htonl(uint32_t hostlong);<br>uint16_t htons(uint16_t hostshort);<br>uint32_t ntohl(uint32_t netlong);<br>uint16_t ntohs(uint16_t netshort);</p>
 <p>h表示host，n表示network，l表示32位长整数，s表示16位短整数。</p>
 <h3 id="IP地址转换函数"><a href="#IP地址转换函数" class="headerlink" title="IP地址转换函数"></a>IP地址转换函数</h3><p> #include &lt;arpa/inet.h&gt;<br> int inet_pton(int af, const char *src, void *dst);<br> const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);</p>
 <p>点十转成二进制 inet_pton  p理解为字符串，n理解为网络字节序<br>反之inet_ntop</p>
@@ -414,6 +417,30 @@
 <p>请求连接，第一个参数是文件描述符，第二个是服务端的地址信息，第三个传入参数,传入sizeof(addr)大小。</p>
 <h3 id="socket流程模型"><a href="#socket流程模型" class="headerlink" title="socket流程模型"></a>socket流程模型</h3><p><img src="https://s2.ax1x.com/2019/12/18/QHr8O0.png" alt="QHr8O0.png"></p>
 <p>解析一下write和read的过程:</p>
+<h3 id="端口复用"><a href="#端口复用" class="headerlink" title="端口复用"></a>端口复用</h3><p>根据四次挥手，主动关闭连接的一方要处于TIME_WAIT状态，等待两个MSL的时间后才能回到CLOSED状态，因为我们先Ctrl了server，所以server是主动关闭的一方，在TIME_WAIT状态状态是不能再次监听同样的server端口。<br>想要在这个期间，所以想要在这个期间使用这个端口就要用到端口复用</p>
+<p>在server的socket()和bind()中间加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int opt=1;</span><br><span class="line">setsockopt(listenfd,SOL_SOCKER,SO_REUSEADDR,&amp;opt,sizeof(opt));</span><br></pre></td></tr></table></figure>
+
+<p>listenfd是服务端的文件描述符</p>
+<p>netstat -apn|grep 端口号来查看状态可以发现在等待状态也可以调用端口了。</p>
+<h3 id="多路I-O转接服务器"><a href="#多路I-O转接服务器" class="headerlink" title="多路I/O转接服务器"></a>多路I/O转接服务器</h3><p>也叫作多任务IO服务器。该服务器实现的主旨思想是，不在由应用程序自己监视客户端连接，取而代之由内核应用程序监视文件。</p>
+<p><a href="https://imgchr.com/i/lEN6HK" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/26/lEN6HK.md.png" alt="lEN6HK.md.png"></a></p>
+<p><strong>select()会驱使内核帮你做事</strong></p>
+<p><a href="https://imgchr.com/i/lE04mR" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/26/lE04mR.md.png" alt="lE04mR.md.png"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int select(int nfds, fd_set *readfds, fd_set *writefds,fd_set *exceptfds, struct timeval *timeout);</span><br></pre></td></tr></table></figure>
+
+<p><strong>缺陷：1.文件描述符上限是1024。2.返回的只是一个数如果一个是1一个是1023，这样就要用for一个个循环过去很麻烦。3.监听集合和满足监听条件的集合是同一个，所以每次都要保存原本的监听集合才不会被覆盖。</strong></p>
+<p>参数1：所监听的文件描述符，最大的文件描述符+1</p>
+<p>参数2：所监听的文件描述符可读事件</p>
+<p>参数3：所监听的文件描述符可写事件</p>
+<p>参数4：所监听的文件描述符异常事件</p>
+<p>参数5：定时阻塞监控时间，置NULL就是永远等下去。</p>
+<p>返回值：成功返回所有监听集合中，满足条件的总和<br>例如：r：1 2 3   w：2 3 4  e：1 2 3 4 三个分别监听这些事件，其中只有r：2 3   w：3 4  e：1 2发生<br>所以返回值就是5.<br>                失败</p>
+<p>如何把文件描述符加入到集合里面，如何找到满足的事件，满足的是哪个事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void FD_CLR(int fd, fd_set *set);//将fd从set中清除出去</span><br><span class="line">int  FD_ISSET(int fd, fd_set *set);//判断fd是否在集合中。在的话返回值1</span><br><span class="line">void FD_SET(int fd, fd_set *set);//将fd设置到set集合中去</span><br><span class="line">void FD_ZERO(fd_set *set);//将set清空0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fd_set readfds;</span><br><span class="line">FD_ZERO(&amp;readfds);</span><br><span class="line">FD_SET(fd1,&amp;readfds);//将事件加入集合</span><br><span class="line">FD_SET(fd2,&amp;readfds);</span><br><span class="line">FD_SET(fd3,&amp;readfds);</span><br><span class="line">select();//调用函数来进行监听，返回的是满足条件的事件总数</span><br><span class="line">有了总数，用for循环判断我们刚才依次加到集合的文件描述符（通过循环一个个判断）是否满足事件，</span><br><span class="line">FD_ISSET(fd1,&amp;readfds);返回值为1满足条件，这里是读事件那就对fd1读</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -529,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -573,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#socket"><span class="nav-number">1.</span> <span class="nav-text">socket</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络字节序转换"><span class="nav-number">1.2.</span> <span class="nav-text">网络字节序转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址转换函数"><span class="nav-number">1.3.</span> <span class="nav-text">IP地址转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sockaddr结构体"><span class="nav-number">1.4.</span> <span class="nav-text">sockaddr结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关函数解析"><span class="nav-number">1.5.</span> <span class="nav-text">相关函数解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket流程模型"><span class="nav-number">1.6.</span> <span class="nav-text">socket流程模型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#socket"><span class="nav-number">1.</span> <span class="nav-text">socket</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络字节序转换"><span class="nav-number">1.2.</span> <span class="nav-text">网络字节序转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址转换函数"><span class="nav-number">1.3.</span> <span class="nav-text">IP地址转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sockaddr结构体"><span class="nav-number">1.4.</span> <span class="nav-text">sockaddr结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关函数解析"><span class="nav-number">1.5.</span> <span class="nav-text">相关函数解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket流程模型"><span class="nav-number">1.6.</span> <span class="nav-text">socket流程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口复用"><span class="nav-number">1.7.</span> <span class="nav-text">端口复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路I-O转接服务器"><span class="nav-number">1.8.</span> <span class="nav-text">多路I/O转接服务器</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -593,7 +620,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

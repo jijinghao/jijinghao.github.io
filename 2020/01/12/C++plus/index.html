@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="新的开始，抽了空好好看了一下这本书，收获很大。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ Primer Plus">
+<meta property="og:url" content="http://yoursite.com/2020/01/12/C++plus/index.html">
+<meta property="og:site_name" content="Johnson">
+<meta property="og:description" content="新的开始，抽了空好好看了一下这本书，收获很大。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-12T14:42:13.720Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ Primer Plus">
+<meta name="twitter:description" content="新的开始，抽了空好好看了一下这本书，收获很大。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/12/C++plus/">
+
+
+
+
+
+  <title>C++ Primer Plus | Johnson</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Johnson</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/12/C++plus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johnson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/DOGhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johnson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ Primer Plus</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-12T22:41:42+08:00">
+                2020-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>新的开始，抽了空好好看了一下这本书，收获很大。<a id="more"></a></p>
+<h1 id="C-认知"><a href="#C-认知" class="headerlink" title="C++认知"></a>C++认知</h1><h2 id="c-程序的模块叫做什么"><a href="#c-程序的模块叫做什么" class="headerlink" title="c++程序的模块叫做什么"></a>c++程序的模块叫做什么</h2><p>c++程序的模块叫做函数</p>
+<h2 id="include预处理器编译指令是做什么用的"><a href="#include预处理器编译指令是做什么用的" class="headerlink" title="#include预处理器编译指令是做什么用的"></a>#include<iostream>预处理器编译指令是做什么用的</iostream></h2><p>在最终编译前，使用iostream替换该编译指令</p>
+<h2 id="using-namespace-std-是做什么用的"><a href="#using-namespace-std-是做什么用的" class="headerlink" title="using namespace std;是做什么用的"></a>using namespace std;是做什么用的</h2><p>程序可以使用std名称空间中的命令</p>
+<h2 id="定义函数时，在什么情况下不必使用关键字return"><a href="#定义函数时，在什么情况下不必使用关键字return" class="headerlink" title="定义函数时，在什么情况下不必使用关键字return"></a>定义函数时，在什么情况下不必使用关键字return</h2><p>返回值是void的时候，或者不提供返回值可以使用它return；</p>
+<h1 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h1><h2 id="位与字节"><a href="#位与字节" class="headerlink" title="位与字节"></a>位与字节</h2><p>计算机内存的基本单位是位(bit),1KB=1024字节，1MB=1024KB</p>
+<p>8位单元可以表示为0<del>255，有符号是-128</del>127(因为补码)</p>
+<h2 id="基于字符的八进制和十六进制编码来使用转移序列"><a href="#基于字符的八进制和十六进制编码来使用转移序列" class="headerlink" title="基于字符的八进制和十六进制编码来使用转移序列"></a>基于字符的八进制和十六进制编码来使用转移序列</h2><p>Ctr+Z的ASCII码为26，对应的八进制是032，对应的十六进制编码是0x1a，可以使用下面的转义序列来表示该字符：\032  \x1a。将这些用单引号括号起来可以得到对应的字符常量，如’032’</p>
+<h2 id="int除以整数的情况"><a href="#int除以整数的情况" class="headerlink" title="int除以整数的情况"></a>int除以整数的情况</h2><p>往下取舍，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a = 14;</span><br><span class="line">cout &lt;&lt; a / 3 &lt;&lt; endl;</span><br><span class="line">得4</span><br></pre></td></tr></table></figure>
+
+<h2 id="char默认情况下有符号吗"><a href="#char默认情况下有符号吗" class="headerlink" title="char默认情况下有符号吗"></a>char默认情况下有符号吗</h2><p>与int不同，char在默认情况下既不是没有符号，也不是有符号。是否有由C++定义，unsigned char 或者sign char。</p>
+<p>char16_t：无符号长16位</p>
+<p>char32_t：无符号长32位</p>
+<h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><p>3.45E6表示3.45X10的六次方，也可以用3.45E+6,3.45E-6就是10的负六次方也就是除以了，3.45称为尾数，6称为尾数。</p>
+<p>通常cout输出会删除浮点数结尾的零，例如33333.2500000-&gt;33333.25</p>
+<p>希望常量是浮点型在后面加上f，例如1.23f。</p>
+<p><strong>浮点数的优缺点：</strong></p>
+<ul>
+<li>可以表述整数之间的数，由于有缩放因子，表示的范围大得多</li>
+<li>浮点运算的速度比整数运算慢，且精度降低</li>
+</ul>
+<h2 id="强制类型转换的几种方式"><a href="#强制类型转换的几种方式" class="headerlink" title="强制类型转换的几种方式"></a>强制类型转换的几种方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(typename) value;//第一种</span><br><span class="line">typename (value);//第二种</span><br><span class="line">static_cast&lt;typename&gt; value;//第三种</span><br></pre></td></tr></table></figure>
+
+<h2 id="C-11中的auto声明"><a href="#C-11中的auto声明" class="headerlink" title="C++11中的auto声明"></a>C++11中的auto声明</h2><p>如果使用关键字auto，不用指定变量的类型他会自动推导</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto n=100;//int</span><br><span class="line">auto x=1.5;//double</span><br><span class="line">auto y=1.3e12L;//long double</span><br></pre></td></tr></table></figure>
+
+<h1 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h1><h2 id="数组的初始化规则"><a href="#数组的初始化规则" class="headerlink" title="数组的初始化规则"></a>数组的初始化规则</h2><p>只有在定义数组时才能使用初始化，此后就不能再使用了，也不能将一个数组赋个另一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int cards[4] = &#123; 2,4,6,8 &#125;;</span><br><span class="line">int hand[4];</span><br><span class="line">hand[4] = &#123; 1,2,3 &#125;;//不允许</span><br><span class="line">hand = cards;//不允许</span><br></pre></td></tr></table></figure>
+
+<p>然而可以使用下标分别给数组中的元素赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hand[3]=1;</span><br><span class="line">char a[5]=&quot;aini&quot;;</span><br><span class="line">a[1]=&apos;/0&apos;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="C-11数组使用列表初始化的方法"><a href="#C-11数组使用列表初始化的方法" class="headerlink" title="C++11数组使用列表初始化的方法"></a>C++11数组使用列表初始化的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">double a[4]=&#123;1.2e4,1.2e5,1.2e3,1.3e4&#125;；</span><br><span class="line">float a[100]=&#123;&#125;;</span><br><span class="line">初始化的时候可以省略等号(=)</span><br><span class="line">double a[4] &#123;1.2e4,1.2e5,1.2e3,1.3e4&#125;;</span><br><span class="line">float a[100] &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="‘s’和”s”"><a href="#‘s’和”s”" class="headerlink" title="‘s’和”s”"></a>‘s’和”s”</h2><p>两者不能进行互换</p>
+<p>因为”s”表示的字符串后面还有’\0’;</p>
+<p>而’s’只是字符常量</p>
+<h2 id="字符串拼接问题"><a href="#字符串拼接问题" class="headerlink" title="字符串拼接问题"></a>字符串拼接问题</h2><p>C++允许拼接字符串字面值，即将两个用引号括起的字符串合并为一个，事实上任何两个由空白(空格、制表符、换行符)分隔的字符串常量都将自动拼接成一个，<strong>逗号不行</strong>，以下的例子都是等价的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;&quot;i love you&quot;;</span><br><span class="line">cout&lt;&lt;&quot;i lo&quot;&quot;ve you&quot;;</span><br><span class="line">cout&lt;&lt;&quot;i lo&quot;</span><br><span class="line">&quot;ve you&quot;;</span><br><span class="line">在看下面</span><br><span class="line">cout &lt;&lt; &quot;i lo&quot;,&quot;ve you&quot;;//中间加逗号是不行的输出的只有i lo</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串的输入"><a href="#字符串的输入" class="headerlink" title="字符串的输入"></a>字符串的输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">char name[20];</span><br><span class="line">char food[20];</span><br><span class="line">cout &lt;&lt; &quot;输入你的名字：&quot; &lt;&lt; endl;</span><br><span class="line">cin &gt;&gt; name;</span><br><span class="line">cout &lt;&lt; &quot;输入你喜欢的食物：&quot; &lt;&lt; endl;</span><br><span class="line">cin &gt;&gt; food;</span><br><span class="line">cout &lt;&lt; &quot;俺们记住了！&quot; &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>下面提供两个测试用例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入你的名字：</span><br><span class="line">纪景豪</span><br><span class="line">输入你喜欢的食物：</span><br><span class="line">瓜皮</span><br><span class="line">俺们记住了！</span><br><span class="line">//下面是输入的时候字符串中间加入空格</span><br><span class="line">输入你的名字：</span><br><span class="line">纪景豪 瓜皮</span><br><span class="line">输入你喜欢的食物：</span><br><span class="line">俺们记住了！</span><br><span class="line">//下面的直接跳出来了！</span><br><span class="line">//和预期想的不一样！</span><br></pre></td></tr></table></figure>
+
+<p><strong>cin使用空白(空格，制表符，换行符)来确定结束的位置，一位置cin在获取字符数组输入只读取一个单词</strong></p>
+<p>遇到上面的情况就会很头疼，下面是结局方法</p>
+<p>使用getline(),调用方法cin.getline(),第一个参数用来存储输入行的数组的名称，第二个参数是要读取的字符数，其实还有第三个参数以后在讨论,通过换行符来确定结束，也就是敲空格就结束了嘛。记住别输入的数组别越界！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">char name[20];</span><br><span class="line">char food[20];</span><br><span class="line">cout &lt;&lt; &quot;输入你的名字：&quot; &lt;&lt; endl;</span><br><span class="line">cin .getline(name,20);</span><br><span class="line">cout &lt;&lt; &quot;输入你喜欢的食物：&quot; &lt;&lt; endl;</span><br><span class="line">cin .getline(food,20);</span><br><span class="line">cout &lt;&lt; &quot;俺们记住了！&quot; &lt;&lt; endl;</span><br><span class="line">输入你的名字：</span><br><span class="line">tom k</span><br><span class="line">输入你喜欢的食物：</span><br><span class="line">drink 1</span><br><span class="line">俺们记住了！</span><br></pre></td></tr></table></figure>
+
+<p>使用get(),调用方式和参数和getline相同，并且都读取到行尾，<strong>但是get()不丢弃换行符</strong></p>
+<p>由于第一次调用后，换行符将留在输入队列中，因此第二次调用时看到的第一个字符便是换行符，因此getrenweu已到达队尾，而没有发现任何可以读取的内容。</p>
+<p>幸运的是有这种解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">char name[20];</span><br><span class="line">char food[20];</span><br><span class="line">cout &lt;&lt; &quot;输入你的名字：&quot; &lt;&lt; endl;</span><br><span class="line">cin.get(name, 20);</span><br><span class="line">cin.get();</span><br><span class="line">/*cin .get(name,20).get();*/ //这是上面的变体</span><br><span class="line">cout &lt;&lt; &quot;输入你喜欢的食物：&quot; &lt;&lt; endl;</span><br><span class="line">cin .get(food,20).get();</span><br><span class="line">cout &lt;&lt; &quot;俺们记住了！&quot; &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>另一种情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">char name[20];</span><br><span class="line">char food[20];</span><br><span class="line">cout &lt;&lt; &quot;输入你的名字：&quot; &lt;&lt; endl;</span><br><span class="line">cin &gt;&gt; name;</span><br><span class="line">cout &lt;&lt; &quot;输入你喜欢的食物：&quot; &lt;&lt; endl;</span><br><span class="line">cin .get(food,20).get();</span><br><span class="line">cout &lt;&lt; &quot;俺们记住了:&quot; &lt;&lt;food&lt;&lt; endl;</span><br><span class="line">输入：</span><br><span class="line">输入你的名字：</span><br><span class="line">    dede</span><br><span class="line">    输入你喜欢的食物：</span><br><span class="line">    俺们记住了:</span><br></pre></td></tr></table></figure>
+
+<p>和预期又不一样我们使用cin&gt;&gt;name,换成(cin&gt;&gt;name).get();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">char name[20];</span><br><span class="line">char food[20];</span><br><span class="line">cout &lt;&lt; &quot;输入你的名字：&quot; &lt;&lt; endl;</span><br><span class="line">(cin &gt;&gt; name).get();</span><br><span class="line">cout &lt;&lt; &quot;输入你喜欢的食物：&quot; &lt;&lt; endl;</span><br><span class="line">cin .get(food,20).get();</span><br><span class="line">cout &lt;&lt; &quot;俺们记住了:&quot; &lt;&lt;food&lt;&lt; endl;</span><br><span class="line">输入你的名字：</span><br><span class="line">纪景豪 瓜皮</span><br><span class="line">输入你喜欢的食物：</span><br><span class="line">俺们记住了:瓜皮</span><br></pre></td></tr></table></figure>
+
+<h2 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h2><p><strong>string对象的方式和使用字符数组相同</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char name;</span><br><span class="line">string food;//字符数组</span><br><span class="line">name[1] = &apos;1&apos;;//错误</span><br><span class="line">food[1] = &apos;0&apos;;//允许</span><br></pre></td></tr></table></figure>
+
+<p><strong>不能将数组赋值给另一个数组，但是可以把string对象赋值给另一个对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string str1 = &quot;shuai&quot;;</span><br><span class="line">string str2 = str1;</span><br><span class="line">cout &lt;&lt; str2 &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p><strong>string类简化了字符串合并操作，可以这样做：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">string str3;</span><br><span class="line">//使用c风格字符串</span><br><span class="line">strcpy(charr3,charr1);</span><br><span class="line">strcat(charr3,charr2);</span><br><span class="line"></span><br><span class="line">str3=str1+str2;</span><br><span class="line">str1+=str2;</span><br></pre></td></tr></table></figure>
+
+<p><strong>string具有自动调整功能，不担心越界问题</strong></p>
+<p><strong>确认字符串中字符数的方法：</strong></p>
+<ul>
+<li><p>int len1=str1.size();</p>
+</li>
+<li><p>int len2=strlen(charr1);</p>
+<p>两者的不同：str1是一个类对象，而size()是一个类方法。strlen是一个常规函数，它接受 C风格字符串作为参数，并返回字符串包含的字符数，charr1被用作函数参数。</p>
+</li>
+</ul>
+<p><strong>string类I/O:</strong></p>
+<p><code>getline(cin,str);</code></p>
+<p><code>cin&gt;&gt;str;</code> //遇到空格不能达到预期</p>
+<h2 id="想输出-n和"><a href="#想输出-n和" class="headerlink" title="想输出\n和\"></a>想输出\n和\</h2><p><code>cout &lt;&lt; R&quot;(i love \n you)&quot;&lt;&lt; endl;
+cout &lt;&lt; &quot;i love \\n you&quot;&lt;&lt; endl;</code><br><code>cout &lt;&lt; &quot;\\n&quot;&lt;&lt; endl;</code></p>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p><strong>结构体初始化：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">struct person</span><br><span class="line">	&#123;</span><br><span class="line">		int age;</span><br><span class="line">		string name;</span><br><span class="line">	&#125;;</span><br><span class="line">	person p1 =</span><br><span class="line">	&#123;</span><br><span class="line">		1,</span><br><span class="line">		&quot;Tom&quot;</span><br><span class="line">	&#125;;</span><br><span class="line">	struct person p2 =&#123; 2,&quot;Jon&quot; &#125;;//等于号可以去掉</span><br><span class="line">	person p3 &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>结构体包含共同体的大小</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">struct person</span><br><span class="line">	&#123;</span><br><span class="line">		int age;//4</span><br><span class="line">		char name;//和下面的包含在一块</span><br><span class="line">		char name1;//对齐4 没有这个name1的话 name就和下面的union一起了</span><br><span class="line">		union //这个没有名称叫做匿名共用体</span><br><span class="line">		&#123;</span><br><span class="line">		    int a;</span><br><span class="line">			char b[11]; //最大是11，但是因为对齐值是4 所以换成12</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">	cout &lt;&lt; sizeof(person) &lt;&lt; endl;</span><br><span class="line">	所以是20</span><br><span class="line">struct person</span><br><span class="line">	&#123;</span><br><span class="line">		int age;</span><br><span class="line">		char name;</span><br><span class="line">		char name1;</span><br><span class="line">		union shuai//不计算进去</span><br><span class="line">		&#123;</span><br><span class="line">			int b;</span><br><span class="line">			char a[11];</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">	cout &lt;&lt; sizeof(person) &lt;&lt; endl;</span><br><span class="line">	所以是8</span><br><span class="line">struct son</span><br><span class="line">	&#123;</span><br><span class="line">		int a;</span><br><span class="line">		double b;</span><br><span class="line">	&#125;;</span><br><span class="line">	struct person</span><br><span class="line">	&#123;</span><br><span class="line">		int age;</span><br><span class="line">		char name;</span><br><span class="line">		char name1;</span><br><span class="line">		union </span><br><span class="line">		&#123;</span><br><span class="line">			int b;</span><br><span class="line">			char a[11];</span><br><span class="line">		&#125;;</span><br><span class="line">		struct son c;//里面最大是8所以对齐值变成了8</span><br><span class="line">	&#125;;</span><br><span class="line">	cout &lt;&lt; sizeof(person) &lt;&lt; endl;</span><br><span class="line">	答案是40</span><br></pre></td></tr></table></figure>
+
+<p><strong>枚举：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">enum bit&#123;first,second,third&#125;;</span><br><span class="line">enum bit&#123;first,second=100,third&#125;;默认first=0，未初始化的枚举量比前面的大1所以third=101.</span><br></pre></td></tr></table></figure>
+
+<p>取值范围：<strong>需要知道枚举的最大值，以上的101，找到比这个数大的2的次幂也就是128，因此取值范围最大应该是127,。要计算下限，需要知道枚举量的最小值。如果它不小于0，则取值范围为0，否则和取上限一样，例如最小是-6，那么比他小的2的次幂是-8，那么下限就是-7</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum bits&#123;one=1,two=2,four=4,eight=8&#125;;</span><br><span class="line">bits my;</span><br><span class="line">my=bits(6);//在范围内所以是合法的</span><br></pre></td></tr></table></figure>
+
+<p><strong>占用空间：</strong>枚举是整形，一般是4，还是根据编译器决定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">enum bit&#123; first, second, third,t,tc &#125;;</span><br><span class="line">	struct son</span><br><span class="line">	&#123;</span><br><span class="line">		int a;</span><br><span class="line">		double b;</span><br><span class="line">	&#125;;</span><br><span class="line">	struct person</span><br><span class="line">	&#123;</span><br><span class="line">		int age;</span><br><span class="line">		char name;</span><br><span class="line">		char name1;</span><br><span class="line">		union shuai</span><br><span class="line">		&#123;</span><br><span class="line">			int b;</span><br><span class="line">			char a[11];</span><br><span class="line">		&#125;;</span><br><span class="line">		struct son c;</span><br><span class="line">		bit d;</span><br><span class="line">	&#125;;</span><br><span class="line">	cout &lt;&lt; sizeof(person) &lt;&lt; endl;</span><br><span class="line">	所以是32</span><br></pre></td></tr></table></figure>
+
+<h2 id="指针和自由存储空间"><a href="#指针和自由存储空间" class="headerlink" title="指针和自由存储空间"></a>指针和自由存储空间</h2><p><strong>指针是一个变量，存储的是值的地址，而不是值本身</strong></p>
+<p>在C++中，int*是一种复合类型，是指向int的指针。</p>
+<p><code>int *p;  p的类型是指向int的指针,*p是int不是指针</code></p>
+<p><strong>指针的危险：</strong>记得要赋给指针地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">long* fellow;</span><br><span class="line">*fellow = 22223;</span><br><span class="line">fellw确实是一个指针，但是它指向哪里呢？上述代码没有将地址付给fellw，那么22223江北放在哪里呢？我们不知道。由于fellow没有被初始化，他可能有任何值。不管值是什么，程序都将它结束为村粗22223的地址。如果fellow的值恰巧为1200，计算机将数据放在地址1200上，即使这恰巧是程序大妈的地址。fellow指向的地方很可能并不是索要存储22223的地方，造成崩溃。</span><br><span class="line">所以应该这样</span><br><span class="line">long a=22223;</span><br><span class="line">long *fellow=&amp;a;</span><br></pre></td></tr></table></figure>
+
+<p><strong>指针和数字：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int *p;</span><br><span class="line">p=0xB8000000;//C++这样是不符合的，整数可以加减乘除但是指针指向的是位置，两个地址相乘没有什么意义，所以</span><br><span class="line">p=(int *)0xB8000000;//应通过强制类型转换将数字转换为适当的地址类型</span><br></pre></td></tr></table></figure>
+
+<h2 id="new和delete"><a href="#new和delete" class="headerlink" title="new和delete"></a>new和delete</h2><h3 id="new的使用："><a href="#new的使用：" class="headerlink" title="new的使用："></a><strong>new的使用：</strong></h3><p><code>typeName *p_Name=new typeName;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//情况一</span><br><span class="line">int higgens;</span><br><span class="line">int *pt=&amp;higgens;</span><br><span class="line">//情况二</span><br><span class="line">int *pn=new int;</span><br><span class="line">*pn=100;//合法</span><br><span class="line">两种情况都是将一个int变量赋给了指针，第一种通过higgens来访问该int，在第二种中只能通过该指针进行访问，我们称pn指向一个数据对象，变量也是一种数据对象，但是pn指向的内存不是变量</span><br></pre></td></tr></table></figure>
+
+<h3 id="delete的使用："><a href="#delete的使用：" class="headerlink" title="delete的使用："></a><strong>delete的使用：</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int *p=new int;</span><br><span class="line">……;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
+
+<p><strong>释放p指向的内存，注意是内存，而不是删除指针本身，可以重新将p指向另一个新分配的内存块，记得new后要delete否则将造成内存泄漏！也就是说被分配的内存再也无法使用了，如果内存泄漏严重，程序将由于不断寻找更多内存而终止，形成内存溢出</strong></p>
+<p><strong>不要尝试释放已经是放过的内存块！</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int *p=new int;</span><br><span class="line">delete p;</span><br><span class="line">delete p;//不允许</span><br><span class="line">int jugs=5;</span><br><span class="line">int *pi=&amp;jugs;</span><br><span class="line">delete pi;//不允许</span><br></pre></td></tr></table></figure>
+
+<p><strong>不要创建两个指向同一块内存块的指针，因为可能造成同一块内存被释放两次！深拷贝经常涉及！</strong></p>
+<h3 id="使用new来创建动态数组"><a href="#使用new来创建动态数组" class="headerlink" title="使用new来创建动态数组"></a>使用new来创建动态数组</h3><p><strong>静态联编：</strong>在编译时给数组分配内存，意味着数组实在编译时加入程序的，必须在编写程序时指定数组的长度。</p>
+<p><strong>动态联编：</strong>在程序运行时选择数组的长度，一位数组实在程序运行时创建的，程序将在运行时确定数组的长度。</p>
+<p><strong>new属于动态联编，用数组声明创建数组将采用静态联编</strong></p>
+<p><strong>使用new创建动态数组：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int *psome=new int[10];//new运算符返回第一个元素的地址。在这个例子中，改地址被赋予指针psome</span><br><span class="line">delete []psome;//释放需要用这种格式，应释放整个数组，而不仅仅是指针指向的元素</span><br></pre></td></tr></table></figure>
+
+<p>*(str+1)等价于str[1];</p>
+<p><strong>数组名为数组第一个元素的地址，当使用sizeof()的时候，数组名不是地址。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对数组取地址的时候，数组名也不会被解释为其地址，对数组名取地址，得到的是整个数组的地址！</span><br><span class="line">short tell[10];</span><br><span class="line">cout&lt;&lt;tell&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;&amp;tell&lt;&lt;endl;</span><br><span class="line">从数字上，这两个地址相同;但是从概念上，&amp;tell[0]是一个而自己内存块的地址，而&amp;tell是一个20字节内存块的地址。因此tell+1将地址加2，而&amp;tell+2将地址加20.tell是一个short指针(*short),而&amp;tell是这样一个指针，即指向包含20个元素的short数组(short(*)[20]).</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/01/C++模板与STL/" rel="next" title="C++3模板与STL">
+                <i class="fa fa-chevron-left"></i> C++3模板与STL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/DOGhead.jpg" alt="Johnson">
+            
+              <p class="site-author-name" itemprop="name">Johnson</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-认知"><span class="nav-number">1.</span> <span class="nav-text">C++认知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-程序的模块叫做什么"><span class="nav-number">1.1.</span> <span class="nav-text">c++程序的模块叫做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include预处理器编译指令是做什么用的"><span class="nav-number">1.2.</span> <span class="nav-text">#include预处理器编译指令是做什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using-namespace-std-是做什么用的"><span class="nav-number">1.3.</span> <span class="nav-text">using namespace std;是做什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义函数时，在什么情况下不必使用关键字return"><span class="nav-number">1.4.</span> <span class="nav-text">定义函数时，在什么情况下不必使用关键字return</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理数据"><span class="nav-number">2.</span> <span class="nav-text">处理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#位与字节"><span class="nav-number">2.1.</span> <span class="nav-text">位与字节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于字符的八进制和十六进制编码来使用转移序列"><span class="nav-number">2.2.</span> <span class="nav-text">基于字符的八进制和十六进制编码来使用转移序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#int除以整数的情况"><span class="nav-number">2.3.</span> <span class="nav-text">int除以整数的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#char默认情况下有符号吗"><span class="nav-number">2.4.</span> <span class="nav-text">char默认情况下有符号吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数"><span class="nav-number">2.5.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换的几种方式"><span class="nav-number">2.6.</span> <span class="nav-text">强制类型转换的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11中的auto声明"><span class="nav-number">2.7.</span> <span class="nav-text">C++11中的auto声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合类型"><span class="nav-number">3.</span> <span class="nav-text">复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的初始化规则"><span class="nav-number">3.1.</span> <span class="nav-text">数组的初始化规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11数组使用列表初始化的方法"><span class="nav-number">3.2.</span> <span class="nav-text">C++11数组使用列表初始化的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#‘s’和”s”"><span class="nav-number">3.3.</span> <span class="nav-text">‘s’和”s”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串拼接问题"><span class="nav-number">3.4.</span> <span class="nav-text">字符串拼接问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的输入"><span class="nav-number">3.5.</span> <span class="nav-text">字符串的输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string类"><span class="nav-number">3.6.</span> <span class="nav-text">string类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想输出-n和"><span class="nav-number">3.7.</span> <span class="nav-text">想输出\n和\</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体"><span class="nav-number">3.8.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针和自由存储空间"><span class="nav-number">3.9.</span> <span class="nav-text">指针和自由存储空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new和delete"><span class="nav-number">3.10.</span> <span class="nav-text">new和delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new的使用："><span class="nav-number">3.10.1.</span> <span class="nav-text">new的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete的使用："><span class="nav-number">3.10.2.</span> <span class="nav-text">delete的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用new来创建动态数组"><span class="nav-number">3.10.3.</span> <span class="nav-text">使用new来创建动态数组</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johnson</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<div class="bg_content">
+  <canvas id="canvas"></canvas>
+</div>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<script type="text/javascript" src="/js/src/dynamic_bg.js"></script>

@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -97,10 +95,12 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="新的开始，抽了空好好看了一下这本书，收获很大。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-12T14:42:13.720Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/13/lHEHd1.png">
+<meta property="og:updated_time" content="2020-01-15T10:03:27.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer Plus">
 <meta name="twitter:description" content="新的开始，抽了空好好看了一下这本书，收获很大。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/13/lHEHd1.png">
 
 
 
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.4k
+                  6.6k
                 </span>
               
 
@@ -495,6 +495,7 @@ cout &lt;&lt; &quot;i love \\n you&quot;&lt;&lt; endl;</code><br><code>cout &lt;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int *p=new int;</span><br><span class="line">delete p;</span><br><span class="line">delete p;//不允许</span><br><span class="line">int jugs=5;</span><br><span class="line">int *pi=&amp;jugs;</span><br><span class="line">delete pi;//不允许</span><br></pre></td></tr></table></figure>
 
 <p><strong>不要创建两个指向同一块内存块的指针，因为可能造成同一块内存被释放两次！深拷贝经常涉及！</strong></p>
+<p><strong>可以在函数里面new在main函数里面delete，但是不推荐</strong></p>
 <h3 id="使用new来创建动态数组"><a href="#使用new来创建动态数组" class="headerlink" title="使用new来创建动态数组"></a>使用new来创建动态数组</h3><p><strong>静态联编：</strong>在编译时给数组分配内存，意味着数组实在编译时加入程序的，必须在编写程序时指定数组的长度。</p>
 <p><strong>动态联编：</strong>在程序运行时选择数组的长度，一位数组实在程序运行时创建的，程序将在运行时确定数组的长度。</p>
 <p><strong>new属于动态联编，用数组声明创建数组将采用静态联编</strong></p>
@@ -505,6 +506,163 @@ cout &lt;&lt; &quot;i love \\n you&quot;&lt;&lt; endl;</code><br><code>cout &lt;
 <p><strong>数组名为数组第一个元素的地址，当使用sizeof()的时候，数组名不是地址。</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对数组取地址的时候，数组名也不会被解释为其地址，对数组名取地址，得到的是整个数组的地址！</span><br><span class="line">short tell[10];</span><br><span class="line">cout&lt;&lt;tell&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;&amp;tell&lt;&lt;endl;</span><br><span class="line">从数字上，这两个地址相同;但是从概念上，&amp;tell[0]是一个而自己内存块的地址，而&amp;tell是一个20字节内存块的地址。因此tell+1将地址加2，而&amp;tell+2将地址加20.tell是一个short指针(*short),而&amp;tell是这样一个指针，即指向包含20个元素的short数组(short(*)[20]).</span><br></pre></td></tr></table></figure>
 
+<h3 id="指针与字符串"><a href="#指针与字符串" class="headerlink" title="指针与字符串"></a>指针与字符串</h3><p><strong>char 数组名，char指针，以及引号括起的字符串常量都被解释为字符串第一个字符的地址！</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char flower[10]=&quot;rose&quot;;</span><br><span class="line">cout&lt;&lt;flower&lt;&lt;&quot;beautiful&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意以下用指针初始化字符串的一种方式：</strong><code>char* p=&quot;i love you&quot;</code>  /、以下的修改方法也是错误的：<code>p[2]=&#39;v&#39;;  和*p=&quot;love&quot;;</code></p>
+<p><strong>字符串输出：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;flower;</span><br><span class="line">cout&lt;&lt;p;</span><br><span class="line">cout&lt;&lt;&quot;i love you&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>应该使用stcpy或者strncpy来将字符串赋值给数组！！了解了string后可以用string，就不用担心越界了</strong></p>
+<p><strong>使用ps=new char[strlen(animal)+1]  这样省空间 +1是加上’\0’的空间</strong></p>
+<h2 id="自动存储，静态存储，动态存储"><a href="#自动存储，静态存储，动态存储" class="headerlink" title="自动存储，静态存储，动态存储"></a>自动存储，静态存储，动态存储</h2><p>自动存储：在函数内部定义的常规变量使用自动变量，自动变量是一个局部变量，作用域是包含他的代码块，自动变量存储在栈中；一位置执行代码块时，其中的变量将以此加入到栈中，而在离开代码块是，将按相反的顺序释放这些变量(LIFO)。</p>
+<p>静态存储：静态存储是整个程序执行期间都存在的存储方式；让变量变成静态有两种方式：一种是在函数外面定义它，另一种实在声明变量时使用关键字static。</p>
+<p>动态存储：new和delete运算符提供一种比自动变量和静态变量更灵活的方法。他们管理了一个内存池，在C++中国称为自由存储空间或者堆。new和delete能让我们在一个函数中分配内存，而在另一个函数中释放它。因此，数据的生命周期完全不受程序或者函数的生存时间控制！在栈中，添加和删除使得占用内存中是连续的，但是new和delete可能到时占用的自由存储区不连续，这使得跟踪新分配内存位置更困难</p>
+<h2 id="栈，堆和内存泄漏"><a href="#栈，堆和内存泄漏" class="headerlink" title="栈，堆和内存泄漏"></a>栈，堆和内存泄漏</h2><p>new在堆上创建了变量而后不调用delete后，即使包含指针的内存由于作用域规则和对象声明周期的原因而被释放，在堆上的空间动态分配的变量或者结构也将继续存在们将会无法访问对重的结构，因为这些内存的指针无效，造成内存泄漏，被泄露的内存在程序的整个声明周期都无法使用！内存被分配出去却没有回收回来，严重的话会导致内存耗尽，造成内存溢出！</p>
+<h2 id="数组的替代品vector和array"><a href="#数组的替代品vector和array" class="headerlink" title="数组的替代品vector和array"></a>数组的替代品vector和array</h2><h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>vector类似于string类，也是一种动态数组，基本上他是使用new创建动态数组的替代品，实际上却是使用了new和delete管理内存，但这样的工作是自动完成的</p>
+<p>一般而言这样代替：<code>vector&lt;typeName&gt; v(elem);//存储elem个typeName类型的元素</code>，elem可以是整型常量也可以是整型变量</p>
+<p><strong>vector功能比数组强大且安全但是付出的代价是效率较低。</strong></p>
+<h3 id="模板类array"><a href="#模板类array" class="headerlink" title="模板类array"></a>模板类array</h3><p><code>array&lt;typeName,elem&gt;arr;//和vector不同elem只能是常量！</code></p>
+<p>和数组一样，array对象的长度也是固定的，<strong>也是用栈而不是堆</strong>，效率比数组相同，但是更方便更安全！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array&lt;double,4&gt;a3=&#123;3.12,12.1&#125;;</span><br><span class="line">array&lt;double,4&gt;a4;</span><br><span class="line">a4=a3;</span><br><span class="line">array对象可以赋值给另一个对象但是对于数组必须逐元素复制！</span><br></pre></td></tr></table></figure>
+
+<h1 id="循环和关系表达式"><a href="#循环和关系表达式" class="headerlink" title="循环和关系表达式"></a>循环和关系表达式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    for (i = 4; i; i--)</span><br><span class="line">    &#123;</span><br><span class="line">    cout &lt;&lt; &quot;i=&quot; &lt;&lt; i &lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; &quot;Now i=&quot; &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">i=4</span><br><span class="line">i=3</span><br><span class="line">i=2</span><br><span class="line">i=1</span><br><span class="line">Now i=0</span><br><span class="line">这是如何得到循环终止值是0呢？在入口条件循环判定的时候发现i=0，C++引入了bool类型后，判定为false！</span><br></pre></td></tr></table></figure>
+
+<h3 id="x-y-x-0"><a href="#x-y-x-0" class="headerlink" title="x=y=x=0;"></a>x=y=x=0;</h3><p><strong>通过优先级表表明，赋值运算符是从右向左结合，因此首先将0给z再给y再给x！</strong></p>
+<h2 id="和递增运算符的结合"><a href="#和递增运算符的结合" class="headerlink" title="* 和递增运算符的结合"></a>* 和递增运算符的结合</h2><p><strong>首先要先确认的是前缀递增，前缀递减和解引符运算级别相同，而后缀递增递减比前面所说的三种运算级高</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*++p</td>
+<td>运算级别相同，地址先递增再解引</td>
+</tr>
+<tr>
+<td>++*p</td>
+<td>运算级别相同，地址先解引然后值递增</td>
+</tr>
+<tr>
+<td>(*p)++</td>
+<td>加了括号先解引，然后值递增</td>
+</tr>
+<tr>
+<td>*p++</td>
+<td>后缀递增优先级别高，但是由于是后缀所以此时的地址还是原来的地址，后面再递增！解引当前地址，</td>
+</tr>
+</tbody></table>
+<h2 id="字符串的比较"><a href="#字符串的比较" class="headerlink" title="字符串的比较"></a>字符串的比较</h2><p>C风格是使用strcmp()或者strncmp(),而string则可以直接使用==，因为符号是经过了重载的。</p>
+<h2 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h2><p>C++创建别名的两种方法：</p>
+<ul>
+<li>使用预处理器：<code>#define BYTE char</code></li>
+<li>使用typedef：<code>typedef char byte</code></li>
+</ul>
+<p>但是有种情况下type更好用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define FLOAT float *</span><br><span class="line">FLOAT p1,p2;//翻译过来会变成float *p1,p2;显然是错误的</span><br><span class="line">而typedef不会出现这样的情况能声明一系列变量。</span><br></pre></td></tr></table></figure>
+
+<h2 id="循环和文本输入"><a href="#循环和文本输入" class="headerlink" title="循环和文本输入"></a>循环和文本输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">char ch;</span><br><span class="line">int count = 0;</span><br><span class="line">cin &gt;&gt; ch;</span><br><span class="line">while (ch != &apos;#&apos;)</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; ch;</span><br><span class="line">	++count;</span><br><span class="line">	cin &gt;&gt; ch;//否则不能继续输入了，还会导致循环出输出ch的值</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; endl;</span><br><span class="line">遇到只会输入#之前的字符，空格制表符换行符也会被省略！</span><br><span class="line">dede de#</span><br><span class="line">   dedede</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用cin.get(char)补救</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">char ch;</span><br><span class="line">int count = 0;</span><br><span class="line">cin.get(ch);</span><br><span class="line">while (ch != &apos;#&apos;)</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; ch;</span><br><span class="line">	++count;</span><br><span class="line">	cin.get(ch);</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; endl;</span><br><span class="line">这里在C语言中是不可行的，因为要改变变量的值需要地址传递，但是C++库里封装了引用传递，所以这里值是会改变的</span><br></pre></td></tr></table></figure>
+
+<p>也可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">char ch;</span><br><span class="line">int count = 0;</span><br><span class="line">ch=cin.get();</span><br><span class="line">while (ch != EOF)</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; ch;</span><br><span class="line">	++count;</span><br><span class="line">	ch = cin.get();</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">char ch;</span><br><span class="line">int count = 0;</span><br><span class="line">while ((ch = cin.get()) != EOF)</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; ch;</span><br><span class="line">	++count;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分支语句和逻辑运算符"><a href="#分支语句和逻辑运算符" class="headerlink" title="分支语句和逻辑运算符"></a>分支语句和逻辑运算符</h2><p>简单的就不多说了</p>
+<h2 id="？："><a href="#？：" class="headerlink" title="？："></a>？：</h2><p><code>exp1?exp2:exp3</code>   //条件1为真，返回exp2；反之返回exp3.</p>
+<h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><p>常用于做屏幕菜单，<strong>标签必须是整数常量表达式，例如int ，char ，枚举量；其中枚举量需要提升为整型</strong></p>
+<h2 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h2><p><img src="https://s2.ax1x.com/2020/01/13/lHEHd1.png" alt="lHEHd1.png"></p>
+<h1 id="函数——C-的编程模块"><a href="#函数——C-的编程模块" class="headerlink" title="函数——C++的编程模块"></a>函数——C++的编程模块</h1><h3 id="函数如何使用指针来处理数组"><a href="#函数如何使用指针来处理数组" class="headerlink" title="函数如何使用指针来处理数组"></a>函数如何使用指针来处理数组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int sum(int *arr,int n);</span><br><span class="line">int sun(int arr[],int n);</span><br><span class="line">两者是等价的，而且仅仅在函数头或者函数原型中，int *arr和int arr[]相同。</span><br></pre></td></tr></table></figure>
+
+<h3 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a>指针和const</h3><table>
+<thead>
+<tr>
+<th>函数原型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>const  int *ps=&amp;sloth</td>
+<td>指针指向的值不能改变了，但是指向能改变，不允许使用ps来修改sloth的值</td>
+</tr>
+<tr>
+<td>int *const finger=&amp;sloth</td>
+<td>指针的指向不能改变，但是值能改变，允许使用finger来修改sloth的值</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int sloth = 10;</span><br><span class="line">const int* ps = &amp;sloth;</span><br><span class="line">//*ps = 100;//不允许</span><br><span class="line">int n = 100;</span><br><span class="line">ps = &amp;n;</span><br><span class="line">//sloth = 100;//通过修改sloth修改ps</span><br><span class="line">cout &lt;&lt; *ps &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">int sloth = 10;</span><br><span class="line">int* const finger = &amp;sloth;</span><br><span class="line">int n = 100;</span><br><span class="line">//finger = &amp;n;//不允许</span><br><span class="line">*finger = 100;</span><br><span class="line">cout &lt;&lt; *finger &lt;&lt; &quot;   sloth:&quot; &lt;&lt; sloth &lt;&lt; endl;//sloth值跟着改变</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数和二维数组"><a href="#函数和二维数组" class="headerlink" title="函数和二维数组"></a>函数和二维数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int sum(int (*arr)[4],int size);</span><br><span class="line">int sum(int arr[][4],int size);</span><br><span class="line">两种函数原型都表明arr是指针而不是数组。</span><br><span class="line">调用直接arr[r][c]或者*(*(arr+r)+c)</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>先上例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#include &lt;conio.h&gt;</span><br><span class="line"> </span><br><span class="line">int max(int x, int y); //求最大数</span><br><span class="line">int min(int x, int y); //求最小数</span><br><span class="line">int add(int x, int y); //求和</span><br><span class="line">void process(int i, int j, int (*p)(int a, int b)); //应用函数指针</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int x, y;</span><br><span class="line">    cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line"> </span><br><span class="line">    cout&lt;&lt;&quot;Max is: &quot;;</span><br><span class="line">    process(x, y, max);</span><br><span class="line"> </span><br><span class="line">    cout&lt;&lt;&quot;Min is: &quot;;</span><br><span class="line">    process(x, y, min);</span><br><span class="line"> </span><br><span class="line">    cout&lt;&lt;&quot;Add is: &quot;;</span><br><span class="line">    process(x, y, add);</span><br><span class="line"> </span><br><span class="line">    getch();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int max(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x &gt; y ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int min(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x &gt; y ? y : x;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int add(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">void process(int i, int j, int (*p)(int a, int b))</span><br><span class="line">&#123;</span><br><span class="line">    cout&lt;&lt;p(i, j)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一个函数都占用一段内存单元，它们有一个起始地址，指向函数入口地址的指针称为函数指针。</p>
+<p><strong>每个函数都有地址，函数名就是它的地址。</strong></p>
+<p><strong>语法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">指向函数的指针变量的一般定义形式为：</span><br><span class="line">数据类型 (*指针变量名)(参数表);</span><br></pre></td></tr></table></figure>
+
+<h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><ul>
+<li>1） <code>函数指针</code>的定义形式中的<code>数据类型</code>是指<code>函数的返回值的类型</code>。</li>
+<li>2） 区分下面两个语句：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)(<span class="keyword">int</span> a, <span class="keyword">int</span> b); <span class="comment">//p是一个指向函数的指针变量，所指函数的返回值类型为整型</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">p</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>; <span class="comment">//p是函数名，此函数的返回值类型为整型指针</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>3） <code>指向函数的指针变量</code>不是固定指向哪一个函数的，而只是表示定义了一个这样类型的变量，它是专门用来存放函数的入口地址的；在程序中把哪一个<code>函数的地址</code>赋给它，它就指向哪一个函数。</li>
+<li>4） 在给函数指针变量赋值时，只需给出函数名，而不必给出参数。</li>
+</ul>
+<blockquote>
+<p>如函数max的原型为：int max(int x, int y);<br> 指针p的定义为：int (*p)(int a, int b);<br> 则p = max;的作用是将函数max的入口地址赋给指针变量p。这时，p就是指向函数max的指针变量，也就是p和max都指向函数的开头。</p>
+</blockquote>
+<ul>
+<li>5） 在一个程序中，<code>指针变量p</code>可以先后指向不同的函数，但一个函数不能赋给一个不一致的函数指针（<code>即不能让一个函数指针指向与其类型不一致的函数</code>）。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如有如下的函数：<span class="function"><span class="keyword">int</span> <span class="title">fn1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="function"><span class="keyword">int</span> <span class="title">fn2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line">定义如下的函数指针：<span class="keyword">int</span> (*p1)(<span class="keyword">int</span> a, <span class="keyword">int</span> b); <span class="keyword">int</span> (*p2)(<span class="keyword">int</span> a);</span><br><span class="line">则</span><br><span class="line">p1 = fn1; <span class="comment">//正确</span></span><br><span class="line">p2 = fn2; <span class="comment">//正确</span></span><br><span class="line">p1 = fn2; <span class="comment">//产生编译错误</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>6） 定义了一个<code>函数指针</code>并让它<code>指向</code>了一个<code>函数</code>后，对函数的<code>调用</code>可以通过<code>函数名``调用</code>，也可以通过<code>函数指针调用</code>（即用指向函数的指针变量调用）。</li>
+</ul>
+<p>如语句：<code>c = (*p)(a, b);</code>//表示调用由p指向的函数(max)，实参为a,b，函数调用结束后得到的函数值赋给c。</p>
+<ul>
+<li><p>7） 函数指针只能指向函数的入口处，而不可能指向函数中间的某一条指令。不能用<code>*(p+1)</code>来表示函数的下一条指令。</p>
+</li>
+<li><p>8） <code>函数指针变量</code>常用的用途之一是<code>把指针</code>作为<code>参数</code>传递到其他<code>函数</code>。</p>
+</li>
+<li><p>9)使用typedef减少输出量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef const double* (*pf)(const double [], int);  // 将pf定义为一个类型名称；</span><br><span class="line">pf p1 = f1;</span><br><span class="line">pf p2 = f2;</span><br><span class="line">pf p3 = f3;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>10）使用<strong>auto</strong>帮你定义:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto p1=f1;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="函数探幽"><a href="#函数探幽" class="headerlink" title="函数探幽"></a>函数探幽</h1><h2 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h2><p>常规函数调用是程序跳到另一个地址(函数的地址),并在函数结束时返回。内联函数的编译代码与其他程序代码”内联”了，也就是说编译器将使用相应的函数代码替换函数调用。</p>
+<p>内敛函数运行速度比常规函数快，代价是占用了更多内存，本来常规函数就是动态调用，然后这个是直接整个函数内容拿来替换了。</p>
+<p><strong>Tip： 只有当函数只有 10 行甚至更少时才将其定义为内联函数.</strong></p>
+<p><strong>语法：</strong></p>
+<ul>
+<li>在函数声明前加上关键字inline</li>
+<li>在函数定义前加上关键字inline</li>
+<li>例如：<code>inline double square(double x) { return x*x}</code></li>
+</ul>
+<h3 id="内联函数和宏"><a href="#内联函数和宏" class="headerlink" title="内联函数和宏"></a>内联函数和宏</h3><p>使用内联函数定义一个简短的函数<code>inline double square(double x) { return x*x}</code></p>
+<p>使用宏定义一个简短的函数<code>#define SUQARE(X) X*X</code></p>
+<p>如果参数是一个表达式4.5+7.5 这个宏就不能预期表达出来需要作出相应的改变<code>#define SUQARE(X) ((X)*(X))</code></p>
+<p>但是内联函数是可以直接传递表达式的值的</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p><strong>意义：</strong>引用是已定义的变量的别名(另一个名称)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int rats;</span><br><span class="line">int &amp;rodents=rats;</span><br><span class="line">他们指向相同的值和地址，rats+1 rodents也会+1</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>必须在声明引用时将其初始化，而不能向指针那样先声明再赋值。</p>
+<p><code>rats=rodents;//这样是错的！！！</code></p>
+<p>引用更接近于const指针，只效忠于声明的那个变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int &amp;rodents=rats;</span><br><span class="line">实际上是下面代码的伪装表示：</span><br><span class="line">int *const pr=&amp;rats;</span><br><span class="line">rodents扮演的角色和表达式*pr相同</span><br><span class="line"></span><br><span class="line">int rats;</span><br><span class="line">int &amp;rodents=rats;</span><br><span class="line">int a=100;</span><br><span class="line">rodents=a;//这种赋值方式是允许的</span><br></pre></td></tr></table></figure>
+
+<p><strong>引用函数作为函数参数可以做到地址传递的效果</strong></p>
 
       
     </div>
@@ -538,6 +696,10 @@ cout &lt;&lt; &quot;i love \\n you&quot;&lt;&lt; endl;</code><br><code>cout &lt;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/15/linux系统编程/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -616,7 +778,7 @@ cout &lt;&lt; &quot;i love \\n you&quot;&lt;&lt; endl;</code><br><code>cout &lt;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,7 +822,7 @@ cout &lt;&lt; &quot;i love \\n you&quot;&lt;&lt; endl;</code><br><code>cout &lt;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-认知"><span class="nav-number">1.</span> <span class="nav-text">C++认知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-程序的模块叫做什么"><span class="nav-number">1.1.</span> <span class="nav-text">c++程序的模块叫做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include预处理器编译指令是做什么用的"><span class="nav-number">1.2.</span> <span class="nav-text">#include预处理器编译指令是做什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using-namespace-std-是做什么用的"><span class="nav-number">1.3.</span> <span class="nav-text">using namespace std;是做什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义函数时，在什么情况下不必使用关键字return"><span class="nav-number">1.4.</span> <span class="nav-text">定义函数时，在什么情况下不必使用关键字return</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理数据"><span class="nav-number">2.</span> <span class="nav-text">处理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#位与字节"><span class="nav-number">2.1.</span> <span class="nav-text">位与字节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于字符的八进制和十六进制编码来使用转移序列"><span class="nav-number">2.2.</span> <span class="nav-text">基于字符的八进制和十六进制编码来使用转移序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#int除以整数的情况"><span class="nav-number">2.3.</span> <span class="nav-text">int除以整数的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#char默认情况下有符号吗"><span class="nav-number">2.4.</span> <span class="nav-text">char默认情况下有符号吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数"><span class="nav-number">2.5.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换的几种方式"><span class="nav-number">2.6.</span> <span class="nav-text">强制类型转换的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11中的auto声明"><span class="nav-number">2.7.</span> <span class="nav-text">C++11中的auto声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合类型"><span class="nav-number">3.</span> <span class="nav-text">复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的初始化规则"><span class="nav-number">3.1.</span> <span class="nav-text">数组的初始化规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11数组使用列表初始化的方法"><span class="nav-number">3.2.</span> <span class="nav-text">C++11数组使用列表初始化的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#‘s’和”s”"><span class="nav-number">3.3.</span> <span class="nav-text">‘s’和”s”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串拼接问题"><span class="nav-number">3.4.</span> <span class="nav-text">字符串拼接问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的输入"><span class="nav-number">3.5.</span> <span class="nav-text">字符串的输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string类"><span class="nav-number">3.6.</span> <span class="nav-text">string类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想输出-n和"><span class="nav-number">3.7.</span> <span class="nav-text">想输出\n和\</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体"><span class="nav-number">3.8.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针和自由存储空间"><span class="nav-number">3.9.</span> <span class="nav-text">指针和自由存储空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new和delete"><span class="nav-number">3.10.</span> <span class="nav-text">new和delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new的使用："><span class="nav-number">3.10.1.</span> <span class="nav-text">new的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete的使用："><span class="nav-number">3.10.2.</span> <span class="nav-text">delete的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用new来创建动态数组"><span class="nav-number">3.10.3.</span> <span class="nav-text">使用new来创建动态数组</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-认知"><span class="nav-number">1.</span> <span class="nav-text">C++认知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-程序的模块叫做什么"><span class="nav-number">1.1.</span> <span class="nav-text">c++程序的模块叫做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include预处理器编译指令是做什么用的"><span class="nav-number">1.2.</span> <span class="nav-text">#include预处理器编译指令是做什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using-namespace-std-是做什么用的"><span class="nav-number">1.3.</span> <span class="nav-text">using namespace std;是做什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义函数时，在什么情况下不必使用关键字return"><span class="nav-number">1.4.</span> <span class="nav-text">定义函数时，在什么情况下不必使用关键字return</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理数据"><span class="nav-number">2.</span> <span class="nav-text">处理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#位与字节"><span class="nav-number">2.1.</span> <span class="nav-text">位与字节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于字符的八进制和十六进制编码来使用转移序列"><span class="nav-number">2.2.</span> <span class="nav-text">基于字符的八进制和十六进制编码来使用转移序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#int除以整数的情况"><span class="nav-number">2.3.</span> <span class="nav-text">int除以整数的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#char默认情况下有符号吗"><span class="nav-number">2.4.</span> <span class="nav-text">char默认情况下有符号吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数"><span class="nav-number">2.5.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换的几种方式"><span class="nav-number">2.6.</span> <span class="nav-text">强制类型转换的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11中的auto声明"><span class="nav-number">2.7.</span> <span class="nav-text">C++11中的auto声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合类型"><span class="nav-number">3.</span> <span class="nav-text">复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的初始化规则"><span class="nav-number">3.1.</span> <span class="nav-text">数组的初始化规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11数组使用列表初始化的方法"><span class="nav-number">3.2.</span> <span class="nav-text">C++11数组使用列表初始化的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#‘s’和”s”"><span class="nav-number">3.3.</span> <span class="nav-text">‘s’和”s”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串拼接问题"><span class="nav-number">3.4.</span> <span class="nav-text">字符串拼接问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的输入"><span class="nav-number">3.5.</span> <span class="nav-text">字符串的输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string类"><span class="nav-number">3.6.</span> <span class="nav-text">string类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想输出-n和"><span class="nav-number">3.7.</span> <span class="nav-text">想输出\n和\</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体"><span class="nav-number">3.8.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针和自由存储空间"><span class="nav-number">3.9.</span> <span class="nav-text">指针和自由存储空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new和delete"><span class="nav-number">3.10.</span> <span class="nav-text">new和delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new的使用："><span class="nav-number">3.10.1.</span> <span class="nav-text">new的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete的使用："><span class="nav-number">3.10.2.</span> <span class="nav-text">delete的使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用new来创建动态数组"><span class="nav-number">3.10.3.</span> <span class="nav-text">使用new来创建动态数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针与字符串"><span class="nav-number">3.10.4.</span> <span class="nav-text">指针与字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动存储，静态存储，动态存储"><span class="nav-number">3.11.</span> <span class="nav-text">自动存储，静态存储，动态存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈，堆和内存泄漏"><span class="nav-number">3.12.</span> <span class="nav-text">栈，堆和内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的替代品vector和array"><span class="nav-number">3.13.</span> <span class="nav-text">数组的替代品vector和array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">3.13.1.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板类array"><span class="nav-number">3.13.2.</span> <span class="nav-text">模板类array</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环和关系表达式"><span class="nav-number">4.</span> <span class="nav-text">循环和关系表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#x-y-x-0"><span class="nav-number">4.0.1.</span> <span class="nav-text">x=y=x=0;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和递增运算符的结合"><span class="nav-number">4.1.</span> <span class="nav-text">* 和递增运算符的结合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的比较"><span class="nav-number">4.2.</span> <span class="nav-text">字符串的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型别名"><span class="nav-number">4.3.</span> <span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环和文本输入"><span class="nav-number">4.4.</span> <span class="nav-text">循环和文本输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支语句和逻辑运算符"><span class="nav-number">4.5.</span> <span class="nav-text">分支语句和逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#？："><span class="nav-number">4.6.</span> <span class="nav-text">？：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch"><span class="nav-number">4.7.</span> <span class="nav-text">switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break和continue"><span class="nav-number">4.8.</span> <span class="nav-text">break和continue</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#函数——C-的编程模块"><span class="nav-number">5.</span> <span class="nav-text">函数——C++的编程模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数如何使用指针来处理数组"><span class="nav-number">5.0.1.</span> <span class="nav-text">函数如何使用指针来处理数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针和const"><span class="nav-number">5.0.2.</span> <span class="nav-text">指针和const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数和二维数组"><span class="nav-number">5.1.</span> <span class="nav-text">函数和二维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数指针"><span class="nav-number">5.2.</span> <span class="nav-text">函数指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明："><span class="nav-number">5.2.1.</span> <span class="nav-text">说明：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数探幽"><span class="nav-number">6.</span> <span class="nav-text">函数探幽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内联函数"><span class="nav-number">6.1.</span> <span class="nav-text">内联函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内联函数和宏"><span class="nav-number">6.1.1.</span> <span class="nav-text">内联函数和宏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">6.2.</span> <span class="nav-text">引用</span></a></li></ol></li></div>
             
 
           </div>

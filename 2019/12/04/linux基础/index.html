@@ -96,7 +96,7 @@
 <meta property="og:description" content="小小总结了一些常用的命令，复杂的命令还需要多多去复习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png">
-<meta property="og:updated_time" content="2019-12-16T11:00:58.215Z">
+<meta property="og:updated_time" content="2020-01-15T04:49:57.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux基础">
 <meta name="twitter:description" content="小小总结了一些常用的命令，复杂的命令还需要多多去复习">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.6k
+                  5.3k
                 </span>
               
 
@@ -386,7 +386,7 @@
 <h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><p>复制命令cp code.c code1.c  旧的 新的<br>        cp cangls /tmp/<br>        cp -r /root/movie/ /tmp/ 一般使用-a；</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
 <h2 id="ps和top"><a href="#ps和top" class="headerlink" title="ps和top"></a>ps和top</h2><p>top用于动态的查看进程状态<br>ps用于查看进程<br>一般都是ps -aux</p>
-<h1 id="ps-aux"><a href="#ps-aux" class="headerlink" title="ps -aux"></a>ps -aux</h1><p>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND<br>root         1  0.0  0.1  43392  3600 ?        Ss   8月31   2:44 /usr/lib/systemd/systemd –system –deserialize 2<br>root         2  0.0  0.0      0     0 ?        S    8月31   0:00 [kthreadd]<br>root         3  0.0  0.0      0     0 ?        S    8月31   0:27 [ksoftirqd/0]<br>也和grep一起结合运用<br>ps -aux|grep jjh</p>
+<h3 id="ps-aux"><a href="#ps-aux" class="headerlink" title="ps -aux"></a>ps -aux</h3><p>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND<br>root         1  0.0  0.1  43392  3600 ?        Ss   8月31   2:44 /usr/lib/systemd/systemd –system –deserialize 2<br>root         2  0.0  0.0      0     0 ?        S    8月31   0:00 [kthreadd]<br>root         3  0.0  0.0      0     0 ?        S    8月31   0:27 [ksoftirqd/0]<br>也和grep一起结合运用<br>ps -aux|grep jjh</p>
 <h2 id="more-less"><a href="#more-less" class="headerlink" title="more less"></a>more less</h2><p>分页显示大文件<br>more<br>空格键：下一页</p>
 <p>b：上一页</p>
 <p>Enter：向下一行</p>
@@ -399,12 +399,177 @@
 <h2 id="软连接-硬链接"><a href="#软连接-硬链接" class="headerlink" title="软连接 硬链接"></a>软连接 硬链接</h2><p>创建软连接：<br>1.软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式<br>2.软链接可以 跨文件系统 ，硬链接不可以<br>3.软链接可以对一个不存在的文件名进行链接<br>4.软链接可以对目录进行链接<br>如果文件在其他文件夹必须要用软连接，文件同步发生变化，生成的是镜像不占用磁盘空间<br>给文件创建软链接，为log2013.log文件创建软链接link2013，如果log2013.log丢失，link2013将失效<br>ln -s log2019.log link2019<br>ls出来是这样的：lrwxrwxrwx 1 jjh jjh    7 12月  4 14:21 codecode -&gt; code1.c<br>创建硬链接：<br>ln log2013.log ln2013<br>对于一个文件修改其他文件也会变化，生成的是文件占用空间<br>占用的节点还是同一个当吧所有文件都删除的时候，节点被释放</p>
 <h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。</p>
 <ul>
-<li>表示增加权限、- 表示取消权限、= 表示唯一设定权限。<br>r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。<br>举例子来解释：<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod ugo+r file1.txt<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod a+r file1.txt<br>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :<br>chmod ug+w,o-w file1.txt file2.txt<br>将 ex1.py 设定为只有该文件拥有者可以执行 :<br>chmod u+x ex1.py<br>将目前目录下的所有文件与子目录皆设为任何人可读取 :<br>chmod -R a+r *<br>此外chmod也可以用数字来表示权限如 :<br>chmod 777 file<h2 id="创建用户-用户组-修改文件所属用户-文件所属组群"><a href="#创建用户-用户组-修改文件所属用户-文件所属组群" class="headerlink" title="创建用户/用户组 修改文件所属用户 文件所属组群"></a>创建用户/用户组 修改文件所属用户 文件所属组群</h2>sudo adduser/addgroup [名字]<br>sudo chown 新用户名 待修改的文件 sudo chown xiaoshuai a.out;<br>sudo chgrp g88 a.out 修改文件所属组群  <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2>find命令用法很多这里就讲一下查找文件的：<br>find 路径名 执行的动作类型 ….<br>例如查找目录及其目录下的.c文件<br>find . -name “*.c”<br>查找20M~50M的文件<br>find ./ -size +20M -size -50M<br>为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径<br>find / -type f -size 0 -exec ls -l {} \<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2>grep “#include” *.c<br>查找.c后缀中有#include字符串的文件<br>配合ps使用：ps aux|grep jjh 查找进程中区搜索与jjh相关的进程<h2 id="关于用户"><a href="#关于用户" class="headerlink" title="关于用户"></a>关于用户</h2>修改用户：sudo passwd 用户名字<br>切换用户：su 用户名<h1 id="linux各个目录"><a href="#linux各个目录" class="headerlink" title="linux各个目录"></a>linux各个目录</h1>linux”万物皆文件”<br>bin:系统可执行程序，如命令，存放二进制可执行文件<br>home:存放用户<br>dev:内核和启动程序<br>etc:设备相关文件,用户信息文件<br>lib:系统程序库文件，这个目录存放着系统最基本的动态链接共享库<br>root:管理员宿主目录(家目录)<br>media:挂载媒体设备，如光驱，U盘<br>mnt:目录是让用户临时挂载别的文件系统，如挂载windows下的某个分区，Ubuntu默认还是挂载在media<br>tmp:临时文件夹<br>usr:用户资源管理目录<h1 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h1></li>
+<li>表示增加权限、- 表示取消权限、= 表示唯一设定权限。<br>r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。<br>举例子来解释：<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod ugo+r file1.txt<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod a+r file1.txt<br>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :<br>chmod ug+w,o-w file1.txt file2.txt<br>将 ex1.py 设定为只有该文件拥有者可以执行 :<br>chmod u+x ex1.py<br>将目前目录下的所有文件与子目录皆设为任何人可读取 :<br>chmod -R a+r *<br>此外chmod也可以用数字来表示权限如 :<br>chmod 777 file<h2 id="创建用户-用户组-修改文件所属用户-文件所属组群"><a href="#创建用户-用户组-修改文件所属用户-文件所属组群" class="headerlink" title="创建用户/用户组 修改文件所属用户 文件所属组群"></a>创建用户/用户组 修改文件所属用户 文件所属组群</h2>sudo adduser/addgroup [名字]<br>sudo chown 新用户名 待修改的文件 sudo chown xiaoshuai a.out;<br>sudo chgrp g88 a.out 修改文件所属组群  <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2>find命令用法很多这里就讲一下查找文件的：<br>find 路径名 执行的动作类型 ….</li>
 </ul>
-<p>-c    只进行预处理、编译和汇编，生成.o文件<br>-S    只进行预处理和编译，生成.s文件<br>-E    只进行预处理，产生预处理后的结果到标准输出<br>-C    预处理时不删除注释信息，常与-E同时使用<br>-o    指定目标名称，常与-c、-S同时使用，默认是.out<br>-D    定义一个宏，功能等同源代码中的#define macro[defval]<br>-U    取消一个宏，功能等同源代码中的#undefine macro<br>-Idir    优先在选项后的目录中查找包含的头文件<br>-Iname    链接后缀为.out的动态链接库来编译程序<br>-Ldir    指定编译搜索库的路径<br>-g    编译器编译时加入debug信息<br>-On n=0~3编译优化，n越大优化越大<br>一般来说直接gcc gcc1.c -o gcc1或者gcc -Wall gcc.c -o gcc1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">find 根据下列规则判断 path 和 expression，在命令列上第一个 - ( ) , ! 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -print 为预设 expression。</span><br><span class="line">expression 中可使用的选项有二三十个之多，在此只介绍最常用的部份。</span><br><span class="line">-mount, -xdev : 只检查和指定目录在同一个文件系统下的文件，避免列出其它文件系统中的文件</span><br><span class="line">-amin n : 在过去 n 分钟内被读取过</span><br><span class="line">-anewer file : 比文件 file 更晚被读取过的文件</span><br><span class="line">-atime n : 在过去n天内被读取过的文件</span><br><span class="line">-cmin n : 在过去 n 分钟内被修改过</span><br><span class="line">-cnewer file :比文件 file 更新的文件</span><br><span class="line">-ctime n : 在过去n天内被修改过的文件</span><br><span class="line">-empty : 空的文件-gid n or -group name : gid 是 n 或是 group 名称是 name</span><br><span class="line">-ipath p, -path p : 路径名称符合 p 的文件，ipath 会忽略大小写</span><br><span class="line">-name name, -iname name : 文件名称符合 name 的文件。iname 会忽略大小写</span><br><span class="line">-size n : 文件大小 是 n 单位，b 代表 512 位元组的区块，c 表示字元数，k 表示 kilo bytes，w 是二个位元组。-type c : 文件类型是 c 的文件。</span><br><span class="line">d: 目录</span><br><span class="line">c: 字型装置文件</span><br><span class="line">b: 区块装置文件</span><br><span class="line">p: 具名贮列</span><br><span class="line">f: 一般文件</span><br><span class="line">l: 符号连结</span><br><span class="line">s: socket</span><br><span class="line">-pid n : process id 是 n 的文件</span><br><span class="line">你可以使用 ( ) 将运算式分隔，并使用下列运算。</span><br><span class="line">exp1 -and exp2</span><br><span class="line">! expr</span><br><span class="line">-not expr</span><br><span class="line">exp1 -or exp2</span><br><span class="line">exp1, exp2</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>将目前目录及其子目录下所有延伸档名是 c 的文件列出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -name &quot;*.c&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将目前目录其其下子目录中所有一般文件列出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f</span><br></pre></td></tr></table></figure>
+
+<p>将目前目录及其子目录下所有最近 20 天内更新过的文件列出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -ctime -20</span><br></pre></td></tr></table></figure>
+
+<p>查找/var/log目录中更改时间在7日以前的普通文件，并在删除之前询问它们：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /var/log -type f -mtime +7 -ok rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p>查找前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -perm 644 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p>为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -type f -size 0 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p><strong>-type</strong> 按文件类型搜索 d/p/s/c/b/l f：普通文件文件</p>
+<p><strong>例如查找目录及其目录下的.c文件</strong><br>find . -name “<em>.c”<br>查找20M~50M的文件<br>find ./ -size +20M -size -50M<br>为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径<br>*</em>find / -type f -size 0 -exec ls -l {} \：找出后交给exec去执行**</p>
+<p><strong>和xarg结合：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find ./ -type f|xarg ls -l    </span><br><span class="line">其实和find ./ -type f  -exec ls -l &#123;&#125; \相同但是xargs发现结果集数量比较大的时候会分片处理，xargs效率高一点。  </span><br><span class="line">当遇到名字里面有空格的文件例如`abc xxx`，xargs默认拆分依据是空格，会把他拆分成abc和xxx和实际预想的是不一样的于是我们改进find /user -name &quot;*temp&quot; -print0|xargs -print0 ls -l;</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景1:</strong> 记得写过一个server.c的文件，但是忘了放哪里了</p>
+<p><strong>解决：</strong><code>find / -name *server*.c</code> 模糊查找下这个文件</p>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>grep “#include” *.c<br>查找.c后缀中有#include字符串的文件<br>配合ps使用：ps aux|grep jjh 查找进程中区搜索与jjh相关的进程</p>
+<p>grep -r “copy” ./  -n 当前目录下有copy的文件，并且递归他的子文件夹，-n显示文件行数</p>
+<h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><p>在linux系统中，我们创建一个新的文件或者目录的时候，这些新的文件或目录都会有默认的访问权限，umask命令与文件和目录的默认访问权限有关。若用户创建一个文件，则文件的默认访问权限为 -rw-rw-rw- ，创建目录的默认权限 drwxrwxrwx ，而umask值则表明了需要从默认权限中去掉哪些权限来成为最终的默认权限值。</p>
+<p>umask的值和默认权限加起来就是777。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umask [-S][权限掩码]</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong>：</p>
+<p>-S 　以文字的方式来表示权限掩码。</p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>使用指令”umask”查看当前权限掩码，则输入下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ umask                         #获取当前权限掩码</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的指令后，输出信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0022</span><br></pre></td></tr></table></figure>
+
+<p>接下来，使用指令”mkdir”创建一个目录，并使用指令”ls”获取该目录的详细信息，输入命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir test1                       #创建目录  </span><br><span class="line">$ ls –d –l test1/                   #显示目录的详细信息</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的命令后，将显示新创建目录的详细信息，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x 2 rootlocal rootlocal 4096 2011-9-19 21:46 test1/</span><br></pre></td></tr></table></figure>
+
+<p>注意：在上面的输出信息中，”drwxr-xr-x”=”777-022=755”。</p>
+<h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><p>Linux free命令用于显示内存状态。</p>
+<p>free指令会显示内存的使用情况，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等。</p>
+<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free [-bkmotV][-s &lt;间隔秒数&gt;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><p>-b 　以Byte为单位显示内存使用情况。</p>
+</li>
+<li><p>-k 　以KB为单位显示内存使用情况。</p>
+</li>
+<li><p>-m 　以MB为单位显示内存使用情况。</p>
+</li>
+<li><p>-h 　以合适的单位显示内存使用情况，最大为三位数，自动计算对应的单位值。单位有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">B = bytes</span><br><span class="line">K = kilos</span><br><span class="line">M = megas</span><br><span class="line">G = gigas</span><br><span class="line">T = teras</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>-o 　不显示缓冲区调节列。</p>
+</li>
+<li><p>-s&lt;间隔秒数&gt; 　持续观察内存使用状况。</p>
+</li>
+<li><p>-t 　显示内存总和列。</p>
+</li>
+<li><p>-V 　显示版本信息。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jjh@jjh-VirtualBox:~/公共的$ free -m</span><br><span class="line">              总计         已用        空闲      共享    缓冲/缓存    可用</span><br><span class="line">内存：        3942        1463         518         144        1961        2054</span><br><span class="line">交换：         472           0         472</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于用户"><a href="#关于用户" class="headerlink" title="关于用户"></a>关于用户</h2><p>修改用户：sudo passwd 用户名字<br>切换用户：su 用户名</p>
+<h1 id="linux各个目录"><a href="#linux各个目录" class="headerlink" title="linux各个目录"></a>linux各个目录</h1><p>linux”万物皆文件”<br>bin:系统可执行程序，如命令，存放二进制可执行文件<br>home:存放用户<br>dev:内核和启动程序<br>etc:设备相关文件,用户信息文件<br>lib:系统程序库文件，这个目录存放着系统最基本的动态链接共享库<br>root:管理员宿主目录(家目录)<br>media:挂载媒体设备，如光驱，U盘<br>mnt:目录是让用户临时挂载别的文件系统，如挂载windows下的某个分区，Ubuntu默认还是挂载在media<br>tmp:临时文件夹<br>usr:用户资源管理目录</p>
+<h1 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h1><p>-c    只进行预处理、编译和汇编，生成.o文件<br>-S    只进行预处理和编译，生成.s文件<br>-E    只进行预处理，产生预处理后的结果到标准输出<br>-C    预处理时不删除注释信息，常与-E同时使用<br>-o    指定目标名称，常与-c、-S同时使用，默认是.out<br>-D    定义一个宏，功能等同源代码中的#define macro[defval]<br>-U    取消一个宏，功能等同源代码中的#undefine macro<br>-Idir    优先在选项后的目录中查找包含的头文件<br>-Iname    链接后缀为.out的动态链接库来编译程序<br>-Ldir    指定编译搜索库的路径<br>-g    编译器编译时加入debug信息<br>-On n=0~3编译优化，n越大优化越大<br>一般来说直接gcc gcc1.c -o gcc1或者gcc -Wall gcc.c -o gcc1</p>
 <p><a href="https://imgchr.com/i/Q5pUPJ" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png" alt="Q5pUPJ.png" border="0"></a><br>这 4 步大致的工作内容如下：<br>（1） 预处理， C 编译器对各种预处理命令进行处理，包括头文件包含、宏定义的扩<br>展、条件编译的选择等；<br>（2） 编译，将预处理得到的源代码文件，进行“翻译转换”，产生出机器语言的目标<br>程序，得到机器语言的汇编文件；<br>（3） 汇编，将汇编代码翻译成了机器码，但是还不可以运行；<br>（4） 链接，处理可重定位文件，把各种符号引用和符号定义转换成为可执行文件中<br>的合适信息，通常是虚拟地址。</p>
-<h1 id="创建静态库"><a href="#创建静态库" class="headerlink" title="创建静态库"></a>创建静态库</h1><h1 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h1><p>两个函数：<br>src=$(wildcard *.c)//找到当前目录下所有后缀为.c的文件赋值给src<br>obj=$(patsubst %.c,%.o, $(src))//把src变量里所有后缀为.c的文件替换成.o  就是将参数三src中包含参数1的部分替换成参数2的部分<br>clean:清除编译生成的中间.o文件和最终目标文件  manke clean的时候最好make clean -n 会提示你有多少文件，防止一下子全部删除了<br>三个自动变量：<br>$@:在规则的命令行中，表示目标<br>$&lt;:在规则的命令行中，表示第一个依赖条件<br>$^:在规则的命令行中，表示所有依赖条件,应用在模式规则中会把obj列表的文件依次取出，套用模式规则<br>模式规则：<br>%.o:%.c<br>    gcc -c $&lt; -o $@<br>静态模式规则：<br>$obj%.o:%.c<br>    gcc -c $&lt; -o $@</p>
+<h1 id="创建静态库"><a href="#创建静态库" class="headerlink" title="创建静态库"></a>创建静态库</h1><p><strong>每次调用静态库的程序都要包含静态库的大小</strong>，如果我的库500M,计算机里面一百个应用程序要用他多出50000</p>
+<p>需要和源程序一起编译到可执行程序当中，但是调用速度肯定比较快，对空间要求低时间要求高的核心程序时使用静态库。</p>
+<h3 id="创建静态库-1"><a href="#创建静态库-1" class="headerlink" title="创建静态库"></a>创建静态库</h3><p>要创建一个静态库，或要讲目标代码加入到已经存在的静态库中，可以使用以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ar rcs libmylib.a file1.o 只有mylib 和file1.o可以改 file1.o也就是材料</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>在test文件夹下有三个文件:main.c ,tiger.c,tiger.h;</p>
+<p>a. main.c文件中的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include”tiger.h”     //注意include该文件，并不是仅链入.a文件即可</span><br><span class="line">int  main(void)</span><br><span class="line">&#123;</span><br><span class="line">       printf(“sum=%d\n”,add(3,5));</span><br><span class="line">       return 0;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>b.tiger.h文件中的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#ifndef __TIGER__ //头文件守卫防止头文件被重复包含</span><br><span class="line">#define __TIGER__</span><br><span class="line"></span><br><span class="line">int  add(int  a,int b);</span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+<p>c.tiger.c文件中的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int  add(int  a,int b)</span><br><span class="line">&#123;</span><br><span class="line">        return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将.c生成.o文件<br>gcc -c add.c -o add.o</p>
+</li>
+<li><p>使用ar工具制作静态库<br>ar rcs lib库名.a add.o sub.o div.o</p>
+</li>
+<li><p>使用库<br>gcc test.c lib库名.a -o test1</p>
+<p>也可以使用命令”-l库名”进行，库名是不包含库函数库和扩展名的字符串。</p>
+<p> gcc -o main main.c -l库名</p>
+<p><strong>头文件守卫：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#ifndef __TIGER__ //头文件守卫防止头文件被重复包含</span><br><span class="line">#define __TIGER__</span><br><span class="line"></span><br><span class="line">int  add(int  a,int b);</span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h1 id="动态库-共享库"><a href="#动态库-共享库" class="headerlink" title="动态库(共享库)"></a>动态库(共享库)</h1><p>把整个动态库加载在内存当中，程序就可以调用了，如果我的库500M,计算机里面一百个应用程序要用他也只多出500，动态库不需要编译到可执行程序，例如调用一个程序需要动态库里的函数，读取到函数的代码的时候才动态调用。但是调用速度肯定慢一点，需要动态调用时间。对空间要求高时间要求低时使用动态库</p>
+<ul>
+<li><p>将.c生成.o文件(生成与位置无关的代码 -fPIC)<br>gcc -c add.c -o add.o</p>
+</li>
+<li><p>使用gcc -shared 制作动态库<br>gcc -share lib库名.so add.o div.o</p>
+</li>
+<li><p>编译可执行程序时指定所使用的的动态库 -l：指定库名 -L：指定库路径<br>gcc test -o a.out -l库名      -L ./lib</p>
+</li>
+<li><p>执行可以运行程序./a.out 出错！！！</p>
+<p>原因：<br>链接器：工作于链接阶段，工作时需要-l -L</p>
+<p>动态链接器：工作于程序运行阶段，工作时需要提供动态库所在的目录位置。</p>
+<p>​                       通过环境变量来改变，export LD_LIBRARY_PATH=动态库路径  ./a.out成功！</p>
+<p>​                       但是重新开一个终端又要重新配置，所以进配置文件改  ~/.bashrc    </p>
+<p>​                       export LD_LIBRARY_PATH=/库路径 语句写到 ~/.bashrc中，这样就对当前用户有效了，写                              </p>
+<p>​                       到/etc/bashrc中就对所有用户有效了。然后还要运行它 <code>.. bashrc</code>  或者<code>source .bashrc/</code></p>
+</li>
+</ul>
+<p>​                              或者重启终端让 .bashrc永久生效(使用绝对路径才能全文件生效)</p>
+<ul>
+<li>拷贝自定义动态库到/lib   #标准C库所在位置</li>
+<li>修改配置文件法：<br>修改/etc/ld.so.conf<br>sudo vi /etc/ld.si.conf<br>在里面加上绝对路径，出去外面pwd看下<br>更新查找共享库路径：<br>sudo ldconfig -v<br>测试：./a.out   使用ldd a.out 可以查看用了哪些库和路径</li>
+</ul>
+<h1 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h1><p>两个函数：<br>src=$(wildcard *.c)//找到当前目录下所有后缀为.c的文件赋值给src<br>obj=$(patsubst %.c,%.o, $(src))//把src变量里所有后缀为.c的文件替换成.o  就是将参数三src中包含参数1的部分替换成参数2的部分<br>clean:清除编译生成的中间.o文件和最终目标文件  manke clean的时候最好make clean -n 会提示你有多少文件，防止一下子全部删除了<br>三个自动变量：<br>$@:在规则的命令行中，表示目标<br>$&lt;:在规则的命令行中，表示第一个依赖条件<br>$^:在规则的命令行中，表示所有依赖条件,应用在模式规则中会把obj列表的文件依次取出，套用模式规则<br>模式规则：<br>%.o:%.c<br>    gcc -c $&lt; -o $@<br>静态模式规则：<br>$obj%.o:%.c<br>    gcc -c $&lt; -o $@</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">src=$(wildcard *.c)</span><br><span class="line">obj=$(patsubst %.c,%.o, $(src))</span><br><span class="line"></span><br><span class="line">myArgs=-Wall -g</span><br><span class="line"></span><br><span class="line">ALL:a.out</span><br><span class="line"></span><br><span class="line">a.out:$(obj)</span><br><span class="line">	gcc $^ -o $@ $(myArgs)</span><br><span class="line"></span><br><span class="line">$(obj):%.o:%.c</span><br><span class="line">	gcc -c $&lt; -o $@ $(myArgs)</span><br><span class="line"></span><br><span class="line">clean:  #方便删除修改过程中的文件，相当于更新的作用</span><br><span class="line">	-rm -rf $(obj) a.out</span><br><span class="line"></span><br><span class="line">.PHONY:clean ALL #伪目标 只要有这个声明，不管是否有“clean”文件，要运行“clean”这个目标，只有“make clean”这样</span><br></pre></td></tr></table></figure>
+
+<h1 id="软件安装卸载"><a href="#软件安装卸载" class="headerlink" title="软件安装卸载"></a>软件安装卸载</h1><p><strong>linux下安装包都是.deb结尾</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update;更新软件资源列表到本地</span><br><span class="line">sudo apt-get install 软件名。</span><br><span class="line">sudo apt—get remove 软件名  卸载</span><br><span class="line">离线安装：</span><br><span class="line">sudo dpkg -i 安装包名。 通过安装包安装</span><br><span class="line">sudo dpkg -r 安装包名   删除安装包</span><br></pre></td></tr></table></figure>
+
+<p>原码安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.解压缩源代码包</span><br><span class="line">2.cd dir(安装目录具体名字根据实际)</span><br><span class="line">3./configure</span><br><span class="line">检测文件是否确实，创建Makefile，检测编译环境</span><br><span class="line">4.make</span><br><span class="line">编译原码，生成库和可执行程序</span><br><span class="line">5.sudo make install</span><br><span class="line">把库和可执行程序安装到系统路径下</span><br><span class="line">6.sudo make distclean</span><br><span class="line">卸载和删除软件</span><br></pre></td></tr></table></figure>
+
+<h1 id="解压和压缩"><a href="#解压和压缩" class="headerlink" title="解压和压缩"></a>解压和压缩</h1><h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p>1.tar -czvf 生成的压缩包名    压缩的材料(一个以及一个以上的文件)</p>
+<ul>
+<li><p>tar -zcvf 使用gzip方式压缩</p>
+</li>
+<li><p>tar -jcvf 使用jzip方式压缩</p>
+<p>tar -xzvf  压缩包名</p>
+</li>
+<li><p>tar -zxvf 使用gzip方式压缩</p>
+</li>
+<li><p>tar -jxvf 使用jzip方式压缩</p>
+</li>
+</ul>
+<p>2.gzip只能打包一个文件，打包后的文件后缀.gz  </p>
+<p> gunzip 解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gzip file</span><br><span class="line">ls</span><br><span class="line">file.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="rar"><a href="#rar" class="headerlink" title="rar"></a>rar</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">把dir打包成new.rar</span><br><span class="line">rar a -r new dir</span><br><span class="line">解压包</span><br><span class="line">unrar x new.rar</span><br></pre></td></tr></table></figure>
+
+<h2 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zip -r 压缩成的名字 压缩的材料</span><br><span class="line">unzip 压缩包名</span><br></pre></td></tr></table></figure>
+
+<h1 id="GDB调试"><a href="#GDB调试" class="headerlink" title="GDB调试"></a>GDB调试</h1><p>1.-g 使用参数编译可执行文件，得到调试表</p>
+<p>2.gdb a.out</p>
+<p>3.list ： list 行数     列出源码</p>
+<p>4.b：   b 20   //设置断点 在20行设置断点</p>
+<p>5.run或者r：执行程序，会在断点位置停住</p>
+<p>6.n或者(next)：下一条指令，会越过函数<br>   s或者(step)：下一天指令，会进入函数</p>
+<p>7.p或者print：查看变量的值  查看i的值： p i</p>
+<p>8.continue：继续执行后续命令</p>
+<p>9.quit：退出</p>
+
       
     </div>
     
@@ -519,7 +684,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,7 +728,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ctrl热键"><span class="nav-number">1.1.</span> <span class="nav-text">ctrl热键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-number">1.2.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cd"><span class="nav-number">1.3.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">1.4.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">1.5.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir和rmkdir和rm"><span class="nav-number">1.6.</span> <span class="nav-text">mkdir和rmkdir和rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp"><span class="nav-number">1.7.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">1.8.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps和top"><span class="nav-number">1.9.</span> <span class="nav-text">ps和top</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps-aux"><span class="nav-number">2.</span> <span class="nav-text">ps -aux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#more-less"><span class="nav-number">2.1.</span> <span class="nav-text">more less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tree"><span class="nav-number">2.2.</span> <span class="nav-text">tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du-df"><span class="nav-number">2.3.</span> <span class="nav-text">du df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软连接-硬链接"><span class="nav-number">2.4.</span> <span class="nav-text">软连接 硬链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-number">2.5.</span> <span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户-用户组-修改文件所属用户-文件所属组群"><span class="nav-number">2.6.</span> <span class="nav-text">创建用户/用户组 修改文件所属用户 文件所属组群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">2.7.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">2.8.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于用户"><span class="nav-number">2.9.</span> <span class="nav-text">关于用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux各个目录"><span class="nav-number">3.</span> <span class="nav-text">linux各个目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gcc"><span class="nav-number">4.</span> <span class="nav-text">gcc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建静态库"><span class="nav-number">5.</span> <span class="nav-text">创建静态库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#makefile"><span class="nav-number">6.</span> <span class="nav-text">makefile</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ctrl热键"><span class="nav-number">1.1.</span> <span class="nav-text">ctrl热键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-number">1.2.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cd"><span class="nav-number">1.3.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">1.4.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">1.5.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir和rmkdir和rm"><span class="nav-number">1.6.</span> <span class="nav-text">mkdir和rmkdir和rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp"><span class="nav-number">1.7.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">1.8.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps和top"><span class="nav-number">1.9.</span> <span class="nav-text">ps和top</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps-aux"><span class="nav-number">1.9.1.</span> <span class="nav-text">ps -aux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more-less"><span class="nav-number">1.10.</span> <span class="nav-text">more less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tree"><span class="nav-number">1.11.</span> <span class="nav-text">tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du-df"><span class="nav-number">1.12.</span> <span class="nav-text">du df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软连接-硬链接"><span class="nav-number">1.13.</span> <span class="nav-text">软连接 硬链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-number">1.14.</span> <span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户-用户组-修改文件所属用户-文件所属组群"><span class="nav-number">1.15.</span> <span class="nav-text">创建用户/用户组 修改文件所属用户 文件所属组群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">1.16.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.16.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">1.17.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umask"><span class="nav-number">1.18.</span> <span class="nav-text">umask</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.18.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例-1"><span class="nav-number">1.18.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#free"><span class="nav-number">1.19.</span> <span class="nav-text">free</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-1"><span class="nav-number">1.19.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于用户"><span class="nav-number">1.20.</span> <span class="nav-text">关于用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux各个目录"><span class="nav-number">2.</span> <span class="nav-text">linux各个目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gcc"><span class="nav-number">3.</span> <span class="nav-text">gcc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建静态库"><span class="nav-number">4.</span> <span class="nav-text">创建静态库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建静态库-1"><span class="nav-number">4.0.1.</span> <span class="nav-text">创建静态库</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#动态库-共享库"><span class="nav-number">5.</span> <span class="nav-text">动态库(共享库)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#makefile"><span class="nav-number">6.</span> <span class="nav-text">makefile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件安装卸载"><span class="nav-number">7.</span> <span class="nav-text">软件安装卸载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解压和压缩"><span class="nav-number">8.</span> <span class="nav-text">解压和压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">8.1.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rar"><span class="nav-number">8.2.</span> <span class="nav-text">rar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zip"><span class="nav-number">8.3.</span> <span class="nav-text">zip</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GDB调试"><span class="nav-number">9.</span> <span class="nav-text">GDB调试</span></a></li></div>
             
 
           </div>

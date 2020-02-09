@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="简单地回忆下结构体： 声明结构体类型：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-17T12:25:29.824Z">
+<meta property="og:updated_time" content="2020-02-08T17:43:18.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="结构体和指针的关系">
 <meta name="twitter:description" content="简单地回忆下结构体： 声明结构体类型：">
@@ -390,7 +390,7 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">student.birthday.day = 100;</span><br><span class="line">printf(&quot;%d&quot;, student.birthday.day);</span><br></pre></td></tr></table></figure>
 
-<p>这是不使用typeof的<br>使用了typeof的:</p>
+<p>这是不使用typedef的<br>使用了typedef的:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">typedef struct date</span><br><span class="line">&#123;</span><br><span class="line">    int year;</span><br><span class="line">    int month;</span><br><span class="line">    int day;</span><br><span class="line">&#125;DATE;</span><br><span class="line"></span><br><span class="line">typedef struct student</span><br><span class="line">&#123;</span><br><span class="line">    long studentID;</span><br><span class="line">    char studentName[10];</span><br><span class="line">    char studentSex;</span><br><span class="line">    DATE birthday;  //对照typeof章节来进行。</span><br><span class="line">    int score[4];</span><br><span class="line">&#125;STUDENT;</span><br><span class="line">STUDENT pp;</span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，定义了结构体变量birthday和pp，并给struct date和struct student分别取别名为DATE和STUDENT，</p>

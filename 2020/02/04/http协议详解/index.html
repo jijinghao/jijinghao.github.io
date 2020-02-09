@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -104,7 +102,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/02/05/1rTwKf.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2905385-8e33a9df92437c9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2905385-265be522db58b644.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/966/format/webp">
-<meta property="og:updated_time" content="2020-02-05T06:40:02.308Z">
+<meta property="og:updated_time" content="2020-02-09T12:46:33.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http详解">
 <meta name="twitter:description" content="概述HTTP(Hyper Text Transfer Protocol)&amp;lt;超文本传输协议&amp;gt;的缩写.">
@@ -359,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.9k
+                  3.8k
                 </span>
               
 
@@ -523,6 +521,123 @@
 <blockquote>
 <p>Cookie，有时也用其复数形式 <a href="https://baike.baidu.com/item/Cookies/187064" target="_blank" rel="noopener">Cookies</a>。类型为“<strong>小型文本文件</strong>”，是某些网站为了辨别用户身份，进行<a href="https://baike.baidu.com/item/Session/479100" target="_blank" rel="noopener">Session</a>跟踪而储存在用户本地终端上的数据（通常经过加密），由用户<a href="https://baike.baidu.com/item/客户端/101081" target="_blank" rel="noopener">客户端</a>计算机暂时或永久保存的信息</p>
 </blockquote>
+<h1 id="POST和GET"><a href="#POST和GET" class="headerlink" title="POST和GET"></a>POST和GET</h1><p><strong>两种最常用的 HTTP 方法是：GET 和 POST。</strong></p>
+<h2 id="什么是-HTTP？"><a href="#什么是-HTTP？" class="headerlink" title="什么是 HTTP？"></a>什么是 HTTP？</h2><p>超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。</p>
+<p>HTTP 的工作方式是客户机与服务器之间的请求-应答协议。</p>
+<p>web 浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。</p>
+<p>举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。</p>
+<h2 id="两种-HTTP-请求方法：GET-和-POST"><a href="#两种-HTTP-请求方法：GET-和-POST" class="headerlink" title="两种 HTTP 请求方法：GET 和 POST"></a>两种 HTTP 请求方法：GET 和 POST</h2><p>在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。</p>
+<p>Get是向服务器发索取数据的一种请求，而Post是向服务器提交数据的一种请求</p>
+<ul>
+<li><em>GET</em> - 从指定的资源请求数据。</li>
+<li><em>POST</em> - 向指定的资源提交要被处理的数据</li>
+</ul>
+<h2 id="GET-方法"><a href="#GET-方法" class="headerlink" title="GET 方法"></a>GET 方法</h2><p>请注意，查询字符串（名称/值对）是在 GET 请求的 URL 中发送的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/test/demo_form.asp?name1=value1&amp;name2=value2</span><br></pre></td></tr></table></figure>
+
+<p>有关 GET 请求的其他一些注释：</p>
+<ul>
+<li>GET 请求可被缓存</li>
+<li>GET 请求保留在浏览器历史记录中</li>
+<li>GET 请求可被收藏为书签</li>
+<li>GET 请求不应在处理敏感数据时使用</li>
+<li>GET 请求有长度限制</li>
+<li>GET 请求只应当用于取回数据</li>
+</ul>
+<h2 id="POST-方法"><a href="#POST-方法" class="headerlink" title="POST 方法"></a>POST 方法</h2><p>请注意，查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /test/demo_form.asp HTTP/1.1</span><br><span class="line">Host: w3schools.com</span><br><span class="line">name1=value1&amp;name2=value2</span><br></pre></td></tr></table></figure>
+
+<p>有关 POST 请求的其他一些注释：</p>
+<ul>
+<li>POST 请求不会被缓存</li>
+<li>POST 请求不会保留在浏览器历史记录中</li>
+<li>POST 不能被收藏为书签</li>
+<li>POST 请求对数据长度没有要求</li>
+</ul>
+<h2 id="比较-GET-与-POST"><a href="#比较-GET-与-POST" class="headerlink" title="比较 GET 与 POST"></a>比较 GET 与 POST</h2><p>下面的表格比较了两种 HTTP 方法：GET 和 POST。</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">GET</th>
+<th align="left">POST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">后退按钮/刷新</td>
+<td align="left">无害</td>
+<td align="left">数据会被重新提交（浏览器应该告知用户数据会被重新提交）。</td>
+</tr>
+<tr>
+<td align="left">书签</td>
+<td align="left">可收藏为书签</td>
+<td align="left">不可收藏为书签</td>
+</tr>
+<tr>
+<td align="left">缓存</td>
+<td align="left">能被缓存</td>
+<td align="left">不能缓存</td>
+</tr>
+<tr>
+<td align="left">编码类型</td>
+<td align="left">application/x-www-form-urlencoded</td>
+<td align="left">application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码。</td>
+</tr>
+<tr>
+<td align="left">历史</td>
+<td align="left">参数保留在浏览器历史中。</td>
+<td align="left">参数不会保存在浏览器历史中。</td>
+</tr>
+<tr>
+<td align="left">对数据长度的限制</td>
+<td align="left">是的。当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。</td>
+<td align="left">无限制。</td>
+</tr>
+<tr>
+<td align="left">对数据类型的限制</td>
+<td align="left">只允许 ASCII 字符。</td>
+<td align="left">没有限制。也允许二进制数据。</td>
+</tr>
+<tr>
+<td align="left">安全性</td>
+<td align="left">与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET ！</td>
+<td align="left">POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中。</td>
+</tr>
+<tr>
+<td align="left">可见性</td>
+<td align="left">数据在 URL 中对所有人都是可见的。</td>
+<td align="left">数据不会显示在 URL 中。</td>
+</tr>
+</tbody></table>
+<h2 id="其他-HTTP-请求方法"><a href="#其他-HTTP-请求方法" class="headerlink" title="其他 HTTP 请求方法"></a>其他 HTTP 请求方法</h2><p>下面的表格列出了其他一些 HTTP 请求方法：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">HEAD</td>
+<td align="left">与 GET 相同，但只返回 HTTP 报头，不返回文档主体。</td>
+</tr>
+<tr>
+<td align="left">PUT</td>
+<td align="left">上传指定的 URI 表示。</td>
+</tr>
+<tr>
+<td align="left">DELETE</td>
+<td align="left">删除指定资源。</td>
+</tr>
+<tr>
+<td align="left">OPTIONS</td>
+<td align="left">返回服务器支持的 HTTP 方法。</td>
+</tr>
+<tr>
+<td align="left">CONNECT</td>
+<td align="left">把请求连接转换到透明的 TCP/IP 通道。</td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -547,8 +662,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/04/Tinyhttpd/" rel="next" title="小型web服务器">
-                <i class="fa fa-chevron-left"></i> 小型web服务器
+              <a href="/2020/02/04/Tinyhttpd/" rel="next" title="小型http服务器">
+                <i class="fa fa-chevron-left"></i> 小型http服务器
               </a>
             
           </div>
@@ -678,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL"><span class="nav-number">2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求-Request"><span class="nav-number">3.</span> <span class="nav-text">请求(Request)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应篇-Response"><span class="nav-number">4.</span> <span class="nav-text">响应篇(Response)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL"><span class="nav-number">2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求-Request"><span class="nav-number">3.</span> <span class="nav-text">请求(Request)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应篇-Response"><span class="nav-number">4.</span> <span class="nav-text">响应篇(Response)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POST和GET"><span class="nav-number">5.</span> <span class="nav-text">POST和GET</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-HTTP？"><span class="nav-number">5.1.</span> <span class="nav-text">什么是 HTTP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种-HTTP-请求方法：GET-和-POST"><span class="nav-number">5.2.</span> <span class="nav-text">两种 HTTP 请求方法：GET 和 POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-方法"><span class="nav-number">5.3.</span> <span class="nav-text">GET 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST-方法"><span class="nav-number">5.4.</span> <span class="nav-text">POST 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较-GET-与-POST"><span class="nav-number">5.5.</span> <span class="nav-text">比较 GET 与 POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-HTTP-请求方法"><span class="nav-number">5.6.</span> <span class="nav-text">其他 HTTP 请求方法</span></a></li></ol></li></ol></div>
             
 
           </div>

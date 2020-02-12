@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-04T04:59:48.311Z">
+<meta property="og:updated_time" content="2020-02-11T15:23:24.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存四区">
 <meta name="twitter:description" content="内存四区的意义：不同区域存储的数据，赋予不同的生命周期。">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  232
+                  330
                 </span>
               
 
@@ -375,11 +375,15 @@
 
       
         <p>内存四区的意义：<br>不同区域存储的数据，赋予不同的生命周期。<a id="more"></a></p>
-<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>由编译器自动释放，存放的是函数的参数值，局部变量(只要有局部就是栈区的)<br>不要返回局部变量的地址————</p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>由程序员分配释放，若程序员不释放，程序结束由操作系统回收</p>
+<p>在C++中主要利用new在堆区开辟内存。</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>由编译器自动释放，存放的是函数的参数值，局部变量(只要有局部就是栈区的)<br>不要返回局部变量的地址————</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int *func()</span><br><span class="line">&#123;</span><br><span class="line">   int a=10;</span><br><span class="line">   return &amp;a;//不能返回局部变量的地址</span><br><span class="line">&#125;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">   int *p=func();</span><br><span class="line">   cout&lt;&lt;*p&lt;&lt;endl;//第一次编译器做了保留操作，所以能打印出正确的数字；</span><br><span class="line">   cout&lt;&lt;*p&lt;&lt;endl;//第二次就不能保留了，所以打出来的是一段乱码；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="全局区"><a href="#全局区" class="headerlink" title="全局区"></a>全局区</h2><p>全局变量和静态变量(static修饰)，还包含了常量区，字符串常量和其他常量(局部常量(const修饰的局部变量)不在这里)，数据在程序结束后由操作系统释放。</p>
-<h2 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h2><p>存放CPU执行的及其命令，</p>
+<h2 id="全局区"><a href="#全局区" class="headerlink" title="全局区"></a>全局区</h2><p><strong>全局变量和静态变量(static修饰)，还包含了常量区</strong>，字符串常量和其他常量(局部常量(const修饰的局部变量)不在仍在栈区)，数据在程序结束后由操作系统释放。</p>
+<h2 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h2><p>存放CPU执行的机器指令。</p>
+<p>代码区是共享的，共享的目的是对于频繁执行的程序，只需要在内存中有一份代码即可</p>
+<p>代码区是只读的，防止程序意外修改他的指令。</p>
 
       
     </div>

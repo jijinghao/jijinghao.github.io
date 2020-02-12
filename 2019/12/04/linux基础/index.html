@@ -96,7 +96,7 @@
 <meta property="og:description" content="小小总结了一些常用的命令，复杂的命令还需要多多去复习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png">
-<meta property="og:updated_time" content="2020-01-23T06:31:36.006Z">
+<meta property="og:updated_time" content="2020-02-11T18:03:50.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux基础">
 <meta name="twitter:description" content="小小总结了一些常用的命令，复杂的命令还需要多多去复习">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.3k
+                  5.7k
                 </span>
               
 
@@ -381,8 +381,12 @@
 <h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p>查看当前路径</p>
 <h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p>进入不同的文件：”~” 也表示为 home 目录 的意思，”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录<br>cd -可以回去原来目录<br>绝对路径：按照顺序递归输入目录<br>相对路径：例如 cd ~/公共的</p>
 <h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>touch b.txt c.txt<br>经常用于创建文件，可以单独创建也可以一起创建</p>
+<p>Linux touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。</p>
+<p>使用指令”touch”修改文件”testfile”的时间属性为当前系统时间，输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch testfile                #修改文件的时间属性</span><br></pre></td></tr></table></figure>
+
 <h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><p>-a 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)<br>-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出<br>-r 将文件以相反次序显示(原定依英文字母次序)<br>-t 将文件依建立时间之先后次序列出<br>-A 同 -a ，但不列出 “.” (目前目录) 及 “..” (父目录)<br>-F 在列出的文件名称后加一符号；例如可执行档则加 “*”, 目录则加 “/“<br>-R 若目录下有文件，则以下之文件亦皆依序列出<br>其中ls -l<br>-rw-r–r– 1 jjh jjh 8980 9月  20 22:24 examples.desktop<br>字母“-”表示该文件是一个普通文件<br>字母“d”表示该文件是一个目录，字母”d”，是dirtectory(目录)的缩写<br>注意：目录或者是特殊文件，这个特殊文件存放其他文件或目录的相关信息<br>字母“l”表示该文件是一个链接文件。字母”l”是link(链接)的缩写，类似于windows下的快捷方式<br>字母“b”的表示块设备文件(block)，一般置于/dev目录下，设备文件是普通文件和程序访问硬件设备的入口，是很特殊的文件。没有文件大小，只有一个主设备号和一个辅设备号。一次传输数据为一整块的被称为块设备，如硬盘、光盘等。最小数据传输单位为一个数据块(通常一个数据块的大小为512字节)<br>字母为“c”表示该文件是一个字符设备文件(character)，一般置于/dev目录下，一次传输一个字节的设备被称为字符设备，如键盘、字符终端等，传输数据的最小单位为一个字节。<br>字母为“p”表示该文件为命令管道文件。与shell编程有关的文件。<br>字母“s”表示该文件为sock文件。与shell编程有关的文件。<br>前三个表示文件拥有者的权限，中间三个表示文件所属组拥有的权限，最后三个表示其他用户拥有的权限<br>然后是硬链接数<br>然后是所有者<br>然后是所属组<br>然后是文件大小<br>然后是时间</p>
-<h2 id="mkdir和rmkdir和rm"><a href="#mkdir和rmkdir和rm" class="headerlink" title="mkdir和rmkdir和rm"></a>mkdir和rmkdir和rm</h2><p>mkdir：一次课创建多个目录，家还是那个-p能把父目录一起创建<br>rmkdir：删除空目录 基本没软用还是用rm<br>rm：常见的是递归删除且不加提示：rm -rf xiaoshuai/</p>
+<h2 id="mkdir和rmkdir和rm"><a href="#mkdir和rmkdir和rm" class="headerlink" title="mkdir和rmkdir和rm"></a>mkdir和rmkdir和rm</h2><p>mkdir：一次课创建多个目录，加还是那个-p能把父目录一起创建<br>rmkdir：删除空目录 基本没软用还是用rm<br>rm：常见的是递归删除且不加提示：rm -rf xiaoshuai/</p>
 <h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><p>复制命令cp code.c code1.c  旧的 新的<br>        cp cangls /tmp/<br>        cp -r /root/movie/ /tmp/ 一般使用-a；</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
 <h2 id="ps和top"><a href="#ps和top" class="headerlink" title="ps和top"></a>ps和top</h2><p>top用于动态的查看进程状态<br>ps用于查看进程<br>一般都是ps -aux</p>
@@ -396,7 +400,10 @@
 <p>pagedown：向下滚动一页</p>
 <h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><p>用树来显示文件存放</p>
 <h2 id="du-df"><a href="#du-df" class="headerlink" title="du df"></a>du df</h2><p>du：查看某个目录的大小M为单位；<br>df：显示磁盘剩余空间</p>
-<h2 id="软连接-硬链接"><a href="#软连接-硬链接" class="headerlink" title="软连接 硬链接"></a>软连接 硬链接</h2><p>创建软连接：<br>1.软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式<br>2.软链接可以 跨文件系统 ，硬链接不可以<br>3.软链接可以对一个不存在的文件名进行链接<br>4.软链接可以对目录进行链接<br>如果文件在其他文件夹必须要用软连接，文件同步发生变化，生成的是镜像不占用磁盘空间<br>给文件创建软链接，为log2013.log文件创建软链接link2013，如果log2013.log丢失，link2013将失效<br>ln -s log2019.log link2019<br>ls出来是这样的：lrwxrwxrwx 1 jjh jjh    7 12月  4 14:21 codecode -&gt; code1.c<br>创建硬链接：<br>ln log2013.log ln2013<br>对于一个文件修改其他文件也会变化，生成的是文件占用空间<br>占用的节点还是同一个当吧所有文件都删除的时候，节点被释放</p>
+<h2 id="软连接-硬链接"><a href="#软连接-硬链接" class="headerlink" title="软连接 硬链接"></a>软连接 硬链接</h2><p><strong>stat+文件名可以查看inode节点号</strong></p>
+<p>创建软连接：<br>1.软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式<br>2.软链接可以 跨文件系统 ，硬链接不可以<br>3.软链接可以对一个不存在的文件名进行链接<br>4.软链接可以对目录进行链接<br>如果文件在其他文件夹必须要用软连接，文件同步发生变化，生成的是镜像不占用磁盘空间<br>给文件创建软链接，为log2013.log文件创建软链接link2013，如果log2013.log丢失，link2013将失效<br>ln -s log2019.log link2019<br>ls出来是这样的：lrwxrwxrwx 1 jjh jjh    7 12月  4 14:21 codecode -&gt; code1.c<br>创建硬链接：<br>ln log2013.log ln2013<br>对于一个文件修改其他文件也会变化，生成的是文件占用空间<br>占用的节点还是同一个当吧所有文件都删除的时候，节点被释放</p>
+<p><strong>总结就是：</strong></p>
+<p>①默认不带参数的情况下，ln创建的是硬链接，带-s参数的ln命令创建的是软链接。<br>②<strong>硬链接文件与源文件的inode节点号相同，而软链接文件的inode节点号，与源文件不同，</strong><br>③ln命令不能对目录创建硬链接，但可以创建软链接。对目录的软链接会经常使用到。<br>④删除软链接文件，对源文件和硬链接文件无任何影响。<br>⑤删除文件的硬链接文件，对源文件及软链接文件无任何影响。<br>⑥删除链接文件的源文件，对硬链接文件无影响，会导致其软链接失效（红底白字闪烁状）。<br>⑦同时删除源文件及其硬链接文件，整个文件才会被真正的删除。<br>⑧很多硬件设备的快照功能，使用的就是类似硬链接的原理。<br>⑨软链接可以跨文件系统，硬链接不可以跨文件系统。</p>
 <h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。</p>
 <ul>
 <li>表示增加权限、- 表示取消权限、= 表示唯一设定权限。<br>r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。<br>举例子来解释：<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod ugo+r file1.txt<br>将文件 file1.txt 设为所有人皆可读取 :<br>chmod a+r file1.txt<br>将文件 file1.txt 与 file2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :<br>chmod ug+w,o-w file1.txt file2.txt<br>将 ex1.py 设定为只有该文件拥有者可以执行 :<br>chmod u+x ex1.py<br>将目前目录下的所有文件与子目录皆设为任何人可读取 :<br>chmod -R a+r *<br>此外chmod也可以用数字来表示权限如 :<br>chmod 777 file<h2 id="创建用户-用户组-修改文件所属用户-文件所属组群"><a href="#创建用户-用户组-修改文件所属用户-文件所属组群" class="headerlink" title="创建用户/用户组 修改文件所属用户 文件所属组群"></a>创建用户/用户组 修改文件所属用户 文件所属组群</h2>sudo adduser/addgroup [名字]<br>sudo chown 新用户名 待修改的文件 sudo chown xiaoshuai a.out;<br>sudo chgrp g88 a.out 修改文件所属组群  <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2>find命令用法很多这里就讲一下查找文件的：<br>find 路径名 执行的动作类型 ….</li>
@@ -476,7 +483,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jjh@jjh-VirtualBox:~/公共的$ free -m</span><br><span class="line">              总计         已用        空闲      共享    缓冲/缓存    可用</span><br><span class="line">内存：        3942        1463         518         144        1961        2054</span><br><span class="line">交换：         472           0         472</span><br></pre></td></tr></table></figure>
 
 <h2 id="关于用户"><a href="#关于用户" class="headerlink" title="关于用户"></a>关于用户</h2><p>修改用户：sudo passwd 用户名字<br>切换用户：su 用户名</p>
-<h1 id="linux各个目录"><a href="#linux各个目录" class="headerlink" title="linux各个目录"></a>linux各个目录</h1><p>linux”万物皆文件”<br>bin:系统可执行程序，如命令，存放二进制可执行文件<br>home:存放用户<br>dev:内核和启动程序<br>etc:设备相关文件,用户信息文件<br>lib:系统程序库文件，这个目录存放着系统最基本的动态链接共享库<br>root:管理员宿主目录(家目录)<br>media:挂载媒体设备，如光驱，U盘<br>mnt:目录是让用户临时挂载别的文件系统，如挂载windows下的某个分区，Ubuntu默认还是挂载在media<br>tmp:临时文件夹<br>usr:用户资源管理目录</p>
+<h1 id="linux各个目录"><a href="#linux各个目录" class="headerlink" title="linux各个目录"></a>linux各个目录</h1><p><strong>linux”万物皆文件”</strong><br>bin:系统可执行程序，如命令，存放二进制可执行文件<br>home:存放用户<br>dev:内核和启动程序<br>etc:设备相关文件,用户信息文件<br>lib:系统程序库文件，这个目录存放着系统最基本的动态链接共享库<br>root:管理员宿主目录(家目录)<br>media:挂载媒体设备，如光驱，U盘<br>mnt:目录是让用户临时挂载别的文件系统，如挂载windows下的某个分区，Ubuntu默认还是挂载在media<br>tmp:临时文件夹<br>usr:用户资源管理目录</p>
 <h1 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h1><p>-c    只进行预处理、编译和汇编，生成.o文件<br>-S    只进行预处理和编译，生成.s文件<br>-E    只进行预处理，产生预处理后的结果到标准输出<br>-C    预处理时不删除注释信息，常与-E同时使用<br>-o    指定目标名称，常与-c、-S同时使用，默认是.out<br>-D    定义一个宏，功能等同源代码中的#define macro[defval]<br>-U    取消一个宏，功能等同源代码中的#undefine macro<br>-Idir    优先在选项后的目录中查找包含的头文件<br>-Iname    链接后缀为.out的动态链接库来编译程序<br>-Ldir    指定编译搜索库的路径<br>-g    编译器编译时加入debug信息<br>-On n=0~3编译优化，n越大优化越大<br>一般来说直接gcc gcc1.c -o gcc1或者gcc -Wall gcc.c -o gcc1</p>
 <p><a href="https://imgchr.com/i/Q5pUPJ" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/16/Q5pUPJ.md.png" alt="Q5pUPJ.png" border="0"></a><br>这 4 步大致的工作内容如下：<br>（1） 预处理， C 编译器对各种预处理命令进行处理，包括头文件包含、宏定义的扩<br>展、条件编译的选择等；<br>（2） 编译，将预处理得到的源代码文件，进行“翻译转换”，产生出机器语言的目标<br>程序，得到机器语言的汇编文件；<br>（3） 汇编，将汇编代码翻译成了机器码，但是还不可以运行；<br>（4） 链接，处理可重定位文件，把各种符号引用和符号定义转换成为可执行文件中<br>的合适信息，通常是虚拟地址。</p>
 <h1 id="创建静态库"><a href="#创建静态库" class="headerlink" title="创建静态库"></a>创建静态库</h1><p><strong>每次调用静态库的程序都要包含静态库的大小</strong>，如果我的库500M,计算机里面一百个应用程序要用他多出50000</p>

@@ -280,6 +280,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/STL剖析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johnson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/DOGhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johnson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/13/STL剖析/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T02:39:10+08:00">
+                2020-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  0
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/12/多路IO转接模型再详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,7 +481,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  981
+                  1.6k
                 </span>
               
 
@@ -369,41 +507,17 @@
 
       
         
-          
-            <a id="more"></a>
-
-<h1 id="select-进行轮询"><a href="#select-进行轮询" class="headerlink" title="select()进行轮询"></a>select()进行轮询</h1><p><strong>select是一个阻塞函数</strong></p>
-<h2 id="参数解释："><a href="#参数解释：" class="headerlink" title="参数解释："></a>参数解释：</h2><p>int select(int nfds, fd_set <em>readfds, fd_set <em>writefds,fd_set *exceptfds, struct timeval *timeout);</em></em></p>
-<p>参数1：所监听的文件描述符，最大的文件描述符+1</p>
-<p>参数2：所监听的文件描述符可读事件</p>
-<p>参数3：所监听的文件描述符可写事件</p>
-<p>参数4：所监听的文件描述符异常事件</p>
-<p>参数5：定时阻塞监控时间看看有没有符合的文件描述符，置NULL就是永远等下去，直到满足了事件。</p>
-<p>返回值：成功返回所有监听集合中，满足条件的总和</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void FD_ZERO(fd_set *set);//将set清空0</span><br><span class="line">void FD_SET(int fd, fd_set *set);//将fd设置到set集合中去</span><br><span class="line">void FD_CLR(int fd, fd_set *set);//将fd从set中清除出去  清除就是置成0</span><br><span class="line">int  FD_ISSET(int fd, fd_set *set);//判断fd是否在集合中。在的话返回值1</span><br></pre></td></tr></table></figure>
-
-<h2 id="解析：（这里以读方式）"><a href="#解析：（这里以读方式）" class="headerlink" title="解析：（这里以读方式）"></a>解析：（这里以读方式）</h2><p>fd_set 创建出来的是一个位图(bitmap)，里面是文件描述符fd，需要被监听的会被置1，不需要的会被置0，select()第二三四个参数里面传入的就是位图.</p>
-<p><strong>select()：</strong></p>
-<p>用户态里面包含位图，位图里面使我们的文件描述符，我们的程序就是运行在用户态空间的。select运行的时候会把用户态里面的位图拷贝到内核态，然后内核负责判断每个fd是否有数据来，内核的效率肯定比用户态高，我们用户态在判断的过程中也是询问内核，需要在用户态内核态之间切换。</p>
-<p>现在就能直接判断，调用seleet函数进行监听，如果没有数据内核就会一直在判断，整个程序呈阻塞状态(阻塞在select这一行)，虽然可以设置阻塞实现，但并不是非阻塞IO。</p>
-<p>有数据的时候内核会将有数据的fd置位(对某一位变量置位，就是将其设为1，相反复位就是设为0)，注意这里的fd置位指的是fd_set创建出来的那个，（例如fd_set rset;干脆这里都这样叫)，而不是真正的fds中的元素。然后select返回了满足条件的个数，进入接下来的遍历5个文件描述符进行判断，判断哪一个fd被置位了（被set了）也就是FD_ISSET(fd1,&amp;rset)判断是否在集合里，等于1就是满足，被置位的fd我们会将他的数据读出来，然后进行相应的处理。</p>
-<p><img src="https://s2.ax1x.com/2020/02/12/1bMubd.png" alt="1bMubd.png"></p>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>位图默认是1024，也就是只能监听1024个，虽然能改，但是要修改内核，麻烦得很！</li>
-<li>然后当我们有数据的时候，我们的（FD_SET）rset不是会置位吗，rset就相当于被修改过了，当我们每次循环回去的时候又要重新用FD_ZERO将集合清除，也就是FD_SET是不可重用的，每次在一轮的大循环结束后，又要重新清零。在刚刚FD_SET的时候，集合是监听集合，在FD_ISSET后rset里面符合的fd被置位了，rset就变成了满足监听条件的集合。从这里可以看出监听集合和满足监听条件的集合是同一个。</li>
-<li>我们虽然用select把rset从用户态拷贝到内核态，但是也是需要较大的开销的，虽然比每次用户态和内存太之间的开销小。</li>
-<li>select返回的是符合条件的事件个数但是我们是不知道是哪一个的，如果一个是第1个一个是第1023个，不是很久吗。</li>
-</ul>
-<h1 id="poll"><a href="#poll" class="headerlink" title="poll()"></a>poll()</h1><h2 id="参数解释：-1"><a href="#参数解释：-1" class="headerlink" title="参数解释："></a>参数解释：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct pollfd &#123;</span><br><span class="line">		int fd; /* 文件描述符 */</span><br><span class="line">		short events; /* 监控的事件 */</span><br><span class="line">		short revents; /* 监控事件中满足条件返回的事件 */</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h2><p><img src="https://s2.ax1x.com/2020/02/12/1br7SU.png" alt="1br7SU.png"></p>
-<p>工作哪里和select差不多一样也是让内核帮忙监听fd。</p>
-
-          
+          <h1 id="select-进行轮询"><a href="#select-进行轮询" class="headerlink" title="select()进行轮询"></a>select()进行轮询</h1><p><strong>select是一个阻塞函数</strong>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/12/多路IO转接模型再详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -851,7 +965,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  785
+                  2.4k
                 </span>
               
 
@@ -938,7 +1052,151 @@
 </ul>
 <p><strong>访问原理：</strong></p>
 <p>客户端-&gt;寻找服务器（host寻找）-&gt;寻找服务器(Port寻找)-&gt;验证身份（username判定，password判定）-&gt;服务端</p>
+<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><h2 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h2><p><strong>结构创建：</strong></p>
+<p>create 结构类型 结构名 结构描述;</p>
+<p><strong>显示结构：</strong></p>
+<p>show 结构类型(复数);——全部结构</p>
+<p>show create 结构类型 结构名;</p>
+<p><strong>数据操作(数据表)：</strong></p>
+<p>新增数据</p>
+<p>insert into 表名 values;</p>
+<p>查看数据</p>
+<p>select from 表名;</p>
+<p>删除数据</p>
+<p>delete from 表名;</p>
+<h2 id="SQL库操作"><a href="#SQL库操作" class="headerlink" title="SQL库操作"></a>SQL库操作</h2><h3 id="创建数据库："><a href="#创建数据库：" class="headerlink" title="创建数据库："></a><strong>创建数据库：</strong></h3><p><code>create database 数据库名字[数据库选项]</code></p>
+<p>实例：</p>
+<p>show database db_1;</p>
+<h3 id="显示数据库："><a href="#显示数据库：" class="headerlink" title="显示数据库："></a>显示数据库：</h3><p>显示所有数据库：</p>
+<p>show databases;</p>
+<p>显示数据库创建指令：</p>
+<p>show create database 数据库名;</p>
+<h3 id="使用数据库："><a href="#使用数据库：" class="headerlink" title="使用数据库："></a>使用数据库：</h3><p>在进行具体SQL指令之前让系统知道操作针对的是哪个数据库</p>
+<p>use 数据库名;</p>
+<h3 id="修改数据库："><a href="#修改数据库：" class="headerlink" title="修改数据库："></a>修改数据库：</h3><p>修改数据库：修改数据库的相关库选项</p>
+<p>数据库修改指令：</p>
+<p>alter database 数据库名字 库选项;</p>
+<p>示例：</p>
+<p>修改数据库字符集:</p>
+<p>alter database db_2 charset gbk;</p>
+<p>修改数据库校对集(如果字符集必须同时改变字符集)</p>
+<p>alter database db_3 charset gbk collate gbk_chinses_ci;</p>
+<p><strong>小结：</strong></p>
+<p>数据库的修改只能修改库选项，不能修改库名字</p>
+<h3 id="删除数据库："><a href="#删除数据库：" class="headerlink" title="删除数据库："></a>删除数据库：</h3><p><code>drop database 数据库名;</code></p>
+<h2 id="SQL表字段操作"><a href="#SQL表字段操作" class="headerlink" title="SQL表字段操作"></a>SQL表字段操作</h2><h3 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h3><p>表的创建需要指定存储的数据库</p>
+<ul>
+<li>数据库.表名</li>
+<li>use 数据库名字</li>
+</ul>
+<p>表创建语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table [数据库名.]表名(</span><br><span class="line">       字段名 字段类型,</span><br><span class="line">       ...</span><br><span class="line">       字段名 字段类型</span><br><span class="line">)表选项;</span><br></pre></td></tr></table></figure>
 
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create table t_1(</span><br><span class="line"> name varchar(50)</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+
+<p>如果想创建一个与已有表一样的数据表：</p>
+<p>create table 表名 like 数据库名.表名</p>
+<h3 id="显示数据表"><a href="#显示数据表" class="headerlink" title="显示数据表"></a>显示数据表</h3><p>显示所有数据表，当前数据库：</p>
+<p>show tables;</p>
+<p>显示指所有数据表，指定数据库：</p>
+<p>show tables from 数据库名;</p>
+<p>显示部分管理数据表——匹配</p>
+<p>show table like ‘%数据表名’ ;  %表示匹配n个字符</p>
+<p>show table like ‘_数据表名’;  _是匹配一个字符(固定位置)</p>
+<p>显示数据表的创建指令：</p>
+<p>show create tables 数据表名; 看到的不一定是真是创建的指令，系统可能会加工</p>
+<h3 id="查看数据表"><a href="#查看数据表" class="headerlink" title="查看数据表"></a>查看数据表</h3><p>查看数据表中的具体结构</p>
+<p>三种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br><span class="line">describe 表名;</span><br><span class="line">show columns from 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更改数据表"><a href="#更改数据表" class="headerlink" title="更改数据表"></a>更改数据表</h3><p>修改表名：</p>
+<p>rename  table 表名 to 新表明;</p>
+<p>修改表选项：</p>
+<p>alter table 表名 库选项;</p>
+<h3 id="更改字段"><a href="#更改字段" class="headerlink" title="更改字段"></a>更改字段</h3><p>字段操作分为四类：</p>
+<p>新增字段：</p>
+<p>add[column];</p>
+<p>更改字段名：</p>
+<p>change</p>
+<p>修改类型：</p>
+<p>modify</p>
+<p>删除字段：</p>
+<p>drop</p>
+<h4 id="新增字段"><a href="#新增字段" class="headerlink" title="新增字段"></a>新增字段</h4><p>在表创建好后往里面增加其他字段，新增必须同时存在字段类型</p>
+<p>alter table 表名 add [column] 字段名 字段类型 [字段属性] [字段位置]</p>
+<p>示例：</p>
+<p>alter table t1 add age int;</p>
+<h4 id="字段位置"><a href="#字段位置" class="headerlink" title="字段位置"></a>字段位置</h4><p>字段放在某个指定字段之后</p>
+<p>字段位置分两种：</p>
+<p>第一个字段：first</p>
+<p>某个字段后：after 已经存在字段名</p>
+<p>alter table 表名 字段操作 字段位置;</p>
+<p>示例：</p>
+<p>alter table t1 add id int first;</p>
+<p>alter table t1 add card int after age;</p>
+<h4 id="更改字段名"><a href="#更改字段名" class="headerlink" title="更改字段名"></a>更改字段名</h4><p>alter table 表名 change 原字段名 新字段名 字段类型 [字段属性] [位置];</p>
+<p>示例：</p>
+<p>alter table t1 change card card1 int;</p>
+<h4 id="修改字段"><a href="#修改字段" class="headerlink" title="修改字段"></a>修改字段</h4><p>修改字段类型、字段属性、字段位置</p>
+<p>alter table 表名 modify 字段名 字段类型 [字段属性] [位置];</p>
+<p>示例：</p>
+<p>alter table t1 modify card1 varchar(50) first;</p>
+<h4 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h4><p>alter table 表名 drop 字段名;</p>
+<p>示例：</p>
+<p> alter table t1 drop card1;</p>
+<h3 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h3><h2 id="SQL数据操作"><a href="#SQL数据操作" class="headerlink" title="SQL数据操作"></a>SQL数据操作</h2><h3 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h3><p>全字段插入：insert into 表名 values(字段列表顺序对应所有值);</p>
+<p>部分字段插入：insert into 表名(字段列表) values(字段列表顺序对应值的顺序列表);</p>
+<p>示例：</p>
+<p>insert into t1 values(1,’jijinghao’,’23’);</p>
+<p> insert into t1 (name,age) value(‘baoyou’,23);</p>
+<h3 id="查看数据"><a href="#查看数据" class="headerlink" title="查看数据"></a>查看数据</h3><p>查看全部字段：select * from 表名; </p>
+<p>查看部分字段：select id from t1;</p>
+<p>示例：</p>
+<p>select id,name from t1;</p>
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p>更新摸个已有字段的值</p>
+<p>update 表名 set 字段=新值[,字段=新值] [where条件筛选]</p>
+<p>示例：</p>
+<p>update set id=2,age=231 where name=’baoyou’</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>没有where会全删除的。。。</p>
+<p>delete from 表名 [where 条件]</p>
+<h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><p>字符集：charset或者charcter set，是各种文字和符号在计算机中的总称</p>
+<ul>
+<li><p>字符集根据不同国家的符号不同，有不同的字符集</p>
+</li>
+<li><p>不同字符集占用的存储空间不一样，存储底层也不一样</p>
+</li>
+<li><p>不同字符集间可以转换</p>
+</li>
+<li><p>（1）ASCII:<br>-是美国人编码，使用7位来对美国常用的字符进行编码，包含128个字符。<br>（2）ISO-8859-1:<br>-欧洲的编码，使用8位来对欧洲常用的字符进行编码，包含256个字符。</p>
+<p>（3）GB2312/GBK:<br>-国标码，只包含常见的中文，一些特殊的中文是没有，内容并不完全。</p>
+<p>（4、Unicode<br>万国码，包含了世界上所有的语言和符号<br>Unicode编码有多种实现，如：<br>UTF-8：使用1-5个字节（最常用的是UTF-8）<br>UTF-16：使用2-4个字节<br>UTF-32：使用统一的固定4四个字节来表示一个字符</p>
+<p>（5）乱码：<br>编写程序时，如果发现程序代码出现乱码的情况，要检查字符集是否正确，即编码方式是否一致；</p>
+</li>
+</ul>
+<h2 id="MYSQL字符集"><a href="#MYSQL字符集" class="headerlink" title="MYSQL字符集"></a>MYSQL字符集</h2><p>存在继承关系：字段-&gt;表-&gt;数据库-&gt;DBMS</p>
+<p>查看支持的字符集：show charset</p>
+<h2 id="乱码问题解决"><a href="#乱码问题解决" class="headerlink" title="乱码问题解决"></a>乱码问题解决</h2><p>指的是数据不能按照正确的字符集进行存储或者解析</p>
+<p>数据在存储的时候已经变成乱码：</p>
+<ul>
+<li>客户端字符集与服务端解析字符集不一致</li>
+<li>读取时向转成其他字符集都会错误</li>
+</ul>
+<p>数据存储时正确，但是读取解析成错误字符集</p>
+<ul>
+<li>客户端能即系的字符集和服务端提供的字符集不一致</li>
+</ul>
+<p>解决方案：不论存储还是读取都提前告知服务器当前客户端的字符集</p>
+<p>set names 客户端字符集;</p>
+<h2 id="字符集设置原理"><a href="#字符集设置原理" class="headerlink" title="字符集设置原理"></a>字符集设置原理</h2><p>查看系统内部存储这些记录字符集的信息</p>
+<p>show variables like ‘character_set%’; #%表示通配符，匹配所有不确定数据</p>
+<p>修改客户端字符集变量，保证数据正常存进服务端</p>
+<p>set character_set_client=gbk;</p>
+<p>修改客户端解析字符集变量，保证数据正常被客户端查看</p>
+<p>set character_set_result=gbk;</p>
+<p>批量修改，保证客户端被服务端正确理解，同时客户端也能正确解析</p>
+<p>set names gbk;</p>
+<h1 id="校对集"><a href="#校对集" class="headerlink" title="校对集"></a>校对集</h1>
           
         
       
@@ -2237,149 +2495,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/unix网络编程总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnson">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/DOGhead.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johnson">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/18/unix网络编程总结/" itemprop="url">unix网络编程总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T15:34:17+08:00">
-                2019-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  9.2k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>抽空复习并且总结了以下网络编程
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/18/unix网络编程总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2432,7 +2547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

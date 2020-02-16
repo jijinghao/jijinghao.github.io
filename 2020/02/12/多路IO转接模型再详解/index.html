@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -90,19 +88,19 @@
 
 
 
-<meta name="description" content="select()进行轮询select是一个阻塞函数 参数解释：int select(int nfds, fd_set readfds, fd_set writefds,fd_set *exceptfds, struct timeval *timeout); 参数1：所监听的文件描述符，最大的文件描述符+1 参数2：所监听的文件描述符可读事件 参数3：所监听的文件描述符可写事件 参数4：所监听的">
+<meta name="description" content="select()进行轮询select是一个阻塞函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多路IO转接模型再详解">
 <meta property="og:url" content="http://yoursite.com/2020/02/12/多路IO转接模型再详解/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="select()进行轮询select是一个阻塞函数 参数解释：int select(int nfds, fd_set readfds, fd_set writefds,fd_set *exceptfds, struct timeval *timeout); 参数1：所监听的文件描述符，最大的文件描述符+1 参数2：所监听的文件描述符可读事件 参数3：所监听的文件描述符可写事件 参数4：所监听的">
+<meta property="og:description" content="select()进行轮询select是一个阻塞函数">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2020/02/12/1bMubd.png">
-<meta property="og:image" content="https://s2.ax1x.com/2020/02/12/1br7SU.png">
-<meta property="og:updated_time" content="2020-02-12T15:05:45.825Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/13/1L8sHO.png">
+<meta property="og:updated_time" content="2020-02-13T09:28:59.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多路IO转接模型再详解">
-<meta name="twitter:description" content="select()进行轮询select是一个阻塞函数 参数解释：int select(int nfds, fd_set readfds, fd_set writefds,fd_set *exceptfds, struct timeval *timeout); 参数1：所监听的文件描述符，最大的文件描述符+1 参数2：所监听的文件描述符可读事件 参数3：所监听的文件描述符可写事件 参数4：所监听的">
+<meta name="twitter:description" content="select()进行轮询select是一个阻塞函数">
 <meta name="twitter:image" content="https://s2.ax1x.com/2020/02/12/1bMubd.png">
 
 
@@ -354,7 +352,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  981
+                  1.6k
                 </span>
               
 
@@ -379,9 +377,7 @@
       
 
       
-        <a id="more"></a>
-
-<h1 id="select-进行轮询"><a href="#select-进行轮询" class="headerlink" title="select()进行轮询"></a>select()进行轮询</h1><p><strong>select是一个阻塞函数</strong></p>
+        <h1 id="select-进行轮询"><a href="#select-进行轮询" class="headerlink" title="select()进行轮询"></a>select()进行轮询</h1><p><strong>select是一个阻塞函数</strong><a id="more"></a></p>
 <h2 id="参数解释："><a href="#参数解释：" class="headerlink" title="参数解释："></a>参数解释：</h2><p>int select(int nfds, fd_set <em>readfds, fd_set <em>writefds,fd_set *exceptfds, struct timeval *timeout);</em></em></p>
 <p>参数1：所监听的文件描述符，最大的文件描述符+1</p>
 <p>参数2：所监听的文件描述符可读事件</p>
@@ -404,11 +400,25 @@
 <li>我们虽然用select把rset从用户态拷贝到内核态，但是也是需要较大的开销的，虽然比每次用户态和内存太之间的开销小。</li>
 <li>select返回的是符合条件的事件个数但是我们是不知道是哪一个的，如果一个是第1个一个是第1023个，不是很久吗。</li>
 </ul>
-<h1 id="poll"><a href="#poll" class="headerlink" title="poll()"></a>poll()</h1><h2 id="参数解释：-1"><a href="#参数解释：-1" class="headerlink" title="参数解释："></a>参数解释：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct pollfd &#123;</span><br><span class="line">		int fd; /* 文件描述符 */</span><br><span class="line">		short events; /* 监控的事件 */</span><br><span class="line">		short revents; /* 监控事件中满足条件返回的事件 */</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="poll"><a href="#poll" class="headerlink" title="poll()"></a>poll()</h1><h2 id="参数解释：-1"><a href="#参数解释：-1" class="headerlink" title="参数解释："></a>参数解释：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct pollfd &#123;</span><br><span class="line">		int fd; /* 文件描述符 */</span><br><span class="line">		short events; /* 监控的事件 */</span><br><span class="line">		short revents; /* 监控的事件中实际发生的事件，由内核来赋值。需要与某种类型的事件按位与来确定某种事件是否发生 */</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h2><p><img src="https://s2.ax1x.com/2020/02/12/1br7SU.png" alt="1br7SU.png"></p>
-<p>工作哪里和select差不多一样也是让内核帮忙监听fd。</p>
-
+<p>int poll(struct pollfd fds[], nfds_t nfds, int timeout)；</p>
+<p><strong>参数说明:</strong></p>
+<p><strong><a href="https://baike.baidu.com/item/fds" target="_blank" rel="noopener">fds</a>：</strong>是一个struct pollfd结构类型的<a href="https://baike.baidu.com/item/数组" target="_blank" rel="noopener">数组</a>，用于存放需要检测其状态的Socket描述符；每当调用这个函数之后，系统不会清空这个数组，操作起来比较方便；特别是对于socket连接比较多的情况下，在一定程度上可以提高处理的效率；这一点与select()函数不同，调用select()函数之后，select()函数会清空它所检测的socket描述符集合，导致每次调用select()之前都必须把socket描述符重新加入到待检测的集合中；因此，select()函数适合于只检测一个socket描述符的情况，而poll()函数适合于大量socket描述符的情况；</p>
+<p><strong>n<a href="https://baike.baidu.com/item/fds" target="_blank" rel="noopener">fds</a>：</strong>nfds_t类型的参数，用于标记<a href="https://baike.baidu.com/item/数组" target="_blank" rel="noopener">数组</a>fds中的<a href="https://baike.baidu.com/item/结构体" target="_blank" rel="noopener">结构体</a>元素的总数量；</p>
+<p><strong>timeout：</strong>是poll<a href="https://baike.baidu.com/item/函数调用" target="_blank" rel="noopener">函数调用</a>阻塞的时间，单位：毫秒；</p>
+<p>1）返回-1，表示出错，比如在等待期间捕捉到一个信号。<br>2）返回0，表示在超时时间内没有描述符准备好。<br>3）返回一个正值，表示已经准备好的描述符的数量，<strong>不像select()需要+1</strong></p>
+<h2 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h2><p><img src="https://s2.ax1x.com/2020/02/13/1L8sHO.png" alt="1L8sHO.png"></p>
+<p>工作哪里和select差不多一样也是让内核帮忙监听fd，他将传入的struct pollfd结构体数组拷贝到内核中进行监听。<br>采用的不是位图，采用的是pollfd结构体。<br>当有数据的时候会将pollfd里面的revents置位，而不是自己pollfd本身，不像select直接将位图置位了，导致不可重用，每次都要清除。然后需要循环判断，和POLLIN&amp;一下判断是不是触发读事件(或者是其他类型的事件)，<strong>判断某种事件是否发生</strong>，是就说明有数据来了，然后revent还需要恢复成0(内核每次都把他置位，我们现在每次都恢复成0，这样每次while的时候他就恢复成原来的样子了，这样就可以重用pollfd了)。</p>
+<p><strong>相比select：</strong></p>
+<ul>
+<li>突破了1024的限制</li>
+<li>监听集合和满足监听集合分离了</li>
+<li>poll返回不像select需要加1</li>
+<li>我们虽然用poll把rset从用户态拷贝到内核态，但是也是需要较大的开销的，虽然比每次用户态和内存太之间的开销小。</li>
+<li>和select一样，poll返回后，需要轮询pollfd来获取就绪的描述符，可能需要遍历很多次</li>
+</ul>
+<h1 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h1><h2 id="参数解释：-2"><a href="#参数解释：-2" class="headerlink" title="参数解释："></a>参数解释：</h2>
       
     </div>
     
@@ -441,6 +451,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/13/STL剖析/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -519,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#select-进行轮询"><span class="nav-number">1.</span> <span class="nav-text">select()进行轮询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解释："><span class="nav-number">1.1.</span> <span class="nav-text">参数解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析：（这里以读方式）"><span class="nav-number">1.2.</span> <span class="nav-text">解析：（这里以读方式）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#poll"><span class="nav-number">2.</span> <span class="nav-text">poll()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解释：-1"><span class="nav-number">2.1.</span> <span class="nav-text">参数解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析："><span class="nav-number">2.2.</span> <span class="nav-text">解析：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#select-进行轮询"><span class="nav-number">1.</span> <span class="nav-text">select()进行轮询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解释："><span class="nav-number">1.1.</span> <span class="nav-text">参数解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析：（这里以读方式）"><span class="nav-number">1.2.</span> <span class="nav-text">解析：（这里以读方式）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#poll"><span class="nav-number">2.</span> <span class="nav-text">poll()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解释：-1"><span class="nav-number">2.1.</span> <span class="nav-text">参数解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析："><span class="nav-number">2.2.</span> <span class="nav-text">解析：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#epoll"><span class="nav-number">3.</span> <span class="nav-text">epoll</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解释：-2"><span class="nav-number">3.1.</span> <span class="nav-text">参数解释：</span></a></li></ol></li></ol></div>
             
 
           </div>

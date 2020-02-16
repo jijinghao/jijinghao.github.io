@@ -80,6 +80,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Johnson" type="application/atom+xml">
 
@@ -88,17 +90,14 @@
 
 
 
-<meta name="description" content="数据库基本知识数据库：database（DB），是一种存储数据的仓库  数据库是根据数据结构组织、存储和管理数据 数据库能长期、高效的管理和存储数据 数据库的目的就是读写数据  数据库分类数据库分类：根据数据库的架构和数据组织原理进行分类 1.早期数据库的组织数据的存储模型分类  层次数据库：基于层次的数据机构（数据分层） 网状数据库：基于网状的数据结构（数据网络） 关系数据库：基于关系迷行的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql">
-<meta property="og:url" content="http://yoursite.com/2020/02/01/Mysql/index.html">
+<meta property="og:title" content="Johnson">
+<meta property="og:url" content="http://yoursite.com/2020/02/13/STL剖析/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="数据库基本知识数据库：database（DB），是一种存储数据的仓库  数据库是根据数据结构组织、存储和管理数据 数据库能长期、高效的管理和存储数据 数据库的目的就是读写数据  数据库分类数据库分类：根据数据库的架构和数据组织原理进行分类 1.早期数据库的组织数据的存储模型分类  层次数据库：基于层次的数据机构（数据分层） 网状数据库：基于网状的数据结构（数据网络） 关系数据库：基于关系迷行的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-16T11:19:45.458Z">
+<meta property="og:updated_time" content="2020-02-12T18:39:10.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql">
-<meta name="twitter:description" content="数据库基本知识数据库：database（DB），是一种存储数据的仓库  数据库是根据数据结构组织、存储和管理数据 数据库能长期、高效的管理和存储数据 数据库的目的就是读写数据  数据库分类数据库分类：根据数据库的架构和数据组织原理进行分类 1.早期数据库的组织数据的存储模型分类  层次数据库：基于层次的数据机构（数据分层） 网状数据库：基于网状的数据结构（数据网络） 关系数据库：基于关系迷行的">
+<meta name="twitter:title" content="Johnson">
 
 
 
@@ -128,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/01/Mysql/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/13/STL剖析/">
 
 
 
 
 
-  <title>Mysql | Johnson</title>
+  <title> | Johnson</title>
   
 
 
@@ -283,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/01/Mysql/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/STL剖析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -300,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mysql</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -312,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-01T19:57:10+08:00">
-                2020-02-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T02:39:10+08:00">
+                2020-02-13
               </time>
             
 
@@ -349,7 +348,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k
+                  0
                 </span>
               
 
@@ -374,211 +373,7 @@
       
 
       
-        <a id="more"></a>
-
-<h1 id="数据库基本知识"><a href="#数据库基本知识" class="headerlink" title="数据库基本知识"></a>数据库基本知识</h1><p><strong>数据库：</strong>database（DB），是一种存储数据的仓库</p>
-<ul>
-<li>数据库是根据数据结构组织、存储和管理数据</li>
-<li>数据库能长期、高效的管理和存储数据</li>
-<li>数据库的目的就是读写数据</li>
-</ul>
-<h2 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h2><p><strong>数据库分类：</strong>根据数据库的架构和数据组织原理进行分类</p>
-<p>1.早期数据库的组织数据的存储模型分类</p>
-<ul>
-<li>层次数据库：基于层次的数据机构（数据分层）</li>
-<li>网状数据库：基于网状的数据结构（数据网络）</li>
-<li>关系数据库：基于关系迷行的数据结构（二维表）</li>
-</ul>
-<p>2.现在较多根据实际数据管理模型分类（存储介质）</p>
-<ul>
-<li>关系型数据库：基于关系模型的数据结构（二维表），通常存储在磁盘</li>
-<li>菲关系型数据库：没有具体模型的数据结构（键值对），通常存储在内存</li>
-</ul>
-<h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><p><strong>关系型数据库：</strong>是一种建立在关系模型上的数据库</p>
-<ul>
-<li>关系模型<br>1.关系数据结构（存储）<br>2.关系操作集合（操作）<br>3.关系完整性约束（约束）</li>
-<li>关系型数据库存储在磁盘中（永久性存储）</li>
-<li>关系型数据库系统（DBS）模型有四层结构<br>1.数据库管理系统（DBMS）：管理系统运行<br>2.数据库（DB）：数据存储的管理者（小管理，受DBMS管理）<br>3.数据表（Table）：数据关系管理者<br>4.数据字段（Filed）：实际数据存储者</li>
-</ul>
-<h2 id="非关系型数据库"><a href="#非关系型数据库" class="headerlink" title="非关系型数据库"></a>非关系型数据库</h2><p><strong>非关系型数据库：</strong>NoSQL（Not only SQL），不仅仅是关系型数据库</p>
-<ul>
-<li>所有不是关系型数据库的统称</li>
-<li>数据存储模型不是二维表，而是键值对</li>
-<li>存储的位置通常在内存（效率高）</li>
-<li>不能永久性存储（需要定时存到关系型数据库中）</li>
-</ul>
-<p>对比：</p>
-<ol>
-<li>NoSQL运行在内存，解决效率问题<br>I/O问题 效率问题</li>
-<li>MySQL运行在磁盘，解决稳定问题<br>永久存储 稳定</li>
-</ol>
-<p><strong>优点：</strong></p>
-<ul>
-<li>读取效率高</li>
-<li>并发访问高</li>
-<li>稳定性不高（断电即丢失）</li>
-</ul>
-<h2 id="SQL基本知识"><a href="#SQL基本知识" class="headerlink" title="SQL基本知识"></a>SQL基本知识</h2><ul>
-<li><p>SQL是一种针对关系型数据库特殊标准化的语言</p>
-</li>
-<li><p>能够实现用于数据库查询和程序设计</p>
-</li>
-<li><p>SQL根据操作不停分为以下几类（没有全部列出）</p>
-<p>1.DQL：数据查询语句，用于查询和检索数据<br>2.DML：数据操作语句，用于数据写操作(增删改)<br>3.DDL：数据定义语言，用于创建数据结构<br>4.DCL：数据控制语言，用于用于权限管理<br>5.TPL：事务处理语言，辅助DML进行事务操作（因此也归属于DML）</p>
-</li>
-</ul>
-<h2 id="MySQL基本介绍"><a href="#MySQL基本介绍" class="headerlink" title="MySQL基本介绍"></a>MySQL基本介绍</h2><p><strong>MySQL：</strong>是一种C/S结构软件，因此需要MySQL的客户端来访问服务端(数据管理)</p>
-<ul>
-<li>mysqld.exe:服务端</li>
-<li>mysql.exe:客户端</li>
-</ul>
-<p><strong>访问原理：</strong></p>
-<p>客户端-&gt;寻找服务器（host寻找）-&gt;寻找服务器(Port寻找)-&gt;验证身份（username判定，password判定）-&gt;服务端</p>
-<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><h2 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h2><p><strong>结构创建：</strong></p>
-<p>create 结构类型 结构名 结构描述;</p>
-<p><strong>显示结构：</strong></p>
-<p>show 结构类型(复数);——全部结构</p>
-<p>show create 结构类型 结构名;</p>
-<p><strong>数据操作(数据表)：</strong></p>
-<p>新增数据</p>
-<p>insert into 表名 values;</p>
-<p>查看数据</p>
-<p>select from 表名;</p>
-<p>删除数据</p>
-<p>delete from 表名;</p>
-<h2 id="SQL库操作"><a href="#SQL库操作" class="headerlink" title="SQL库操作"></a>SQL库操作</h2><h3 id="创建数据库："><a href="#创建数据库：" class="headerlink" title="创建数据库："></a><strong>创建数据库：</strong></h3><p><code>create database 数据库名字[数据库选项]</code></p>
-<p>实例：</p>
-<p>show database db_1;</p>
-<h3 id="显示数据库："><a href="#显示数据库：" class="headerlink" title="显示数据库："></a>显示数据库：</h3><p>显示所有数据库：</p>
-<p>show databases;</p>
-<p>显示数据库创建指令：</p>
-<p>show create database 数据库名;</p>
-<h3 id="使用数据库："><a href="#使用数据库：" class="headerlink" title="使用数据库："></a>使用数据库：</h3><p>在进行具体SQL指令之前让系统知道操作针对的是哪个数据库</p>
-<p>use 数据库名;</p>
-<h3 id="修改数据库："><a href="#修改数据库：" class="headerlink" title="修改数据库："></a>修改数据库：</h3><p>修改数据库：修改数据库的相关库选项</p>
-<p>数据库修改指令：</p>
-<p>alter database 数据库名字 库选项;</p>
-<p>示例：</p>
-<p>修改数据库字符集:</p>
-<p>alter database db_2 charset gbk;</p>
-<p>修改数据库校对集(如果字符集必须同时改变字符集)</p>
-<p>alter database db_3 charset gbk collate gbk_chinses_ci;</p>
-<p><strong>小结：</strong></p>
-<p>数据库的修改只能修改库选项，不能修改库名字</p>
-<h3 id="删除数据库："><a href="#删除数据库：" class="headerlink" title="删除数据库："></a>删除数据库：</h3><p><code>drop database 数据库名;</code></p>
-<h2 id="SQL表字段操作"><a href="#SQL表字段操作" class="headerlink" title="SQL表字段操作"></a>SQL表字段操作</h2><h3 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h3><p>表的创建需要指定存储的数据库</p>
-<ul>
-<li>数据库.表名</li>
-<li>use 数据库名字</li>
-</ul>
-<p>表创建语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table [数据库名.]表名(</span><br><span class="line">       字段名 字段类型,</span><br><span class="line">       ...</span><br><span class="line">       字段名 字段类型</span><br><span class="line">)表选项;</span><br></pre></td></tr></table></figure>
-
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create table t_1(</span><br><span class="line"> name varchar(50)</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
-
-<p>如果想创建一个与已有表一样的数据表：</p>
-<p>create table 表名 like 数据库名.表名</p>
-<h3 id="显示数据表"><a href="#显示数据表" class="headerlink" title="显示数据表"></a>显示数据表</h3><p>显示所有数据表，当前数据库：</p>
-<p>show tables;</p>
-<p>显示指所有数据表，指定数据库：</p>
-<p>show tables from 数据库名;</p>
-<p>显示部分管理数据表——匹配</p>
-<p>show table like ‘%数据表名’ ;  %表示匹配n个字符</p>
-<p>show table like ‘_数据表名’;  _是匹配一个字符(固定位置)</p>
-<p>显示数据表的创建指令：</p>
-<p>show create tables 数据表名; 看到的不一定是真是创建的指令，系统可能会加工</p>
-<h3 id="查看数据表"><a href="#查看数据表" class="headerlink" title="查看数据表"></a>查看数据表</h3><p>查看数据表中的具体结构</p>
-<p>三种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br><span class="line">describe 表名;</span><br><span class="line">show columns from 表名;</span><br></pre></td></tr></table></figure>
-
-<h3 id="更改数据表"><a href="#更改数据表" class="headerlink" title="更改数据表"></a>更改数据表</h3><p>修改表名：</p>
-<p>rename  table 表名 to 新表明;</p>
-<p>修改表选项：</p>
-<p>alter table 表名 库选项;</p>
-<h3 id="更改字段"><a href="#更改字段" class="headerlink" title="更改字段"></a>更改字段</h3><p>字段操作分为四类：</p>
-<p>新增字段：</p>
-<p>add[column];</p>
-<p>更改字段名：</p>
-<p>change</p>
-<p>修改类型：</p>
-<p>modify</p>
-<p>删除字段：</p>
-<p>drop</p>
-<h4 id="新增字段"><a href="#新增字段" class="headerlink" title="新增字段"></a>新增字段</h4><p>在表创建好后往里面增加其他字段，新增必须同时存在字段类型</p>
-<p>alter table 表名 add [column] 字段名 字段类型 [字段属性] [字段位置]</p>
-<p>示例：</p>
-<p>alter table t1 add age int;</p>
-<h4 id="字段位置"><a href="#字段位置" class="headerlink" title="字段位置"></a>字段位置</h4><p>字段放在某个指定字段之后</p>
-<p>字段位置分两种：</p>
-<p>第一个字段：first</p>
-<p>某个字段后：after 已经存在字段名</p>
-<p>alter table 表名 字段操作 字段位置;</p>
-<p>示例：</p>
-<p>alter table t1 add id int first;</p>
-<p>alter table t1 add card int after age;</p>
-<h4 id="更改字段名"><a href="#更改字段名" class="headerlink" title="更改字段名"></a>更改字段名</h4><p>alter table 表名 change 原字段名 新字段名 字段类型 [字段属性] [位置];</p>
-<p>示例：</p>
-<p>alter table t1 change card card1 int;</p>
-<h4 id="修改字段"><a href="#修改字段" class="headerlink" title="修改字段"></a>修改字段</h4><p>修改字段类型、字段属性、字段位置</p>
-<p>alter table 表名 modify 字段名 字段类型 [字段属性] [位置];</p>
-<p>示例：</p>
-<p>alter table t1 modify card1 varchar(50) first;</p>
-<h4 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h4><p>alter table 表名 drop 字段名;</p>
-<p>示例：</p>
-<p> alter table t1 drop card1;</p>
-<h3 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h3><h2 id="SQL数据操作"><a href="#SQL数据操作" class="headerlink" title="SQL数据操作"></a>SQL数据操作</h2><h3 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h3><p>全字段插入：insert into 表名 values(字段列表顺序对应所有值);</p>
-<p>部分字段插入：insert into 表名(字段列表) values(字段列表顺序对应值的顺序列表);</p>
-<p>示例：</p>
-<p>insert into t1 values(1,’jijinghao’,’23’);</p>
-<p> insert into t1 (name,age) value(‘baoyou’,23);</p>
-<h3 id="查看数据"><a href="#查看数据" class="headerlink" title="查看数据"></a>查看数据</h3><p>查看全部字段：select * from 表名; </p>
-<p>查看部分字段：select id from t1;</p>
-<p>示例：</p>
-<p>select id,name from t1;</p>
-<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p>更新摸个已有字段的值</p>
-<p>update 表名 set 字段=新值[,字段=新值] [where条件筛选]</p>
-<p>示例：</p>
-<p>update set id=2,age=231 where name=’baoyou’</p>
-<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>没有where会全删除的。。。</p>
-<p>delete from 表名 [where 条件]</p>
-<h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><p>字符集：charset或者charcter set，是各种文字和符号在计算机中的总称</p>
-<ul>
-<li><p>字符集根据不同国家的符号不同，有不同的字符集</p>
-</li>
-<li><p>不同字符集占用的存储空间不一样，存储底层也不一样</p>
-</li>
-<li><p>不同字符集间可以转换</p>
-</li>
-<li><p>（1）ASCII:<br>-是美国人编码，使用7位来对美国常用的字符进行编码，包含128个字符。<br>（2）ISO-8859-1:<br>-欧洲的编码，使用8位来对欧洲常用的字符进行编码，包含256个字符。</p>
-<p>（3）GB2312/GBK:<br>-国标码，只包含常见的中文，一些特殊的中文是没有，内容并不完全。</p>
-<p>（4、Unicode<br>万国码，包含了世界上所有的语言和符号<br>Unicode编码有多种实现，如：<br>UTF-8：使用1-5个字节（最常用的是UTF-8）<br>UTF-16：使用2-4个字节<br>UTF-32：使用统一的固定4四个字节来表示一个字符</p>
-<p>（5）乱码：<br>编写程序时，如果发现程序代码出现乱码的情况，要检查字符集是否正确，即编码方式是否一致；</p>
-</li>
-</ul>
-<h2 id="MYSQL字符集"><a href="#MYSQL字符集" class="headerlink" title="MYSQL字符集"></a>MYSQL字符集</h2><p>存在继承关系：字段-&gt;表-&gt;数据库-&gt;DBMS</p>
-<p>查看支持的字符集：show charset</p>
-<h2 id="乱码问题解决"><a href="#乱码问题解决" class="headerlink" title="乱码问题解决"></a>乱码问题解决</h2><p>指的是数据不能按照正确的字符集进行存储或者解析</p>
-<p>数据在存储的时候已经变成乱码：</p>
-<ul>
-<li>客户端字符集与服务端解析字符集不一致</li>
-<li>读取时向转成其他字符集都会错误</li>
-</ul>
-<p>数据存储时正确，但是读取解析成错误字符集</p>
-<ul>
-<li>客户端能即系的字符集和服务端提供的字符集不一致</li>
-</ul>
-<p>解决方案：不论存储还是读取都提前告知服务器当前客户端的字符集</p>
-<p>set names 客户端字符集;</p>
-<h2 id="字符集设置原理"><a href="#字符集设置原理" class="headerlink" title="字符集设置原理"></a>字符集设置原理</h2><p>查看系统内部存储这些记录字符集的信息</p>
-<p>show variables like ‘character_set%’; #%表示通配符，匹配所有不确定数据</p>
-<p>修改客户端字符集变量，保证数据正常存进服务端</p>
-<p>set character_set_client=gbk;</p>
-<p>修改客户端解析字符集变量，保证数据正常被客户端查看</p>
-<p>set character_set_result=gbk;</p>
-<p>批量修改，保证客户端被服务端正确理解，同时客户端也能正确解析</p>
-<p>set names gbk;</p>
-<h1 id="校对集"><a href="#校对集" class="headerlink" title="校对集"></a>校对集</h1>
+        
       
     </div>
     
@@ -602,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/15/linux系统编程/" rel="next" title="linux系统编程之进程与线程">
-                <i class="fa fa-chevron-left"></i> linux系统编程之进程与线程
+              <a href="/2020/02/12/多路IO转接模型再详解/" rel="next" title="多路IO转接模型再详解">
+                <i class="fa fa-chevron-left"></i> 多路IO转接模型再详解
               </a>
             
           </div>
@@ -611,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/04/Tinyhttpd/" rel="prev" title="小型http服务器">
-                小型http服务器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -666,17 +457,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -727,22 +509,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库基本知识"><span class="nav-number">1.</span> <span class="nav-text">数据库基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库分类"><span class="nav-number">1.1.</span> <span class="nav-text">数据库分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据库"><span class="nav-number">1.2.</span> <span class="nav-text">关系型数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非关系型数据库"><span class="nav-number">1.3.</span> <span class="nav-text">非关系型数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL基本知识"><span class="nav-number">1.4.</span> <span class="nav-text">SQL基本知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL基本介绍"><span class="nav-number">1.5.</span> <span class="nav-text">MySQL基本介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MYSQL"><span class="nav-number">2.</span> <span class="nav-text">MYSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法："><span class="nav-number">2.1.</span> <span class="nav-text">基本语法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL库操作"><span class="nav-number">2.2.</span> <span class="nav-text">SQL库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库："><span class="nav-number">2.2.1.</span> <span class="nav-text">创建数据库：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示数据库："><span class="nav-number">2.2.2.</span> <span class="nav-text">显示数据库：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用数据库："><span class="nav-number">2.2.3.</span> <span class="nav-text">使用数据库：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改数据库："><span class="nav-number">2.2.4.</span> <span class="nav-text">修改数据库：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据库："><span class="nav-number">2.2.5.</span> <span class="nav-text">删除数据库：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL表字段操作"><span class="nav-number">2.3.</span> <span class="nav-text">SQL表字段操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据表"><span class="nav-number">2.3.1.</span> <span class="nav-text">创建数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示数据表"><span class="nav-number">2.3.2.</span> <span class="nav-text">显示数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数据表"><span class="nav-number">2.3.3.</span> <span class="nav-text">查看数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改数据表"><span class="nav-number">2.3.4.</span> <span class="nav-text">更改数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改字段"><span class="nav-number">2.3.5.</span> <span class="nav-text">更改字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新增字段"><span class="nav-number">2.3.5.1.</span> <span class="nav-text">新增字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字段位置"><span class="nav-number">2.3.5.2.</span> <span class="nav-text">字段位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改字段名"><span class="nav-number">2.3.5.3.</span> <span class="nav-text">更改字段名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改字段"><span class="nav-number">2.3.5.4.</span> <span class="nav-text">修改字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除字段"><span class="nav-number">2.3.5.5.</span> <span class="nav-text">删除字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据表"><span class="nav-number">2.3.6.</span> <span class="nav-text">删除数据表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL数据操作"><span class="nav-number">2.4.</span> <span class="nav-text">SQL数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增数据"><span class="nav-number">2.4.1.</span> <span class="nav-text">新增数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数据"><span class="nav-number">2.4.2.</span> <span class="nav-text">查看数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新数据"><span class="nav-number">2.4.3.</span> <span class="nav-text">更新数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据"><span class="nav-number">2.4.4.</span> <span class="nav-text">删除数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符集"><span class="nav-number">3.</span> <span class="nav-text">字符集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL字符集"><span class="nav-number">3.1.</span> <span class="nav-text">MYSQL字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乱码问题解决"><span class="nav-number">3.2.</span> <span class="nav-text">乱码问题解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集设置原理"><span class="nav-number">3.3.</span> <span class="nav-text">字符集设置原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#校对集"><span class="nav-number">4.</span> <span class="nav-text">校对集</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

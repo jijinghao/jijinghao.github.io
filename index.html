@@ -1103,7 +1103,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  9.2k
+                  14k
                 </span>
               
 
@@ -1978,6 +1978,298 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
 <p>示例：对女性优先显示：gender为枚举，男为1，女为2</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">select * from t10 order by gender desc;</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">| id | name | gender | class |</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">|  2 | 二   | 女     |     1 |</span><br><span class="line">|  4 | 四   | 女     |     2 |</span><br><span class="line">|  7 | 七   | 女     |     3 |</span><br><span class="line">|  1 | 一   | 男     |     1 |</span><br><span class="line">|  3 | 三   | 男     |     2 |</span><br><span class="line">|  5 | 五   | 男     |     2 |</span><br><span class="line">|  6 | 六   | 男     |     3 |</span><br><span class="line">|  8 | 八   | 男     |     3 |</span><br><span class="line">|  9 | 九   | 男     |     3 |</span><br><span class="line">+----+------+--------+-------+</span><br></pre></td></tr></table></figure>
 
+<h3 id="having排序"><a href="#having排序" class="headerlink" title="having排序"></a>having排序</h3><p>having子句：类似于where，是用来进行条件筛选数据的</p>
+<ul>
+<li>本身针对分组统计结果进行条件筛选</li>
+<li>如果有group by必须在他之后</li>
+<li>针对的数据是在内存里已经加载的数据，where是在磁盘，where效率高</li>
+<li>几乎能做where所有能做的所有事。但是where却不一定<br>字段别名(where针对磁盘数据，那时还没有)<br>统计结果<br>分组统计函数(having通常是针对group by存在的)</li>
+</ul>
+<p>示例：</p>
+<p>获取班级人数小于3的班级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#多用了一次函数，效率降低</span><br><span class="line">select count(*) ,class from t10 group by class having count(*)&lt;3;</span><br><span class="line">#使用别名</span><br><span class="line">select count(*) as sum,class from t10 group by class having sum&lt;3;</span><br><span class="line">#前面不统计，having自己统计</span><br><span class="line">select class from t10 group by class having count(*)&lt;3;</span><br></pre></td></tr></table></figure>
+
+<p>总结：</p>
+<p>如果没有分组统计，不要使用having进行数据筛选</p>
+<p>能用where不使用having：</p>
+<p>  where针对磁盘读取数据，源头解决问题<br>  whre能够限制无效数据进入内存，内存使用率较高，而having是针对内存数据筛选</p>
+<h3 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h3><p>order by：升降序排序，排序的参照物是校对集</p>
+<p>默认是升序</p>
+<p>order by 字段[ASC]：升序</p>
+<p>order by 字段 DESC：降序</p>
+<p>多字段排序：再根据某个字段排序好后，可以再细分排序</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">select * from t10 order by class desc;</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">| id | name | gender | class |</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">|  6 | 六   | 男     |     3 |</span><br><span class="line">|  7 | 七   | 女     |     3 |</span><br><span class="line">|  8 | 八   | 男     |     3 |</span><br><span class="line">|  9 | 九   | 男     |     3 |</span><br><span class="line">|  3 | 三   | 男     |     2 |</span><br><span class="line">|  4 | 四   | 女     |     2 |</span><br><span class="line">|  5 | 五   | 男     |     2 |</span><br><span class="line">|  1 | 一   | 男     |     1 |</span><br><span class="line">|  2 | 二   | 女     |     1 |</span><br><span class="line">+----+------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>多字段排序：先性别降序，在按班级升序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">select * from t10 order by gender desc,class asc;</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">| id | name | gender | class |</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">|  2 | 二   | 女     |     1 |</span><br><span class="line">|  4 | 四   | 女     |     2 |</span><br><span class="line">|  7 | 七   | 女     |     3 |</span><br><span class="line">|  1 | 一   | 男     |     1 |</span><br><span class="line">|  3 | 三   | 男     |     2 |</span><br><span class="line">|  5 | 五   | 男     |     2 |</span><br><span class="line">|  6 | 六   | 男     |     3 |</span><br><span class="line">|  8 | 八   | 男     |     3 |</span><br><span class="line">|  9 | 九   | 男     |     3 |</span><br><span class="line">+----+------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>小结：</p>
+<p>排序针对的是前面所得到的结果进行排序(已经进入到内存的数据)</p>
+<p>多字段排序是基于第一个字段拍好的情况下，不改变原来排序的基调，在小范围排序</p>
+<h3 id="limit子句"><a href="#limit子句" class="headerlink" title="limit子句"></a>limit子句</h3><p>limit子句：显示数据的获取数量(记录数)</p>
+<p>如果order by存在，必须在order by之后</p>
+<p>两种限制方式语法：</p>
+<ul>
+<li>limit 数量：限制 获取的数量</li>
+<li>limit 起始位置，数量：限制数据获取的位置以及数量</li>
+</ul>
+<p>示例：</p>
+<p>获取前三条数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select * from t10 order by class desc limit 3;</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">| id | name | gender | class |</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">|  6 | 六   | 男     |     3 |</span><br><span class="line">|  7 | 七   | 女     |     3 |</span><br><span class="line">|  9 | 九   | 男     |     3 |</span><br><span class="line">+----+------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>获取第三条以后的三条数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select * from t10 limit 3,3;</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">| id | name | gender | class |</span><br><span class="line">+----+------+--------+-------+</span><br><span class="line">|  4 | 四   | 女     |     2 |</span><br><span class="line">|  5 | 五   | 男     |     2 |</span><br><span class="line">|  6 | 六   | 男     |     3 |</span><br><span class="line">+----+------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>小结：</p>
+<p>limit限制数量可以有效的减少服务器的压力和传输压力</p>
+<p>常用limit实现分页获取数据</p>
+<h2 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h2><p>限制更新：即更新时对更新的记录数进行限制,操作不可逆</p>
+<ul>
+<li>限制更新通过limit来实现</li>
+<li>限制更新其实是局部更新的一种手段，一般更多情况下是根据条件精确更新</li>
+</ul>
+<p>示例：</p>
+<p>对会员选选三个发送10元红包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">create table t11(</span><br><span class="line">	name varchar(10),</span><br><span class="line">	account decimal(10,2) default 0.00</span><br><span class="line">)charset utf8;</span><br><span class="line">insert into t11 values(&apos;a&apos;,default),</span><br><span class="line">(&apos;b&apos;,default),</span><br><span class="line">(&apos;c&apos;,default),</span><br><span class="line">(&apos;d&apos;,default),</span><br><span class="line">(&apos;e&apos;,default);</span><br><span class="line"></span><br><span class="line">update t11 set account=account+10 limit 3;</span><br><span class="line">+------+---------+</span><br><span class="line">| name | account |</span><br><span class="line">+------+---------+</span><br><span class="line">| a    |   10.00 |</span><br><span class="line">| b    |   10.00 |</span><br><span class="line">| c    |   10.00 |</span><br><span class="line">| d    |    0.00 |</span><br><span class="line">| e    |    0.00 |</span><br><span class="line">+------+---------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h2><h3 id="限制删除"><a href="#限制删除" class="headerlink" title="限制删除"></a>限制删除</h3><p>限制要删除的记录数</p>
+<ul>
+<li>使用limit</li>
+<li>一般很少使用，通常使用where精确删除</li>
+</ul>
+<p>示例：</p>
+<p>删除没有账户余额的一个用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">delete from t11 where account=0 limit 1;</span><br><span class="line">+------+---------+</span><br><span class="line">| name | account |</span><br><span class="line">+------+---------+</span><br><span class="line">| a    |   10.00 |</span><br><span class="line">| b    |   10.00 |</span><br><span class="line">| c    |   10.00 |</span><br><span class="line">| e    |    0.00 |</span><br><span class="line">+------+---------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="清空数据"><a href="#清空数据" class="headerlink" title="清空数据"></a>清空数据</h3><p>将欧力的所有数据清除，并且将表的所有状态回到原始状态</p>
+<ul>
+<li>清空数据的本质是先删除表，后创建表</li>
+<li>清空数据能够让表的一些变化状态回到原始状态，自增长回到初始值</li>
+<li>清空语法：<code>truncate 表名</code></li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">truncate t2;</span><br><span class="line">mysql&gt; select * from t2;</span><br><span class="line">+------+------+------+</span><br><span class="line">| a    | v    | c    |</span><br><span class="line">+------+------+------+</span><br><span class="line">|    1 |    1 |   01 |</span><br><span class="line">+------+------+------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; truncate t2;</span><br><span class="line">Query OK, 0 rows affected (0.04 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from t2;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h1 id="MySQL多表操作"><a href="#MySQL多表操作" class="headerlink" title="MySQL多表操作"></a>MySQL多表操作</h1><h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><h3 id="联合查询-1"><a href="#联合查询-1" class="headerlink" title="联合查询"></a>联合查询</h3><p>联合查询：union，是指将多个查询结果合并成一个结果显示</p>
+<ul>
+<li>联合查询是针对查询结果的合并(多条select语句合并)</li>
+<li>联合查询语法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select 查询</span><br><span class="line">	union 查询选项</span><br><span class="line">select 查询</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>联合查询要求：联合查询是结果联合显示<br><strong>多个连个查询的字段数量一致，列要相同</strong><br>联合查询的字段来源第一个查询语句</li>
+<li>查询选项：select是all默认<br>all：保留所有记录<br>distinct：保留去重记录(默认)</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t12</span><br><span class="line">    -&gt; union all</span><br><span class="line">    -&gt; select * from t11;</span><br><span class="line">+------+---------+</span><br><span class="line">| name | account |</span><br><span class="line">+------+---------+</span><br><span class="line">| a    |    0.00 |</span><br><span class="line">| b    |    0.00 |</span><br><span class="line">| c    |    0.00 |</span><br><span class="line">| d    |    0.00 |</span><br><span class="line">| e    |    0.00 |</span><br><span class="line">| a    |   10.00 |</span><br><span class="line">| b    |   10.00 |</span><br><span class="line">| c    |   10.00 |</span><br><span class="line">| e    |    0.00 |</span><br><span class="line">| a    |    0.00 |</span><br><span class="line">| b    |    0.00 |</span><br><span class="line">| c    |    0.00 |</span><br><span class="line">| d    |    0.00 |</span><br><span class="line">| e    |    0.00 |</span><br><span class="line">+------+---------+</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from t12</span><br><span class="line">    -&gt; union</span><br><span class="line">    -&gt; select * from t11;</span><br><span class="line">+------+---------+</span><br><span class="line">| name | account |</span><br><span class="line">+------+---------+</span><br><span class="line">| a    |    0.00 |</span><br><span class="line">| b    |    0.00 |</span><br><span class="line">| c    |    0.00 |</span><br><span class="line">| d    |    0.00 |</span><br><span class="line">| e    |    0.00 |</span><br><span class="line">| a    |   10.00 |</span><br><span class="line">| b    |   10.00 |</span><br><span class="line">| c    |   10.00 |</span><br><span class="line">+------+---------+</span><br></pre></td></tr></table></figure>
+
+<p>字段数量相同可以显示出来，但是参照的是第一个查询的数据表的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">create table t13(</span><br><span class="line">	id int,</span><br><span class="line">	name varchar(10)</span><br><span class="line">)charset utf8;</span><br><span class="line">create table t14(</span><br><span class="line">	age int,</span><br><span class="line">	password varchar(20)</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">insert into t13 values(1,&apos;a&apos;),(2,&apos;b&apos;),(3,&apos;c&apos;);</span><br><span class="line">insert into t14 values(4,&apos;aa&apos;),(5,&apos;bb&apos;),(6,&apos;cc&apos;);</span><br><span class="line">select * from t13</span><br><span class="line">union all</span><br><span class="line">select * from t14;</span><br><span class="line">+------+------+</span><br><span class="line">| id   | name |</span><br><span class="line">+------+------+</span><br><span class="line">|    1 | a    |</span><br><span class="line">|    2 | b    |</span><br><span class="line">|    3 | c    |</span><br><span class="line">|    4 | aa   |</span><br><span class="line">|    5 | bb   |</span><br><span class="line">|    6 | cc   |</span><br><span class="line">+------+------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="联合查询排序"><a href="#联合查询排序" class="headerlink" title="联合查询排序"></a>联合查询排序</h3><p>联合查询排序：针对联合查询的结果进行排序</p>
+<ul>
+<li>order by本身是对内存结果进行排序，union的优先级高于order by，所以order by默认是对union结果进行排序</li>
+<li>如果想要对单独select的结果进行排序，需要两个步骤<br>将排序的select指令进行括号包裹(括号里使用order by)</li>
+<li>order by必须配合limit才能生效(limit一个足够大的数值即可)</li>
+</ul>
+<p>示例：</p>
+<p>降序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#针对的是整个union之后的结果</span><br><span class="line">select * from t13</span><br><span class="line">union all</span><br><span class="line">select * from t14</span><br><span class="line">order by id desc;</span><br><span class="line">+------+------+</span><br><span class="line">| id   | name |</span><br><span class="line">+------+------+</span><br><span class="line">|    6 | cc   |</span><br><span class="line">|    5 | bb   |</span><br><span class="line">|    4 | aa   |</span><br><span class="line">|    3 | c    |</span><br><span class="line">|    2 | b    |</span><br><span class="line">|    1 | a    |</span><br><span class="line">+------+------+</span><br></pre></td></tr></table></figure>
+
+<p>t13 的id降序，t14的id升序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">alter table t13 change age id int;#不一样自己先修改了一下字段名称</span><br><span class="line">#无效方式</span><br><span class="line">(select * from t13 order by id desc)</span><br><span class="line">union</span><br><span class="line">(select * from t14 order by id);</span><br><span class="line">+------+------+</span><br><span class="line">| id   | name |</span><br><span class="line">+------+------+</span><br><span class="line">|    1 | a    |</span><br><span class="line">|    2 | b    |</span><br><span class="line">|    3 | c    |</span><br><span class="line">|    4 | aa   |</span><br><span class="line">|    5 | bb   |</span><br><span class="line">|    6 | cc   |</span><br><span class="line">+------+------+</span><br><span class="line">#正确方式</span><br><span class="line">(select * from t13 order by id desc limit 99999)</span><br><span class="line">union</span><br><span class="line">(select * from t14 order by id limit 99999);</span><br><span class="line">+------+------+</span><br><span class="line">| id   | name |</span><br><span class="line">+------+------+</span><br><span class="line">|    3 | c    |</span><br><span class="line">|    2 | b    |</span><br><span class="line">|    1 | a    |</span><br><span class="line">|    4 | aa   |</span><br><span class="line">|    5 | bb   |</span><br><span class="line">|    6 | cc   |</span><br><span class="line">+------+------+</span><br></pre></td></tr></table></figure>
+
+<p>小结：联合排序需要区分排序的内容是select结果还是union结果</p>
+<ul>
+<li>union结果：在最后使用order by排序就好了</li>
+<li>select结果：需要针对select使用排序<br>select必须使用括号包裹<br>select的排序必须配合limit才会生效</li>
+</ul>
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>连接查询：join，将两张表依据某个条件进行数据拼接</p>
+<ul>
+<li>join左右各一张表：join关键字左边的表叫左表，右边的表叫右表</li>
+<li>连接查询的结果会保留左右表的所有字段<br>具体字段数据依据查询需求确定<br>表冲突需要使用表别名和字段别名区分</li>
+<li>不同的连表有不同的连接方式，对于结果的处理也不尽相同</li>
+<li>连接查询不限定表的数量，可以进行多表连接，只是标的连接需要一个一个连(a join b join c)</li>
+</ul>
+<h3 id="交叉连接"><a href="#交叉连接" class="headerlink" title="交叉连接"></a>交叉连接</h3><p>交叉连接：cross join，不需要连接条件的连接</p>
+<p>交叉连接产生的结果就是笛卡尔积：左表的每一条记录与油表的所有记录连接并保留</p>
+<p>交叉连接没有实际数据价值，只是丰富了连接查询的完整性</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">select * from t10 cross join t13;</span><br><span class="line">+----+------+--------+-------+------+------+</span><br><span class="line">| id | name | gender | class | id   | name |</span><br><span class="line">+----+------+--------+-------+------+------+</span><br><span class="line">|  1 | 一   | 男     |     1 |    1 | a    |</span><br><span class="line">|  1 | 一   | 男     |     1 |    2 | b    |</span><br><span class="line">|  1 | 一   | 男     |     1 |    3 | c    |</span><br><span class="line">|  2 | 二   | 女     |     1 |    1 | a    |</span><br><span class="line">|  2 | 二   | 女     |     1 |    2 | b    |</span><br><span class="line">|  2 | 二   | 女     |     1 |    3 | c    |</span><br><span class="line">|  3 | 三   | 男     |     2 |    1 | a    |</span><br><span class="line">|  3 | 三   | 男     |     2 |    2 | b    |</span><br><span class="line">|  3 | 三   | 男     |     2 |    3 | c    |</span><br><span class="line">|  4 | 四   | 女     |     2 |    1 | a    |</span><br><span class="line">|  4 | 四   | 女     |     2 |    2 | b    |</span><br><span class="line">|  4 | 四   | 女     |     2 |    3 | c    |</span><br><span class="line">|  5 | 五   | 男     |     2 |    1 | a    |</span><br><span class="line">|  5 | 五   | 男     |     2 |    2 | b    |</span><br><span class="line">|  5 | 五   | 男     |     2 |    3 | c    |</span><br><span class="line">|  6 | 六   | 男     |     3 |    1 | a    |</span><br><span class="line">|  6 | 六   | 男     |     3 |    2 | b    |</span><br><span class="line">|  6 | 六   | 男     |     3 |    3 | c    |</span><br><span class="line">|  7 | 七   | 女     |     3 |    1 | a    |</span><br><span class="line">|  7 | 七   | 女     |     3 |    2 | b    |</span><br><span class="line">|  7 | 七   | 女     |     3 |    3 | c    |</span><br><span class="line">|  8 | 八   | 男     |     3 |    1 | a    |</span><br><span class="line">|  8 | 八   | 男     |     3 |    2 | b    |</span><br><span class="line">|  8 | 八   | 男     |     3 |    3 | c    |</span><br><span class="line">|  9 | 九   | 男     |     3 |    1 | a    |</span><br><span class="line">|  9 | 九   | 男     |     3 |    2 | b    |</span><br><span class="line">|  9 | 九   | 男     |     3 |    3 | c    |</span><br><span class="line">+----+------+--------+-------+------+------+</span><br></pre></td></tr></table></figure>
+
+<p>小结：</p>
+<p>笛卡尔积无意义，应尽量避免</p>
+<h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><p>内连接：inner join，将两张表根据指定条件连接起来，严格连接</p>
+<ul>
+<li><p>内连接将一张表的每一条记录去领一张表根据条件匹配</p>
+<p>匹配成功：保留连接的数据<br>匹配失败：都不保留</p>
+</li>
+<li><p>内连接语法：<code>左表 join 右表 on 连接条件</code></p>
+</li>
+</ul>
+<p>示例：</p>
+<p>设计学生表和专业表：学生和专业一一对应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">create table t15(</span><br><span class="line">	id int primary key auto_increment,</span><br><span class="line">	name varchar(50) not null,</span><br><span class="line">	couse_no int</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">insert into t15 values(null,&apos;student1&apos;,1),</span><br><span class="line">(null,&apos;student2&apos;,1),</span><br><span class="line">(null,&apos;student3&apos;,2),</span><br><span class="line">(null,&apos;student4&apos;,3),</span><br><span class="line">(null,&apos;student5&apos;,1),</span><br><span class="line">(null,&apos;student6&apos;,default);</span><br><span class="line"></span><br><span class="line">create table t16(</span><br><span class="line">	id int primary key auto_increment,</span><br><span class="line">	name varchar(50) not null unique</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">insert into t16 values(null,&apos;comouter&apos;),(null,&apos;software&apos;),(null,&apos;network&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>获取已经选择专业的学生信息，包括所选专业</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#学生和专业在两个表中，所以需要连表</span><br><span class="line">#学生必须有专业，专业也必须存在，所以是内连接</span><br><span class="line">#连接条件：专业编号</span><br><span class="line">#两张表有字段冲突：id、name，所以需要别名分辨</span><br><span class="line"></span><br><span class="line">select t15.*,t16.name as course_name from t15 inner join t16 on t15.couse_no=t16.id;</span><br><span class="line">+----+----------+----------+-------------+</span><br><span class="line">| id | name     | couse_no | course_name |</span><br><span class="line">+----+----------+----------+-------------+</span><br><span class="line">|  1 | student1 |        1 | comouter    |</span><br><span class="line">|  2 | student2 |        1 | comouter    |</span><br><span class="line">|  3 | student3 |        2 | software    |</span><br><span class="line">|  4 | student4 |        3 | network     |</span><br><span class="line">|  5 | student5 |        1 | comouter    |</span><br><span class="line">+----+----------+----------+-------------+</span><br><span class="line">#表名的使用也可以使用别名</span><br><span class="line">select s.*,c.name as c_name from t15 as s inner join t16 as c on s.couse_no=c.id;</span><br><span class="line">+----+----------+----------+----------+</span><br><span class="line">| id | name     | couse_no | c_name   |</span><br><span class="line">+----+----------+----------+----------+</span><br><span class="line">|  1 | student1 |        1 | comouter |</span><br><span class="line">|  2 | student2 |        1 | comouter |</span><br><span class="line">|  3 | student3 |        2 | software |</span><br><span class="line">|  4 | student4 |        3 | network  |</span><br><span class="line">|  5 | student5 |        1 | comouter |</span><br><span class="line">+----+----------+----------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>小结：</p>
+<p>必须保证左边和右表同时存储连接关系，这样的数据才会保留</p>
+<p>可以没有on，但是结果是笛卡尔积</p>
+<p>内连接的on可以变成where，结果一样，但是原理是不一样的</p>
+<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3><p>外连接：outer ioin，是一种不严格的连接方式，保证主表数据保存(也就是不管是否为null都保留)</p>
+<ul>
+<li>外连接分为两种：<br>左外连接(左连接)：left join<br>右外连接(右连接)：right join</li>
+<li>外连接有主表和从表之分：左连接左表为主表，右连接右表为主表</li>
+<li>外连接试讲主表的记录去匹配从表的记录<br>匹配成功：保留<br>匹配失败：也保留，只是从表字段置空</li>
+</ul>
+<p>示例：</p>
+<p>查出所有学生信息，包括所在班级(左连接)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#主要数据时学生，而且是全部学生：外连接，且学生表是主表</span><br><span class="line">select s.*,c.name as c_name from t15 as s left join t16 as c on s.couse_no=c.id;</span><br><span class="line">+----+----------+----------+----------+</span><br><span class="line">| id | name     | couse_no | c_name   |</span><br><span class="line">+----+----------+----------+----------+</span><br><span class="line">|  1 | student1 |        1 | comouter |</span><br><span class="line">|  2 | student2 |        1 | comouter |</span><br><span class="line">|  3 | student3 |        2 | software |</span><br><span class="line">|  4 | student4 |        3 | network  |</span><br><span class="line">|  5 | student5 |        1 | comouter |</span><br><span class="line">|  6 | student6 |     NULL | NULL     |</span><br><span class="line">+----+----------+----------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>查出所有班级里的所有学生专，右连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">select s.*,c.name as c_name from t15 as s right join t16 as c on s.couse_no=c.id;</span><br><span class="line">+------+----------+----------+----------+</span><br><span class="line">| id   | name     | couse_no | c_name   |</span><br><span class="line">+------+----------+----------+----------+</span><br><span class="line">|    1 | student1 |        1 | comouter |</span><br><span class="line">|    2 | student2 |        1 | comouter |</span><br><span class="line">|    3 | student3 |        2 | software |</span><br><span class="line">|    4 | student4 |        3 | network  |</span><br><span class="line">|    5 | student5 |        1 | comouter |</span><br><span class="line">+------+----------+----------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>小结：</p>
+<p>外连接与内连接的区别在于数据匹配失败的时候，外连接会保留一条记录，主表数据保留，从表数据置空</p>
+<p>不论左右，字段顺序不影响，都是先显示左后显示右</p>
+<p>外连接必须使用on作为连接条件，不能没有或者使用where替代</p>
+<h3 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h3><p>自然连接：natural join，是一种自动寻找连接条件的连接查询</p>
+<ul>
+<li>自然连接不算一种特殊的连接方式，而是一种自动匹配条件的连接</li>
+<li>自然连接包含自然内连接和自然外连接<br>自然内连接：natural join<br>自然外连接：natural left/right join</li>
+<li>自然连接条件匹配模式：自动寻找相同字段名作为连接条件</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from t15 natural join t16;</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from t15 natural join t16;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>自然连接不管字段是否有关系，只管名字是否相同，如果想要自然连接成功，那么我们的设计就必须非常规范</p>
+<p>小结：</p>
+<p>自然连接本身不是一种特别连接，是基于内连接，外联及和交叉连接实现自动条件匹配而已</p>
+<ul>
+<li>没有条件(没有同名字段)：交叉连接</li>
+<li>有条件：内连接/外连接(看关键字使用)</li>
+</ul>
+<p>自然连接很少，因为很难做到完全标准或者不会出现无关同名字段</p>
+<h3 id="using关键字"><a href="#using关键字" class="headerlink" title="using关键字"></a>using关键字</h3><p>作用：连接查询时如果是同名字段作为连接条件，using可以替代on出现(比on更好)</p>
+<ul>
+<li>using是针对同名字段(using(id)==A.id==B.id)</li>
+<li>using 关键字使用后悔自动合并字段为一个</li>
+<li>using可以使用多个字段作为条件</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">using等价于join操作中的on，例如a和b根据id字段关联，那么以下等价</span><br><span class="line">using(id)</span><br><span class="line">on a.id=b.id</span><br><span class="line">以下2个实例等价：</span><br><span class="line">select a.name,b.age from test as a</span><br><span class="line">join test2 as b</span><br><span class="line">on a.id=b.id</span><br><span class="line"></span><br><span class="line">select a.name,b.age from test as a</span><br><span class="line">join test2 as b</span><br><span class="line">using(id)</span><br></pre></td></tr></table></figure>
+
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>子查询：sub query，通过select查询结果当做另外一条select查询的条件或者数据源</p>
+<p>示例：</p>
+<p>向查出某个专业的所有学生信息</p>
+<p>查询目标是学生表</p>
+<p>查询的条件在专业表</p>
+<p>分表查询:</p>
+<p>从专业表通过名字查出id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select c_id from t1 where c_name=&apos;专业名字&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>从学生表通过专业id取出学生信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t2 where c_id=&apos;查出来的id&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>连表查询：</p>
+<p>将学生表和专业表通过专业id相连</p>
+<p>对整个连表结果通过where条件进行筛选</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select s.* from t1 s right join t2 c using(c_id) where c.c_name=&apos;专业名字&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样是连接之后又进行筛选效率太低</p>
+<p>子查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t1 where c_id=(select c_id from t2 where c_name=&apos;专业名字&apos;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="子查询分类"><a href="#子查询分类" class="headerlink" title="子查询分类"></a>子查询分类</h3><p>子查询分类：根据<strong>子查询出现的位置</strong>或者<strong>产生的数据效果</strong>分类</p>
+<p>位置分类：</p>
+<ul>
+<li>from子查询：子查询出现在from后做数据源(表子查询)</li>
+<li>where子查询：子查询出现在where后做数据条件</li>
+</ul>
+<p>按子查询得到的结果分类</p>
+<ul>
+<li>标量子查询：子查询返回的结果是一行一列(一个数据)</li>
+<li>列子查询：子查询返回的结果是一列多行(一列数据)</li>
+<li>行子查询：子查询返回的结果是一行多列</li>
+<li>表子查询：子查询返回的结果是一个二维表</li>
+<li>exists子查询：子查询返回的结果是布尔结果(验证性)</li>
+</ul>
+<p>子查询需要括号包裹，必要时需要对子查询结果进行别名处理(from子查询)</p>
+<h3 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h3><p>标量子查询：子查询返回的结果是一行一列，一个值</p>
+<p>用来做其他查询的条件</p>
+<p>步骤：</p>
+<p>1、确定要冲从张表中获取数据，也可以是多张</p>
+<p>2、确定查询条件在当前查询表中无法实现但是可以从其他表中精确获得(只有一个)</p>
+<p>3、使用标量子查询</p>
+<p>示例：</p>
+<p>获取compute专业的所有学生</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#数据目标：学生表t15</span><br><span class="line">#条件：专业名字，不在t15中，但是t16中的专业id可以通过专业名字在领一张表精确获得(一个值)</span><br><span class="line">select * from t15 where id=(select id from t16 where name=&apos;computer&apos;);</span><br><span class="line">+----+----------+----------+</span><br><span class="line">| id | name     | couse_no |</span><br><span class="line">+----+----------+----------+</span><br><span class="line">|  1 | student1 |        1 |</span><br><span class="line">+----+----------+----------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="列子查询"><a href="#列子查询" class="headerlink" title="列子查询"></a>列子查询</h3><p>列子查询：子查询返回的结果是一列多行</p>
+<p>列子查询通常是用来做查询条件的</p>
+<p>步骤：</p>
+<ul>
+<li>确定要从一张表中获取数据(可以是多张)</li>
+<li>确定查询条件在当前查询表中无法实现但是可以从其他表中精确获得(一个字段多个数据)</li>
+<li>使用列子查询</li>
+</ul>
+<p>示例：</p>
+<p>1.获取所有学生的班级信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#数据获取目标是班级信息</span><br><span class="line">#数据获取条件是在学生表中的班级id，是多个</span><br><span class="line">select * from t t16 where id in (select id from t15);</span><br></pre></td></tr></table></figure>
+
+<h3 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h3><p>行子查询：子查询返回的是一行多列</p>
+<p>步骤：</p>
+<p>确定获取的条件不只是一个字段</p>
+<p>确定数据条件来源不在当前表(也可以在当前表)，但是可以通过条件精确获取到(一行多列)</p>
+<p>示例：</p>
+<p>查询学生表中性别和年龄都和Tom一样的学生信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t40 where gender=(select gender from t42 where name=&apos;Tom&apos;) and age=(select age from t42 where name=&apos;Tom&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>以上查询用到两次子查询，效率低，而且字段一样可以用行子查询解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t40 where (gender,age)=(select gender,age from t42 where name =&apos;Tom&apos;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="表子查询"><a href="#表子查询" class="headerlink" title="表子查询"></a>表子查询</h3><p>表子查询：子查询返回的结果是多行多列</p>
+<ul>
+<li>表子查询多出现在from之后当做数据源(from子查询)</li>
+<li>表子查询通常是为了相对数据进行一次加工处理，然后再交给外部进行二次加工处理</li>
+</ul>
+<p>步骤：</p>
+<ul>
+<li>需要查询的数据通过一次SQL查询不能直接搞定</li>
+<li>如果先把结果加工后，外部再来一层结果查询加工可以完成目标</li>
+</ul>
+<p>示例：</p>
+<p>获取学生表中每个班级里年龄最大的学生信息，然后按照年龄降序排序显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select any_value(name),max(age) m_age,class_name from (select name,age,class_name from t42 order by age desc limit 99999) as t group by class_name;</span><br><span class="line">#想要让子查询中的order by生效，需要向联合查询一样带上limit</span><br></pre></td></tr></table></figure>
+
+<h3 id="exists子查询"><a href="#exists子查询" class="headerlink" title="exists子查询"></a>exists子查询</h3><p>exists子查询：带入查询，将主表(外部查询)的每一行带入到子表(子查询表)进行校验</p>
+<p>子查询返回的结果是布尔结果，成功返回true，失败返回false</p>
+<p>exists子查询通常作为where条件使用，where exists(子查询)</p>
+<p>示例：</p>
+<p>获取所有有学会说呢过的班级信息t46</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#获取的数据时班级表t46</span><br><span class="line">#班级是否有学生在t45中确认，并不需要t45提供任何数据显示</span><br><span class="line">select * from t46 c where exists(select c_id from t45 where c.cid=c_id);</span><br></pre></td></tr></table></figure>
+
+<h3 id="比较方式"><a href="#比较方式" class="headerlink" title="比较方式"></a>比较方式</h3><p>比较方式：在子查询中可以使用一些特定的比较方式</p>
+<ul>
+<li><p>all：满足后面全部条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;all(结果集)：数据只要大于结果集中的全部数据</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>any：满足任意条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=any(结果集)：数据只要与结果集中的任何一个元素相等</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>some：满足任意条件(和any完全一样)</p>
+</li>
+<li><p>结果集：可以是直接得数据也可以是子查询结果(通常是列子查询)</p>
+</li>
+</ul>
+<p>示例：</p>
+<p>t40和t42中年龄相同的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#使用in列子查询</span><br><span class="line">select * from t40 where age in (select distinct age from t42);</span><br><span class="line">#使用exists子查询</span><br><span class="line">select * from t40 t1 where exists(select id from t42 where t1.age=age);</span><br><span class="line">#使用any或者some匹配</span><br><span class="line">select * from t40 where age=some(select age from t42);</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -2089,7 +2381,7 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  16.2k
+                  16.4k
                 </span>
               
 
@@ -2614,8 +2906,8 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x 1 jjh jjh 11176 1月  30 19:57 myfifo</span><br><span class="line">-rw-r--r-- 1 jjh jjh   269 1月  30 19:57 myfifo.c</span><br><span class="line">prw-r--r-- 1 jjh jjh     0 1月  30 19:58 mytestfifo</span><br><span class="line"></span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;errno.h&gt;</span><br><span class="line">#include&lt;sys/stat.h&gt;</span><br><span class="line">void sys_err(const char *str)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	perror(str);</span><br><span class="line">	exit(1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int ret=mkfifo(&quot;mytestfifo&quot;,0644);</span><br><span class="line">	if(ret==-1)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		sys_err(&quot;mkfifo error&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="共享存储映射"><a href="#共享存储映射" class="headerlink" title="共享存储映射"></a><strong>共享存储映射</strong></h2><h3 id="文件进程间通信"><a href="#文件进程间通信" class="headerlink" title="文件进程间通信"></a><strong>文件进程间通信</strong></h3><p>使用文件也可以完成IPC，理论依据是，fork后，父子进程共享文件描述符。也就共享打开的文件。</p>
-<h3 id="存储映射I-O"><a href="#存储映射I-O" class="headerlink" title="存储映射I/O"></a><strong>存储映射I/O</strong></h3><p> 存储映射I/O (Memory-mapped I/O) 使一个磁盘文件与存储空间中的一个缓冲区相映射。于是当从缓冲区中取数据，就相当于读文件中的相应字节。于此类似，将数据存入缓冲区，则相应的字节就自动写入文件。这样，就可在不适用read和write函数的情况下，使用地址（指针）完成I/O操作。</p>
-<p> 使用这种方法，首先应通知内核，将一个指定文件映射到存储区域中。这个映射工作可以通过mmap函数来实现。</p>
+<h3 id="存储映射I-O"><a href="#存储映射I-O" class="headerlink" title="存储映射I/O"></a><strong>存储映射I/O</strong></h3><p> 存储映射I/O (Memory-mapped I/O) 使一个磁盘文件与存储空间中的一个缓冲区相映射。于是当从缓冲区中取数据，就相当于读文件中的相应字节。于此类似，将数据存入缓冲区，则相应的字节就自动写入文件。<strong>这样，就可在不适用read和write函数的情况下，使用地址（指针）完成I/O操作。</strong></p>
+<p>使用这种方法，首先应通知内核，将一个指定文件映射到存储区域中。这个映射工作可以通过mmap函数来实现。</p>
 <h4 id="mmap函数"><a href="#mmap函数" class="headerlink" title="mmap函数"></a><strong>mmap函数</strong></h4><p>void *mmap(void *adrr, size_t length, int prot, int flags, int fd, off_t offset);</p>
 <p>返回：成功：返回创建的映射区首地址；<strong>失败：MAP_FAILED宏</strong></p>
 <p>参数：</p>
@@ -2627,9 +2919,9 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
 <p> MAP_PRIVATE: 映射区所做的修改不会反映到物理设备。</p>
 <p> fd： 用来建立映射区的文件描述符</p>
 <p> offset： 映射文件的偏移(4k的整数倍)</p>
-<h4 id="munmap函数"><a href="#munmap函数" class="headerlink" title="munmap函数"></a><strong>munmap函数</strong></h4><p> 同malloc函数申请内存空间类似的，mmap建立的映射区在使用结束后也应调用类似free的函数来释放。</p>
+<h4 id="munmap函数"><a href="#munmap函数" class="headerlink" title="munmap函数"></a><strong>munmap函数</strong></h4><p>同malloc函数申请内存空间类似的，mmap建立的映射区在使用结束后也应调用类似free的函数来释放。</p>
 <p>int munmap(void *addr, size_t length); 成功：0； 失败：-1</p>
-<p> 借鉴malloc和free函数原型，尝试装自定义函数smalloc，sfree来完成映射区的建立和释放。思考函数接口该如何设计？</p>
+<p>借鉴malloc和free函数原型，尝试装自定义函数smalloc，sfree来完成映射区的建立和释放。思考函数接口该如何设计？</p>
 <h4 id="mmap注意事项"><a href="#mmap注意事项" class="headerlink" title="mmap注意事项"></a><strong>mmap注意事项</strong></h4><p>思考：</p>
 <ol>
 <li>可以open的时候O_CREAT一个新文件来创建映射区吗?</li>
@@ -2658,7 +2950,15 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
 <p>结论：父子进程共享：1. 打开的文件 2. mmap建立的映射区(但必须要使用MAP_SHARED)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;sys/wait.h&gt;</span><br><span class="line">#include&lt;fcntl.h&gt;</span><br><span class="line">#include&lt;sys/mman.h&gt;</span><br><span class="line">#include&lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">int var=100;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	int *p;</span><br><span class="line">	pid_t pid;</span><br><span class="line"></span><br><span class="line">	int fd;</span><br><span class="line">	fd=open(&quot;temp&quot;,O_RDWR|O_CREAT|O_TRUNC,0644);</span><br><span class="line">	if(fd&lt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;open error&quot;);</span><br><span class="line">		exit(1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ftruncate(fd,4);//拓展成4个字节</span><br><span class="line"></span><br><span class="line">	p=mmap(NULL,4,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);</span><br><span class="line">	if(p==MAP_FAILED)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;mmap error&quot;);</span><br><span class="line">		exit(1);</span><br><span class="line">	&#125;</span><br><span class="line">	close(fd); //映射区建立完毕，即可关闭文件</span><br><span class="line"></span><br><span class="line">	pid=fork();</span><br><span class="line">	if(pid==0)</span><br><span class="line">	&#123;</span><br><span class="line">		*p=2000;   //写共享内存</span><br><span class="line">		var=1000;</span><br><span class="line">		printf(&quot;child , *p=%d,var=%d\n&quot;,*p,var);</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		sleep(1);</span><br><span class="line">		printf(&quot;parent , *p=%d,var=%d\n&quot;,*p,var); //读共享内存</span><br><span class="line">		wait(NULL);</span><br><span class="line">		int ret=munmap(p,4); //释放共享内存</span><br><span class="line">		if(ret==-1)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			perror(&quot;munmap error&quot;);</span><br><span class="line">		    exit(1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="mmap无血缘关系进程间通信"><a href="#mmap无血缘关系进程间通信" class="headerlink" title="mmap无血缘关系进程间通信"></a><strong>mmap无血缘关系进程间通信</strong></h3><p>实质上mmap是内核借助文件帮我们创建了一个映射区，多个进程之间利用该映射区完成数据传递。由于内核空间多进程共享，因此无血缘关系的进程间也可以使用mmap来完成通信。只要设置相应的标志位参数flags即可。若想实现共享，当然应该使用MAP_SHARED了。</p>
+<h3 id="ftruncate函数"><a href="#ftruncate函数" class="headerlink" title="ftruncate函数"></a>ftruncate函数</h3><p><strong>ftruncate</strong>（改变文件大小）</p>
+<p>定义函数 int <strong>ftruncate</strong>(int fd,off_t length);</p>
+<p>函数说明</p>
+<p><strong>ftruncate</strong>()会将参数fd指定的文件大小改为参数length指定的大小。</p>
+<p>参数fd为已打开的<a href="https://baike.baidu.com/item/文件描述词" target="_blank" rel="noopener">文件描述词</a>，而且必须是以写入模式打开的文件。</p>
+<p>如果原来的文件大小比参数length大，则超过的部分会被删去。</p>
+<p>返回值</p>
+<p>执行成功则返回0，失败返回-1，错误原因存于<a href="https://baike.baidu.com/item/errno/11040395" target="_blank" rel="noopener">errno</a>。</p>
+<h3 id="mmap无血缘关系进程间通信"><a href="#mmap无血缘关系进程间通信" class="headerlink" title="mmap无血缘关系进程间通信"></a>mmap无血缘关系进程间通信</h3><p>实质上mmap是内核借助文件帮我们创建了一个映射区，多个进程之间利用该映射区完成数据传递。由于内核空间多进程共享，因此无血缘关系的进程间也可以使用mmap来完成通信。只要设置相应的标志位参数flags即可。若想实现共享，当然应该使用MAP_SHARED了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;sys/wait.h&gt;</span><br><span class="line">#include&lt;fcntl.h&gt;</span><br><span class="line">#include&lt;sys/mman.h&gt;</span><br><span class="line">#include&lt;sys/wait.h&gt;</span><br><span class="line">struct student</span><br><span class="line">&#123;</span><br><span class="line">	int id;</span><br><span class="line">	char name[256];</span><br><span class="line">	int age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void sys_err(const char *str)</span><br><span class="line">&#123;</span><br><span class="line">	perror(&quot;str&quot;);</span><br><span class="line">	exit(1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc,char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int fd;</span><br><span class="line">	struct student stu=&#123;1,&quot;xiaoming&quot;,18&#125;;</span><br><span class="line">	struct student *p;</span><br><span class="line">	fd=open(&quot;test_map&quot;,O_RDWR|O_CREAT|O_TRUNC,0644);</span><br><span class="line">	if(fd==-1)</span><br><span class="line">	&#123;</span><br><span class="line">		sys_err(&quot;open error&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ftruncate(fd,sizeof(stu));</span><br><span class="line"></span><br><span class="line">	p=mmap(NULL,sizeof(stu),PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);</span><br><span class="line">    if(p==MAP_FAILED)</span><br><span class="line">	&#123;</span><br><span class="line">		sys_err(&quot;mmap error&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	close(fd);</span><br><span class="line"></span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		memcpy(p,&amp;stu,sizeof(stu));//操作mmap内容</span><br><span class="line">		stu.id++;</span><br><span class="line">		sleep(1);</span><br><span class="line">	&#125;</span><br><span class="line">	munmap(p,sizeof(stu));</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;sys/wait.h&gt;</span><br><span class="line">#include&lt;fcntl.h&gt;</span><br><span class="line">#include&lt;sys/mman.h&gt;</span><br><span class="line">#include&lt;sys/wait.h&gt;</span><br><span class="line">struct student</span><br><span class="line">&#123;</span><br><span class="line">	int id;</span><br><span class="line">	char name[256];</span><br><span class="line">	int age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void sys_err(const char *str)</span><br><span class="line">&#123;</span><br><span class="line">	perror(&quot;str&quot;);</span><br><span class="line">	exit(1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc,char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int fd;</span><br><span class="line">	struct student stu;</span><br><span class="line">	struct student *p;</span><br><span class="line">	fd=open(&quot;test_map&quot;,O_RDONLY);</span><br><span class="line">	if(fd==-1)</span><br><span class="line">	&#123;</span><br><span class="line">		sys_err(&quot;open error&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	p=mmap(NULL,sizeof(stu),PROT_READ,MAP_SHARED,fd,0);</span><br><span class="line">    if(p==MAP_FAILED)</span><br><span class="line">	&#123;</span><br><span class="line">		sys_err(&quot;mmap error&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	close(fd);</span><br><span class="line"></span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;id=%d name=%s age=%d\n&quot;,p-&gt;id,p-&gt;name,p-&gt;age);</span><br><span class="line">		sleep(1);</span><br><span class="line">	&#125;</span><br><span class="line">	munmap(p,sizeof(stu));</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

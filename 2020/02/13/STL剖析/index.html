@@ -88,14 +88,38 @@
 
 
 
+<meta name="description" content="STL六大部件 容器：是模板类，不考虑内存 分配器：分配器支持容器，为他安排内存 算法：模板函数， 迭代器：一种泛化指针，v.begin()、v.end()就像是指针一样指着头尾 适配器：将容器，迭代器，适配器做一些转换 仿函数：  可以看到vector&amp;lt;int,allocator&amp;gt;第二个参数是分配器，现在往往忽略，分配器默默支持他，为容器分配内存空间 前闭后开区间 c.end()指的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Johnson">
+<meta property="og:title" content="STL剖析——平地起高楼">
 <meta property="og:url" content="http://yoursite.com/2020/02/13/STL剖析/index.html">
 <meta property="og:site_name" content="Johnson">
+<meta property="og:description" content="STL六大部件 容器：是模板类，不考虑内存 分配器：分配器支持容器，为他安排内存 算法：模板函数， 迭代器：一种泛化指针，v.begin()、v.end()就像是指针一样指着头尾 适配器：将容器，迭代器，适配器做一些转换 仿函数：  可以看到vector&amp;lt;int,allocator&amp;gt;第二个参数是分配器，现在往往忽略，分配器默默支持他，为容器分配内存空间 前闭后开区间 c.end()指的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-12T18:39:10.319Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3I7K9f.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3Iqn41.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3IjmqO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3Ixg54.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3ocgJJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3ogv9J.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3o7KzT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3oq8eg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3oqNYn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3oWVOI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3ojA1I.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3ov2Mq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3TCass.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/37siqK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/376I8H.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/37Ww9S.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HS9q1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HkXjO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HAgVH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HYeNq.png">
+<meta property="og:updated_time" content="2020-03-05T12:56:16.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Johnson">
+<meta name="twitter:title" content="STL剖析——平地起高楼">
+<meta name="twitter:description" content="STL六大部件 容器：是模板类，不考虑内存 分配器：分配器支持容器，为他安排内存 算法：模板函数， 迭代器：一种泛化指针，v.begin()、v.end()就像是指针一样指着头尾 适配器：将容器，迭代器，适配器做一些转换 仿函数：  可以看到vector&amp;lt;int,allocator&amp;gt;第二个参数是分配器，现在往往忽略，分配器默默支持他，为容器分配内存空间 前闭后开区间 c.end()指的">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/03/04/3I7K9f.png">
 
 
 
@@ -131,7 +155,7 @@
 
 
 
-  <title> | Johnson</title>
+  <title>STL剖析——平地起高楼 | Johnson</title>
   
 
 
@@ -297,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">STL剖析——平地起高楼</h1>
         
 
         <div class="post-meta">
@@ -346,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  2.7k
                 </span>
               
 
@@ -371,7 +395,551 @@
       
 
       
-        
+        <h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="https://s2.ax1x.com/2020/03/04/3I7K9f.png" alt="3I7K9f.png"></p>
+<p><strong>容器：</strong>是模板类，不考虑内存</p>
+<p><strong>分配器：</strong>分配器支持容器，为他安排内存</p>
+<p><strong>算法：</strong>模板函数，</p>
+<p><strong>迭代器：</strong>一种泛化指针，v.begin()、v.end()就像是指针一样指着头尾</p>
+<p><strong>适配器：</strong>将容器，迭代器，适配器做一些转换</p>
+<p><strong>仿函数：</strong></p>
+<p><img src="https://s2.ax1x.com/2020/03/04/3Iqn41.png" alt="3Iqn41.png"></p>
+<p>可以看到vector&lt;int,allocator<int>&gt;第二个参数是分配器，现在往往忽略，分配器默默支持他，为容器分配内存空间</int></p>
+<h2 id="前闭后开区间"><a href="#前闭后开区间" class="headerlink" title="前闭后开区间"></a>前闭后开区间</h2><p><img src="https://s2.ax1x.com/2020/03/04/3IjmqO.png" alt="3IjmqO.png"></p>
+<p>c.end()指的是最后一个元素的后一个元素，在前闭后开区间的情况下，解引用他会导致程序崩溃，c.begin()可以++，直到!=c.end()结束</p>
+<h1 id="容器—结构和分类"><a href="#容器—结构和分类" class="headerlink" title="容器—结构和分类"></a>容器—结构和分类</h1><p><img src="https://s2.ax1x.com/2020/03/04/3Ixg54.png" alt="3Ixg54.png"></p>
+<h2 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h2><h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><p><img src="https://s2.ax1x.com/2020/03/04/3ocgJJ.png" alt="3ocgJJ.png"></p>
+<p>数组包装成class，连续空间。假如你要10万个元素，只用了100个它仍是10万，用了10万零1个就不行，内存不够，两头是闭区间无法扩充。</p>
+<p>array容器需要两个参数，一个是类型一个是能存放的元素个数</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>array.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>array.front()</td>
+<td>第一个数</td>
+</tr>
+<tr>
+<td>array.back()</td>
+<td>最后一个数</td>
+</tr>
+<tr>
+<td>array.data()</td>
+<td>首元素地址</td>
+</tr>
+</tbody></table>
+<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p><img src="https://s2.ax1x.com/2020/03/04/3ogv9J.png" alt="3ogv9J.png"></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vector.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>vector.front()</td>
+<td>第一个数</td>
+</tr>
+<tr>
+<td>vector.back()</td>
+<td>最后一个数</td>
+</tr>
+<tr>
+<td>vector.data()</td>
+<td>首元素地址</td>
+</tr>
+<tr>
+<td>vector.capacity()</td>
+<td>容量</td>
+</tr>
+<tr>
+<td>vector.push_back()</td>
+<td>尾插</td>
+</tr>
+</tbody></table>
+<p>vector容器会自动扩充，当元素要超过所分配的内存大小时，分配器就会动态扩充，寻找一块地址足以存放接下来要添加的数据和以前的数据，然后将数据存储进来，将以前的内存释放掉，扩充倍数在VS2019中是1.5倍，但是每次扩充可能会很大，就会造成内存的一种浪费</p>
+<h3 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h3><p>双向队列，前后头都可以扩充</p>
+<p><img src="https://s2.ax1x.com/2020/03/04/3o7KzT.png" alt></p>
+<p>deque号称“分段连续”，在每一buffer上是连续的，段和段之间并非连续，当迭代器超过某一段的尽头会自动找到下一段的头，例如99的地址继续++的话就会找到0那个地方。当我们的buffer用完的时候就会继续扩充出新的一段buffer</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>deque.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>deque.front()</td>
+<td>第一个元素</td>
+</tr>
+<tr>
+<td>deque.back()</td>
+<td>最后一个元素</td>
+</tr>
+<tr>
+<td>deque.max_size()</td>
+<td>最大能存放的元素数量</td>
+</tr>
+<tr>
+<td>deque.push_back()</td>
+<td>尾插</td>
+</tr>
+<tr>
+<td>deque.push_front()</td>
+<td>头插</td>
+</tr>
+<tr>
+<td>deque.pop_back()</td>
+<td>尾删</td>
+</tr>
+<tr>
+<td>deque.pop_front()</td>
+<td>头删</td>
+</tr>
+</tbody></table>
+<h3 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h3><p><img src="https://s2.ax1x.com/2020/03/04/3oq8eg.png" alt="3oq8eg.png"></p>
+<p>栈，先进后出，deque其实涵盖了stack的功能，不提供iterator操作，否则破坏了先进后出的独特性</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>stack.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>stack.top()</td>
+<td>栈顶元素</td>
+</tr>
+<tr>
+<td>stack.push()</td>
+<td>入栈</td>
+</tr>
+<tr>
+<td>stack.pop()</td>
+<td>出栈</td>
+</tr>
+</tbody></table>
+<h3 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h3><p>队列，先进先出，deque的确其实涵盖了queue的功能，不提供iterator操作，否则破坏先进先出的独特性</p>
+<p><a href="https://imgchr.com/i/3oqNYn" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/03/04/3oqNYn.png" alt="3oqNYn.png"></a></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>queue.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>queue.front()</td>
+<td>第一个元素</td>
+</tr>
+<tr>
+<td>queue.back()</td>
+<td>最后一个元素</td>
+</tr>
+<tr>
+<td>queue.push()</td>
+<td>入队</td>
+</tr>
+<tr>
+<td>queue.pop()</td>
+<td>出队</td>
+</tr>
+<tr>
+<td>queue.empty()</td>
+<td>为空则为true</td>
+</tr>
+</tbody></table>
+<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>双向链表，每次扩充都是一个节点，但是寻找慢</p>
+<p><img src="https://s2.ax1x.com/2020/03/04/3oWVOI.png" alt="3oWVOI.png"></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>list.sort()</td>
+<td>容器有自己的算法就选择自己的，不使用标准库的，自己的比较快</td>
+</tr>
+<tr>
+<td>list.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>list.max_size()</td>
+<td>最大的元素个数</td>
+</tr>
+<tr>
+<td>list.front()</td>
+<td>第一个元素</td>
+</tr>
+<tr>
+<td>list.back()</td>
+<td>最后一个元素</td>
+</tr>
+<tr>
+<td>list.push_back()</td>
+<td>插入</td>
+</tr>
+</tbody></table>
+<h3 id="forward-list"><a href="#forward-list" class="headerlink" title="forward-list"></a>forward-list</h3><p>单向链表，如果只需要单向可以选择forward-list，list双向需要双倍的指针耗费内存。</p>
+<p><strong>没有size()函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>forward-list.max.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>forward-list.front()</td>
+<td>第一个元素</td>
+</tr>
+<tr>
+<td>forward-list.push_front()</td>
+<td>头插没有尾插</td>
+</tr>
+<tr>
+<td>forward-list.pop_front()</td>
+<td>头删除</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;array&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;list&gt;</span><br><span class="line">#include&lt;forward_list&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void test()</span><br><span class="line">&#123;</span><br><span class="line">	forward_list&lt;int&gt; f = &#123; 1,2,3 &#125;;</span><br><span class="line">	cout &lt;&lt; f.front() &lt;&lt; endl;</span><br><span class="line">	f.push_front(4);</span><br><span class="line">	for (forward_list&lt;int&gt;::iterator it = f.begin(); it != f.end(); it++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; &apos; &apos;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	f.pop_front();</span><br><span class="line">	for (forward_list&lt;int&gt;::iterator it = f.begin(); it != f.end(); it++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; &apos; &apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	test();</span><br><span class="line"></span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">1</span><br><span class="line">4 1 2 3</span><br><span class="line">1 2 3 请按任意键继续. . .</span><br></pre></td></tr></table></figure>
+
+<h2 id="关联式容器"><a href="#关联式容器" class="headerlink" title="关联式容器"></a>关联式容器</h2><p><strong>需要大量查找就需要关联式容器，并没有规定set和map一定要使用红黑树，只不过红黑树比较好，所以各家编译器都喜欢用红黑树，Multi里面的元素可以重复</strong></p>
+<h3 id="set-Multiset"><a href="#set-Multiset" class="headerlink" title="set/Multiset"></a>set/Multiset</h3><p>set的key就是value，value就是key</p>
+<p><img src="https://s2.ax1x.com/2020/03/04/3ojA1I.png" alt="3ojA1I.png"></p>
+<p>插入数据，数据会自己找到位置，是有排序的，里面是红黑树嘛，<strong>插入不能用[]</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>multiset.find()</td>
+<td>自己的查找比较快，返回一个指向被查找到元素的迭代器，解引是这个数的值</td>
+</tr>
+<tr>
+<td>multiset.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>multiset.max_size()</td>
+<td>最大能容纳多少个元素</td>
+</tr>
+<tr>
+<td>multiset.insert()</td>
+<td>插入元素</td>
+</tr>
+<tr>
+<td>multiset.begin()</td>
+<td>返回指向 set头部的迭代器</td>
+</tr>
+<tr>
+<td>multiset.end()</td>
+<td>返回指向 set尾部的迭代器</td>
+</tr>
+<tr>
+<td>multiset.empty()</td>
+<td>判断是否为空</td>
+</tr>
+<tr>
+<td>multiset.erase()</td>
+<td>删除一个元素</td>
+</tr>
+<tr>
+<td>multiset.clear()</td>
+<td>清除所有元素</td>
+</tr>
+</tbody></table>
+<h3 id="Map-Multimap"><a href="#Map-Multimap" class="headerlink" title="Map/Multimap"></a>Map/Multimap</h3><p><a href="https://imgchr.com/i/3ov2Mq" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/03/05/3ov2Mq.png" alt="3ov2Mq.png"></a></p>
+<p>key和value分离，<strong>插入方式例如m.insert(pair&lt;int, int&gt;(2, 30));最好不要用[]进行插入</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>multimap.find()</td>
+<td>自己的查找比较快，查找一个元素，返回key</td>
+</tr>
+<tr>
+<td>multimap.size()</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>multimap.max_size()</td>
+<td>最大能容纳多少个元素</td>
+</tr>
+<tr>
+<td>multimap.insert()</td>
+<td>插入元素</td>
+</tr>
+<tr>
+<td>multimap.begin()</td>
+<td>返回指向 map 头部的迭代器</td>
+</tr>
+<tr>
+<td>multimap.end()</td>
+<td>返回map指向尾部的迭代器</td>
+</tr>
+<tr>
+<td>multimap.clear()</td>
+<td>清除所有元素</td>
+</tr>
+<tr>
+<td>multimap.erase()</td>
+<td>删除一个元素</td>
+</tr>
+<tr>
+<td>(*it).first</td>
+<td>key值</td>
+</tr>
+<tr>
+<td>(*it).second</td>
+<td>value值</td>
+</tr>
+</tbody></table>
+<h3 id="Unordered-Set-Muitiset"><a href="#Unordered-Set-Muitiset" class="headerlink" title="Unordered Set/Muitiset"></a>Unordered Set/Muitiset</h3><p><img src="https://s2.ax1x.com/2020/03/05/3TCass.png" alt="3TCass.png"></p>
+<p>unordered_set内部解决冲突采用的是—-链地址法，当用冲突发生时把具有同一关键码的数据组成一个链表</p>
+<p>unordered_set是一种无序集合,既然跟底层实现基于hashtable那么它一定拥有快速的查找和删除，添加的优点.基于hashtable当然就失去了基于rb_tree的自动排序功能</p>
+<p>unordered_set无序,所以在迭代器的使用上,set的效率会高于unordered_set</p>
+<p>unordered_set 容器没有成员函数 at()，并且也没有定义下标运算，它和 unordered_map 有相同类型的成员函数。</p>
+<p>元素如果大于等于篮子的个数，篮子就会扩充大约两倍的数量，然后原来的元素重新打散，放在不同篮子里</p>
+<p><strong>负载因子：负载因子=map的size/初始化容量</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>c1.empty();</td>
+<td>判断是否为空</td>
+</tr>
+<tr>
+<td>c1.size();</td>
+<td>获取元素个数 size()</td>
+</tr>
+<tr>
+<td>c1.max_size();</td>
+<td>获取最大存储量 max_size()</td>
+</tr>
+<tr>
+<td>c1.begin()</td>
+<td>返回头迭代器 begin()</td>
+</tr>
+<tr>
+<td>c1.end()</td>
+<td>返回尾迭代器 end()</td>
+</tr>
+<tr>
+<td>c1.erase()</td>
+<td>删除 erase()</td>
+</tr>
+<tr>
+<td>c1.insert()</td>
+<td>插入函数 insert()</td>
+</tr>
+<tr>
+<td>c1.swap(c2)</td>
+<td>交换 swap()</td>
+</tr>
+<tr>
+<td>c1.bucket_count();</td>
+<td>篮子操作 篮子个数 bucket_count() 返回槽（Bucket）数</td>
+</tr>
+<tr>
+<td>c1.max_bucket_count();</td>
+<td>篮子最大数量 max_bucket_count() 返回最大槽数</td>
+</tr>
+<tr>
+<td>c1.bucket_size(3);</td>
+<td>篮子个数 bucket_size() 返回槽大小</td>
+</tr>
+<tr>
+<td>c1.bucket(1);</td>
+<td>返回篮子 bucket() 返回元素所在槽的序号</td>
+</tr>
+<tr>
+<td>c1.load_factor();</td>
+<td>load_factor    返回载入因子，即一个元素槽（Bucket）的最大元素数</td>
+</tr>
+<tr>
+<td>c1.max_load_factor();</td>
+<td>max_load_factor    返回或设置最大载入因子</td>
+</tr>
+<tr>
+<td>c1.rehash(1);</td>
+<td>rehash    设置槽数</td>
+</tr>
+<tr>
+<td>c1.reserve(1000);</td>
+<td>reserve    请求改变容器容量</td>
+</tr>
+<tr>
+<td>c1.find(1)</td>
+<td>查找函数 find() 通过给定主键查找元素</td>
+</tr>
+</tbody></table>
+<h3 id="Unordered-Map-Muitimap"><a href="#Unordered-Map-Muitimap" class="headerlink" title="Unordered Map/Muitimap"></a>Unordered Map/Muitimap</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>begin</td>
+<td>返回指向容器起始位置的迭代器（iterator）</td>
+</tr>
+<tr>
+<td>end</td>
+<td>返回指向容器末尾的迭代器</td>
+</tr>
+<tr>
+<td>cbegin</td>
+<td>返回指向容器起始位置的常迭代器（const_iterator）</td>
+</tr>
+<tr>
+<td>cend</td>
+<td>返回指向容器末尾位置的常迭代器</td>
+</tr>
+<tr>
+<td>size</td>
+<td>返回有效元素的个数</td>
+</tr>
+<tr>
+<td>max_size</td>
+<td>返回unordered_map支持的最大元素个数</td>
+</tr>
+<tr>
+<td>empty</td>
+<td>判断是否为空</td>
+</tr>
+<tr>
+<td>operator[]</td>
+<td>访问元素（不进行下标越界检查）</td>
+</tr>
+<tr>
+<td>at</td>
+<td>访问元素（进行下标越界检查，增加了性能开销）</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>插入元素</td>
+</tr>
+<tr>
+<td>erase</td>
+<td>删除元素</td>
+</tr>
+<tr>
+<td>swap</td>
+<td>交换内容</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>清空内容</td>
+</tr>
+<tr>
+<td>emplace</td>
+<td>构造及插入一个元素</td>
+</tr>
+<tr>
+<td>emplace_hint</td>
+<td>按照提示构造及插入一个元素</td>
+</tr>
+<tr>
+<td>find</td>
+<td>通过给定主键查找元素,没找到：返回unordered_map::end</td>
+</tr>
+<tr>
+<td>bucket_count</td>
+<td>返回篮子（Bucket）数</td>
+</tr>
+<tr>
+<td>max_bucket_count</td>
+<td>返回最大篮子数</td>
+</tr>
+<tr>
+<td>bucket_size</td>
+<td>返回篮子大小</td>
+</tr>
+<tr>
+<td>bucket</td>
+<td>返回元素所在槽的序号</td>
+</tr>
+<tr>
+<td>load_factor</td>
+<td>返回载入因子，即一个元素槽（Bucket）的最大元素数</td>
+</tr>
+<tr>
+<td>max_load_factor</td>
+<td>返回或设置最大载入因子</td>
+</tr>
+<tr>
+<td>rehash</td>
+<td>设置槽数</td>
+</tr>
+<tr>
+<td>reserve</td>
+<td>请求改变容器容量</td>
+</tr>
+</tbody></table>
+<h3 id="hashtable"><a href="#hashtable" class="headerlink" title="hashtable"></a>hashtable</h3><p>以上的unordered底层都是hashtable所以我们讲讲hashtable</p>
+<p><img src="https://s2.ax1x.com/2020/03/05/37siqK.png" alt="37siqK.png"></p>
+<p>如果空间足够，编号H就放到H第H个位置去，如果空间不足就要H%M(M是空间的个数)，加入105%100就放到5的位置去，但是这个时候就会发生碰撞就会和5,205存放在一个地方，这叫碰撞，那么发生碰撞就要把它放到其他地方去，放到哪里呢？</p>
+<p><img src="https://s2.ax1x.com/2020/03/05/376I8H.png" alt="376I8H.png"></p>
+<p>那我们就用一个链表存放这些发生碰撞的元素，但是如果链表很长，搜寻就会很慢，因为链表就是要循序渐进的查找。如果元素个数（所有元素，不是单个篮子的元素）比篮子个数还要多，就要打散，<strong>如何打散？rehash（扩容，这样很花时间，所有元素还要重新算一遍看他放在哪个篮子上），就是把篮子增加两倍附近的素数，53两倍106，临近的素数是97</strong>。</p>
+<h4 id="源码解析："><a href="#源码解析：" class="headerlink" title="源码解析："></a>源码解析：</h4><p><img src="https://s2.ax1x.com/2020/03/05/37Ww9S.png" alt="37Ww9S.png"></p>
+<p>模板参数里面的class HashFcn传进啦的是仿函数，告诉我们每一个元素是通过这个函数取的编号，HashFcn获取的编号就叫Hashcode。</p>
+<p>ExtractKey也是仿函数（仿函数的大小是1，因为它的类里面只有函数）就是萃取出key值，要告诉我们怎么从一包东西里面取出Key来</p>
+<p>EqualKey也是仿函数要告诉我们怎么判断key相等，才知道要放到哪个位置</p>
+<p>篮子是vector，vec里面有三根指针，所以本身是12个字节，根据编译器不同所以，(题外话：要想查看一个容器v的大小：可以使用sizeof(v) + sizeof(T) * v.capacity();//T是v中元素类型)</p>
+<p>每一个hashtable内存大小是20:1 1 1 12 4 根据对齐：4+12+4=20</p>
+<p>里面node就是数组后面追加的链表</p>
+<p>iterator指向的地方是链表的数据，当指向链表末尾的数据时，要有能力指向下一个篮子的链表，图中的cur画错了，应该指向链表的某个节点而不是指向篮子</p>
+<p><img src="https://s2.ax1x.com/2020/03/05/3HS9q1.png" alt="3HS9q1.png"></p>
+<p>eqstr是说比的不是地址相等，是指针指向的内容相等</p>
+<p><img src="https://s2.ax1x.com/2020/03/05/3HkXjO.png" alt="3HkXjO.png"></p>
+<p>这一段代码是用来设置hash-function，传一个数值进去，return的是数值出来，return出来的值也是自己设置的，标准库给我们提供了_STL_TEMPLATE_NULL</p>
+<p><a href="https://imgchr.com/i/3HAgVH" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/03/05/3HAgVH.png" alt="3HAgVH.png"></a></p>
+<p>_stl_hash_string转换成编号，自己设置的，尽量设置得够乱，重复性低。</p>
+<p><img src="https://s2.ax1x.com/2020/03/05/3HYeNq.png" alt="3HYeNq.png"></p>
+<p>确定元素落在哪个篮子里面</p>
+
       
     </div>
     
@@ -459,8 +1027,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -511,6 +1088,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL六大部件"><span class="nav-number">1.</span> <span class="nav-text">STL六大部件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前闭后开区间"><span class="nav-number">1.1.</span> <span class="nav-text">前闭后开区间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#容器—结构和分类"><span class="nav-number">2.</span> <span class="nav-text">容器—结构和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序容器"><span class="nav-number">2.1.</span> <span class="nav-text">顺序容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array"><span class="nav-number">2.1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">2.1.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-number">2.1.3.</span> <span class="nav-text">deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-number">2.1.4.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">2.1.5.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">2.1.6.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-list"><span class="nav-number">2.1.7.</span> <span class="nav-text">forward-list</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联式容器"><span class="nav-number">2.2.</span> <span class="nav-text">关联式容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-Multiset"><span class="nav-number">2.2.1.</span> <span class="nav-text">set/Multiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map-Multimap"><span class="nav-number">2.2.2.</span> <span class="nav-text">Map/Multimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unordered-Set-Muitiset"><span class="nav-number">2.2.3.</span> <span class="nav-text">Unordered Set/Muitiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unordered-Map-Muitimap"><span class="nav-number">2.2.4.</span> <span class="nav-text">Unordered Map/Muitimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashtable"><span class="nav-number">2.2.5.</span> <span class="nav-text">hashtable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码解析："><span class="nav-number">2.2.5.1.</span> <span class="nav-text">源码解析：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWDEKP.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/09/lWrpLV.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/10/l462VI.png">
-<meta property="og:updated_time" content="2020-02-23T16:29:05.537Z">
+<meta property="og:updated_time" content="2020-02-27T09:46:59.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++3模板与STL">
 <meta name="twitter:description" content="模板模板的概念模板就是建立通用的模具，将类型参数化，大大提高复用性。">
@@ -617,11 +617,11 @@
 </tr>
 <tr>
 <td>string&amp; assign(const char *s);</td>
-<td>把字符串s赋值给当前的字符串</td>
+<td>把字符串s赋值给当前的字符串，原本的没有了</td>
 </tr>
 <tr>
 <td>string&amp; assign(const char *s,int n);</td>
-<td>把字符串s的前n个清除，剩下的给当前的字符串</td>
+<td>用c<a href="https://baike.baidu.com/item/字符" target="_blank" rel="noopener">字符</a>串s开始的n个字符赋值</td>
 </tr>
 <tr>
 <td>string&amp; assign(const string &amp;s);</td>
@@ -630,6 +630,10 @@
 <tr>
 <td>string&amp; assign(int n,char c);</td>
 <td>用n个字符c赋值给当前的字符串</td>
+</tr>
+<tr>
+<td>string &amp;assign(const string &amp;s,int start,int n);</td>
+<td>把字符串s中从start开始的n个字符赋给当前字符串</td>
 </tr>
 </tbody></table>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">void test()</span><br><span class="line">&#123;</span><br><span class="line">	string str1;</span><br><span class="line">	str1 = &quot;hello&quot;;</span><br><span class="line">	cout &lt;&lt; &quot;str1=&quot; &lt;&lt; str1 &lt;&lt; endl;</span><br><span class="line">	string str2;</span><br><span class="line">	str2 = str1;</span><br><span class="line">	cout &lt;&lt; &quot;str2&quot; &lt;&lt; str2 &lt;&lt; endl;</span><br><span class="line">	string str3;</span><br><span class="line">	str3 = &apos;a&apos;;</span><br><span class="line">	cout &lt;&lt; &quot;str3&quot; &lt;&lt; str3 &lt;&lt; endl;</span><br><span class="line">	string str4;</span><br><span class="line">	str4.assign(&quot;hello C++&quot;);</span><br><span class="line">	cout &lt;&lt; &quot;str4=&quot; &lt;&lt; str4 &lt;&lt; endl;</span><br><span class="line">	string str5;</span><br><span class="line">	str5.assign(&quot;hello world&quot;, 5);</span><br><span class="line">	cout &lt;&lt; &quot;str5=&quot; &lt;&lt; str5 &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	test();</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1118,7 +1122,7 @@
 
 </li>
 </ul>
-<h1 id="stack容器"><a href="#stack容器" class="headerlink" title="stack容器"></a>stack容器</h1><h2 id="stack基本概念"><a href="#stack基本概念" class="headerlink" title="stack基本概念"></a>stack基本概念</h2><p><strong>概念：</strong>stack是一种先进后出的数据结构，他只有一个出口</p>
+<h1 id="stack容器"><a href="#stack容器" class="headerlink" title="stack容器"></a>stack容器</h1><h2 id="stack基本概念"><a href="#stack基本概念" class="headerlink" title="stack基本概念"></a>stack基本概念</h2><p><strong>概念：</strong>stack是一种先进后出(LIFO)的数据结构，他只有一个出口</p>
 <p>栈不允许遍历操作，因为只有顶端的元素能被外界使用</p>
 <h2 id="stack常用接口"><a href="#stack常用接口" class="headerlink" title="stack常用接口"></a>stack常用接口</h2><p>功能描述：栈容器常用的对外接口</p>
 <p><strong>构造函数：</strong></p>

@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="记得秋招的时候笔试经常出现这种题目，但是自己经常忽视。。。现在有空了就总结了一遍。以后要是还遇到什么经典的在进行补充吧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-06T09:26:18.983Z">
+<meta property="og:updated_time" content="2020-03-09T06:45:34.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算总结">
 <meta name="twitter:description" content="记得秋招的时候笔试经常出现这种题目，但是自己经常忽视。。。现在有空了就总结了一遍。以后要是还遇到什么经典的在进行补充吧。">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.6k
                 </span>
               
 
@@ -377,7 +377,24 @@
         <p>记得秋招的时候笔试经常出现这种题目，但是自己经常忽视。。。现在有空了就总结了一遍。以后要是还遇到什么经典的在进行补充吧。</p>
 <a id="more"></a>
 <h1 id="左移右移运算"><a href="#左移右移运算" class="headerlink" title="左移右移运算"></a>左移右移运算</h1><p>同样是要除以2，n/2的效率就比n&gt;&gt;1低了，像单片机的流水灯操作也经常用位移运算来实现，底层代码也经常用到位运算。<br>左移运算是将一个二进制位的操作数按指定移动的位数向左移位，移出位被丢弃，右边的空位一律补0。右移运算是将一个二进制位的操作数按指定移动的位数向右移动，移出位被丢弃，左边移出的空位或者一律补0，或者补符号位，这由不同的机器而定。(百度百科原话)<br>举几个简单的例子方便理解:<br>左移运算符m&lt;&lt;n表示把m左移n位。在左移n位的时候，最左边的n位被丢弃，同时在最右边补上n个0。<br>eg.00001010&lt;&lt;2=00101000;<br>   10001010&lt;&lt;3=01010000;(这里就是被丢弃的)<br>右移运算符m&gt;&gt;n表示把m右移n位。在右移n位的时候，最右边的n位被抛弃。但是右移在处理左边位的情况要比较复杂一点。如果数字是一个无符号的数值，则用0填补最右边的值，如果是有符号的,就用符号位置来填补，也就是说数字原本是正数的话，就填充0，如果是负数的话就填充1；<br>eg.00001010&gt;&gt;2=00000010;<br>   10001010&gt;&gt;3=11110001;</p>
-<h2 id="二进制中1的个数-第二种算法思想重要"><a href="#二进制中1的个数-第二种算法思想重要" class="headerlink" title="二进制中1的个数(第二种算法思想重要)"></a>二进制中1的个数(第二种算法思想重要)</h2><p>在脉视的笔试中遇到了这题当时还用很愚蠢的方法还直接转换成二进制后再算，现在想想真的蠢。要说简单也简单但是容易错毕竟有符号的表示负数是用补码的，这个要值得注意。</p>
+<h2 id="原码求补码"><a href="#原码求补码" class="headerlink" title="原码求补码"></a>原码求补码</h2><h3 id="正数"><a href="#正数" class="headerlink" title="正数"></a>正数</h3><p>正整数的补码是其二进制表示，与<a href="https://baike.baidu.com/item/原码" target="_blank" rel="noopener">原码</a>相同 [3] 。</p>
+<p>例：+9的补码是00001001。（备注：这个+9的补码是用8位2<a href="https://baike.baidu.com/item/进制" target="_blank" rel="noopener">进制</a>来表示的，补码表示方式很多，还有16位二进制补码表示形式，以及32位二进制补码表示形式，64位进制补码表示形式等。每一种补码表示形式都只能表示有限的数字。）</p>
+<h3 id="负数"><a href="#负数" class="headerlink" title="负数"></a>负数</h3><p>求负整数的补码，将其原码除符号位外的所有位取反（0变1，1变0，符号位为1不变）后加1 [4] 。</p>
+<p>同一个数字在不同的补码表示形式中是不同的。比如-15的补码，在8位二<a href="https://baike.baidu.com/item/进制" target="_blank" rel="noopener">进制</a>中是11110001，然而在16位二进制补码表示中，就是1111111111110001。以下都使用8位2进制来表示。</p>
+<p>例：求-5的补码。</p>
+<p>-5对应正数5（00000101）→所有位取反（11111010）→加1(11111011)</p>
+<p>所以-5的补码是11111011。</p>
+<h3 id="0的补码"><a href="#0的补码" class="headerlink" title="0的补码"></a>0的补码</h3><p>数0的补码表示是<strong>唯一</strong>的 [3] 。</p>
+<p>[+0]补=[+0]反=[+0]原=00000000</p>
+<p>[ -0]补=11111111+1=00000000</p>
+<h1 id="补码求原码"><a href="#补码求原码" class="headerlink" title="补码求原码"></a>补码求原码</h1><h2 id="补码求原码-1"><a href="#补码求原码-1" class="headerlink" title="补码求原码"></a>补码求原码</h2><p>已知一个数的补码，求原码的操作其实就是对该补码再求补码  ：</p>
+<p>⑴如果补码的符号位为“0”，表示是一个<a href="https://baike.baidu.com/item/正数/1294288" target="_blank" rel="noopener">正数</a>，其原码就是补码。</p>
+<p>⑵如果补码的符号位为“1”，表示是一个<a href="https://baike.baidu.com/item/负数/1294977" target="_blank" rel="noopener">负数</a>，那么求给定的这个补码的补码就是要求的原码。</p>
+<p>例：已知一个补码为11111001，则原码是10000111（-7）。</p>
+<p>因为符号位为“1”，表示是一个负数，所以该位不变，仍为“1”。</p>
+<p>其余七位1111001取反后为0000110；再加1，所以是10000111。</p>
+<h2 id="0为何为-1"><a href="#0为何为-1" class="headerlink" title="~0为何为-1"></a>~0为何为-1</h2><p>i为int类型 通常占4个字节<br>0的原码：0000 0000 0000 0000 0000 0000 0000 0000<br>取反： 1111 1111 1111 1111 1111 1111 1111 1111<br>最高位是1所以是负数，求其原始数据，方法是<br>再次取反加1（符号位不变）<br>取反： 1000 0000 0000 0000 0000 0000 0000 0000<br>加1 1000 0000 0000 0000 0000 0000 0000 0001<br>所以是 -1</p>
+<h1 id="二进制中1的个数-第二种算法思想重要"><a href="#二进制中1的个数-第二种算法思想重要" class="headerlink" title="二进制中1的个数(第二种算法思想重要)"></a>二进制中1的个数(第二种算法思想重要)</h1><p>在脉视的笔试中遇到了这题当时还用很愚蠢的方法还直接转换成二进制后再算，现在想想真的蠢。要说简单也简单但是容易错毕竟有符号的表示负数是用补码的，这个要值得注意。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int num(unsigned int n)//如果不定义成无符号不能计算负数；</span><br><span class="line">&#123;</span><br><span class="line">    int count=0;</span><br><span class="line">    while(n)//不断右移后不等于0；</span><br><span class="line">    &#123;</span><br><span class="line">        if(n&amp;1)</span><br><span class="line">        &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        n=n&gt;&gt;1;</span><br><span class="line">    &#125;</span><br><span class="line">    return count;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int n;</span><br><span class="line">    int result;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    result=num(n);</span><br><span class="line">    printf(&quot;%d&quot;,result);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然而剑指offer里面有一种解法，让人眼前一亮，思维也变了，或许这就是大佬的思维……<br>算法：把一个整数减去1然后在于原整数做&amp;运算的话，那么原整数最右边的1就会变成0，可以想一下有几个1就能做几次这样的操作，知道最后整数变成0不能再进入循环。<br>这个算法在以后的运算后也经常有用请吃透。</p>
@@ -392,7 +409,7 @@
 <h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><h3 id="将n的第m位取反"><a href="#将n的第m位取反" class="headerlink" title="将n的第m位取反"></a>将n的第m位取反</h3><p>解法：n=n^(1&lt;&lt;m)  1^0=1 1^1=0相当于取反</p>
 <h3 id="计算a的第b个二进制位是什么"><a href="#计算a的第b个二进制位是什么" class="headerlink" title="计算a的第b个二进制位是什么"></a>计算a的第b个二进制位是什么</h3><p>解法：(a&gt;&gt;b)&amp;1</p>
 <h3 id="把a的高八位，清除保留低八位"><a href="#把a的高八位，清除保留低八位" class="headerlink" title="把a的高八位，清除保留低八位"></a>把a的高八位，清除保留低八位</h3><p>解法：a&amp;255(255的二进制数为0000000011111111)。</p>
-<h3 id="将整形的第n位清零"><a href="#将整形的第n位清零" class="headerlink" title="将整形的第n位清零"></a>将整形的第n位清零</h3><p>define clear(a) ((a)&amp;~(1&lt;&lt;n));</p>
+<h3 id="将整型的第n位清零"><a href="#将整型的第n位清零" class="headerlink" title="将整型的第n位清零"></a>将整型的第n位清零</h3><p>define clear(a) ((a)&amp;~(1&lt;&lt;n));</p>
 
       
     </div>
@@ -552,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#左移右移运算"><span class="nav-number">1.</span> <span class="nav-text">左移右移运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制中1的个数-第二种算法思想重要"><span class="nav-number">1.1.</span> <span class="nav-text">二进制中1的个数(第二种算法思想重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法拓展"><span class="nav-number">1.1.1.</span> <span class="nav-text">算法拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关例题"><span class="nav-number">1.2.</span> <span class="nav-text">相关例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将n的第m位取反"><span class="nav-number">1.2.1.</span> <span class="nav-text">将n的第m位取反</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算a的第b个二进制位是什么"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算a的第b个二进制位是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把a的高八位，清除保留低八位"><span class="nav-number">1.2.3.</span> <span class="nav-text">把a的高八位，清除保留低八位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将整形的第n位清零"><span class="nav-number">1.2.4.</span> <span class="nav-text">将整形的第n位清零</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#左移右移运算"><span class="nav-number">1.</span> <span class="nav-text">左移右移运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原码求补码"><span class="nav-number">1.1.</span> <span class="nav-text">原码求补码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正数"><span class="nav-number">1.1.1.</span> <span class="nav-text">正数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负数"><span class="nav-number">1.1.2.</span> <span class="nav-text">负数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0的补码"><span class="nav-number">1.1.3.</span> <span class="nav-text">0的补码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补码求原码"><span class="nav-number">2.</span> <span class="nav-text">补码求原码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#补码求原码-1"><span class="nav-number">2.1.</span> <span class="nav-text">补码求原码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0为何为-1"><span class="nav-number">2.2.</span> <span class="nav-text">~0为何为-1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二进制中1的个数-第二种算法思想重要"><span class="nav-number">3.</span> <span class="nav-text">二进制中1的个数(第二种算法思想重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法拓展"><span class="nav-number">3.0.1.</span> <span class="nav-text">算法拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关例题"><span class="nav-number">3.1.</span> <span class="nav-text">相关例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将n的第m位取反"><span class="nav-number">3.1.1.</span> <span class="nav-text">将n的第m位取反</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算a的第b个二进制位是什么"><span class="nav-number">3.1.2.</span> <span class="nav-text">计算a的第b个二进制位是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把a的高八位，清除保留低八位"><span class="nav-number">3.1.3.</span> <span class="nav-text">把a的高八位，清除保留低八位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将整型的第n位清零"><span class="nav-number">3.1.4.</span> <span class="nav-text">将整型的第n位清零</span></a></li></ol></li></ol></div>
             
 
           </div>

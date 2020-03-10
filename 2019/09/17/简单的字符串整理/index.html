@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-19T11:56:47.588Z">
+<meta property="og:updated_time" content="2020-03-10T10:34:11.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的字符串整理">
 <meta name="twitter:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  620
+                  754
                 </span>
               
 
@@ -380,7 +380,18 @@
 
 <p>这样编译出来是错误的因为包括换行符号的话是4个字符。</p>
 <h2 id="strnlen（）"><a href="#strnlen（）" class="headerlink" title="strnlen（）"></a>strnlen（）</h2><p>在strlen（）的基础上，如果strlen不遇到束符’\0’就不会停止扫描，所以使用了strnlen（）增加一个总长度来限制：<br>int main(void)<br>{<br>    char a[]={‘h’,’e’,’l’,’l’,’o’,’w’,’o’,’r’,’l’,’d’,’!’};<br>    printf(“%d\n”,strnlen(a,10));<br>    return 0;<br> }<br> 输出的结果是10；当然遇到’\0’时也会停止的。</p>
-<h2 id="Strcat（）"><a href="#Strcat（）" class="headerlink" title="Strcat（）"></a>Strcat（）</h2><p>用于拼接两个字符串，合并成一个字符串作为第一个字符串，函数返回的是第一个字符串（这个字符串已经和字符串二拼接）</p>
+<pre><code>char s[] = { &apos;h&apos;,&apos;e&apos;,&apos;l&apos;,&apos;l&apos;,&apos;\0&apos;,&apos;o&apos; };
+cout &lt;&lt; strnlen(s,9) &lt;&lt; endl;
+结果是4
+char s[] = { &apos;h&apos;,&apos;e&apos;,&apos;l&apos;,&apos;l&apos;,&apos;o&apos; };
+cout &lt;&lt; strnlen(s,9) &lt;&lt; endl;
+结果是9
+char s[] = { &apos;h&apos;,&apos;e&apos;,&apos;l&apos;,&apos;l&apos;,&apos;o&apos;};
+cout &lt;&lt; sizeof(s) &lt;&lt; endl;
+结果是5
+char s[] = { &apos;h&apos;,&apos;e&apos;,&apos;l&apos;,&apos;l&apos;,&apos;o&apos;};
+cout &lt;&lt; strlen(s) &lt;&lt; endl;
+这个值是不确定的，要想确定需要&apos;\0&apos;</code></pre><h2 id="Strcat（）"><a href="#Strcat（）" class="headerlink" title="Strcat（）"></a>Strcat（）</h2><p>用于拼接两个字符串，合并成一个字符串作为第一个字符串，函数返回的是第一个字符串（这个字符串已经和字符串二拼接）</p>
 <h2 id="Strncat（）"><a href="#Strncat（）" class="headerlink" title="Strncat（）"></a>Strncat（）</h2><p>因为strcat（）跟gets（）一样会溢出缓冲区所以延伸了该函数，如果太长的话字符串会追加到第一个字符串的尾部然后加上’\0’;</p>
 <p>##Strcmp（）<br>比较两个字符串是否相同（不是比较字符单引号字符双引号字符串），相同的话为0，不同的话如果第一个的ASCII比较大返回1反之返回-1；可以利用这个返回值来排序字符串。</p>
 <h2 id="Strncmp（）"><a href="#Strncmp（）" class="headerlink" title="Strncmp（）"></a>Strncmp（）</h2><p>可以比较两个字符串至第几个参数，例如只想要比较前五个字符，strncmp（”helloworld”,”hello”,5）;</p>

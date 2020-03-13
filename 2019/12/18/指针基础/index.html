@@ -96,7 +96,7 @@
 <meta property="og:description" content="总结下之前的知识，应该还是都记得很清楚的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/09/8CpImR.jpg">
-<meta property="og:updated_time" content="2020-03-09T15:27:58.239Z">
+<meta property="og:updated_time" content="2020-03-12T16:53:56.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指针回顾(适合0基础)">
 <meta name="twitter:description" content="总结下之前的知识，应该还是都记得很清楚的。">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.7k
+                  3.9k
                 </span>
               
 
@@ -428,7 +428,9 @@ cout &lt;&lt; a[0] &lt;&lt; endl;
 cout &lt;&lt; a[0]+1&lt;&lt; endl;
 0101F848
 0101F84C
-相差4 所以就是差一个元素</code></pre><p>所以二维数组名 a 和元素 a[0][0] 的关系是：</p>
+相差4 所以就是差一个元素</code></pre><p><strong>&amp;a[0] 和 &amp;a 的值是相同的。但是要注意，尽管它们的结果相同，但其所表达的意义却完全不相同，这一点一定要注意。</strong></p>
+<p><strong>因为数组名包含数组的首地址（即数组第一个元素的地址），或者说数组名指向数组的首地址（或第一个元素），所以，对于 &amp;a，表示取数组 a 的首地址；而对于 &amp;a[0]，它表示取数组首元素 a[0] 的首地址。这就好像陕西的省政府在西安，而西安的市政府同样也在西安。虽然两个政府机构都在西安，但其代表的意义完全不同。</strong></p>
+<p>所以二维数组名 a 和元素 a[0][0] 的关系是：</p>
 <p><code>a == &amp;(&amp;a[0][0])</code></p>
 <p>即二维数组名 a 是地址的地址，必须两次取值才可以取出数组中存储的数据。对于二维数组 a[M][N]，数组名 a 的类型为 int(*)[N]，所以如果定义了一个指针变量 p：</p>
 <p><code>int *p;</code></p>
@@ -584,7 +586,7 @@ cout &lt;&lt; a[0]+1&lt;&lt; endl;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

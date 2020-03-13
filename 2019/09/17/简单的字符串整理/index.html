@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Johnson">
 <meta property="og:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-10T10:34:11.999Z">
+<meta property="og:updated_time" content="2020-03-11T16:22:23.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的字符串整理">
 <meta name="twitter:description" content="字符串Scanf只能读取一个单词不能读取整个句子遇到遇到，只能读到第一个空格；">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  754
+                  980
                 </span>
               
 
@@ -392,11 +392,24 @@ cout &lt;&lt; sizeof(s) &lt;&lt; endl;
 char s[] = { &apos;h&apos;,&apos;e&apos;,&apos;l&apos;,&apos;l&apos;,&apos;o&apos;};
 cout &lt;&lt; strlen(s) &lt;&lt; endl;
 这个值是不确定的，要想确定需要&apos;\0&apos;</code></pre><h2 id="Strcat（）"><a href="#Strcat（）" class="headerlink" title="Strcat（）"></a>Strcat（）</h2><p>用于拼接两个字符串，合并成一个字符串作为第一个字符串，函数返回的是第一个字符串（这个字符串已经和字符串二拼接）</p>
+<p>strcat() 函数把 strSource 所指向的字符串追加到 strDestination 所指向的字符串的结尾，<strong>所以必须要保证 strDestination 有足够的内存空间来容纳两个字符串</strong>，否则会导致溢出错误。</p>
+<p>注意：strDestination 末尾的<code>\0</code>会被覆盖，strSource 末尾的<code>\0</code>会一起被复制过去，最终的字符串只有一个<code>\0</code>。</p>
 <h2 id="Strncat（）"><a href="#Strncat（）" class="headerlink" title="Strncat（）"></a>Strncat（）</h2><p>因为strcat（）跟gets（）一样会溢出缓冲区所以延伸了该函数，如果太长的话字符串会追加到第一个字符串的尾部然后加上’\0’;</p>
 <p>##Strcmp（）<br>比较两个字符串是否相同（不是比较字符单引号字符双引号字符串），相同的话为0，不同的话如果第一个的ASCII比较大返回1反之返回-1；可以利用这个返回值来排序字符串。</p>
 <h2 id="Strncmp（）"><a href="#Strncmp（）" class="headerlink" title="Strncmp（）"></a>Strncmp（）</h2><p>可以比较两个字符串至第几个参数，例如只想要比较前五个字符，strncmp（”helloworld”,”hello”,5）;</p>
 <h2 id="Strcpy（）和strncpy（）"><a href="#Strcpy（）和strncpy（）" class="headerlink" title="Strcpy（）和strncpy（）"></a>Strcpy（）和strncpy（）</h2><p>将字符串拷贝进一个临时数组，而strncpy（）就是担心缓冲区溢出；</p>
 <h2 id="Sprintf（）"><a href="#Sprintf（）" class="headerlink" title="Sprintf（）"></a>Sprintf（）</h2><p>Printf（）是打印到显示器上，该函数是打印到字符串里面，可以把多个元素组合成一个字符串</p>
+<h2 id="strchr"><a href="#strchr" class="headerlink" title="strchr()"></a>strchr()</h2><p>C语言 strchr() 函数用于查找给定字符串中某一个特定字符。</p>
+<p>头文件：string.h</p>
+<p>语法/原型：</p>
+<p>char* strchr(const char* str, int c);</p>
+<p>参数说明：</p>
+<ul>
+<li>str：被查找的字符串。</li>
+<li>c：要查找的字符。</li>
+</ul>
+<p>strchr() 函数会依次检索字符串 str 中的每一个字符，直到遇见字符 c，或者到达字符串末尾（遇见<code>\0</code>）。</p>
+<p>返回值：返回在字符串 str 中第一次出现字符 c 的位置，如果未找到该字符 c 则返回 NULL。</p>
 
       
     </div>
@@ -512,7 +525,7 @@ cout &lt;&lt; strlen(s) &lt;&lt; endl;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -556,7 +569,7 @@ cout &lt;&lt; strlen(s) &lt;&lt; endl;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strlen（）"><span class="nav-number">2.</span> <span class="nav-text">Strlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strnlen（）"><span class="nav-number">3.</span> <span class="nav-text">strnlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcat（）"><span class="nav-number">4.</span> <span class="nav-text">Strcat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncat（）"><span class="nav-number">5.</span> <span class="nav-text">Strncat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncmp（）"><span class="nav-number">6.</span> <span class="nav-text">Strncmp（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcpy（）和strncpy（）"><span class="nav-number">7.</span> <span class="nav-text">Strcpy（）和strncpy（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sprintf（）"><span class="nav-number">8.</span> <span class="nav-text">Sprintf（）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strlen（）"><span class="nav-number">2.</span> <span class="nav-text">Strlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strnlen（）"><span class="nav-number">3.</span> <span class="nav-text">strnlen（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcat（）"><span class="nav-number">4.</span> <span class="nav-text">Strcat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncat（）"><span class="nav-number">5.</span> <span class="nav-text">Strncat（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strncmp（）"><span class="nav-number">6.</span> <span class="nav-text">Strncmp（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strcpy（）和strncpy（）"><span class="nav-number">7.</span> <span class="nav-text">Strcpy（）和strncpy（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sprintf（）"><span class="nav-number">8.</span> <span class="nav-text">Sprintf（）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strchr"><span class="nav-number">9.</span> <span class="nav-text">strchr()</span></a></li></ol></div>
             
 
           </div>

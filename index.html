@@ -280,6 +280,233 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/c函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johnson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/DOGhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johnson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/12/c函数/" itemprop="url">c库函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T01:44:37+08:00">
+                2020-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite"></a>fwrite</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>C 库函数 <strong>size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)</strong> 把 <strong>ptr</strong> 所指向的数组中的数据写入到给定流 <strong>stream</strong> 中。</p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>下面是 fwrite() 函数的声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><strong>ptr</strong> – 这是指向要被写入的元素数组的指针。</li>
+<li><strong>size</strong> – 这是要被写入的每个元素的大小，以字节为单位。</li>
+<li><strong>nmemb</strong> – 这是元素的个数，每个元素的大小为 size 字节。</li>
+<li><strong>stream</strong> – 这是指向 FILE 对象的指针，该 FILE 对象指定了一个输出流。</li>
+</ul>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>如果成功，该函数返回一个 size_t 对象，表示元素的总数，该对象是一个整型数据类型。如果该数字与 nmemb 参数不同，则会显示一个错误。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>下面的实例演示了 fwrite() 函数的用法。</p>
+<h2 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"> </span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">   FILE *fp;</span><br><span class="line">   char str[] = &quot;This is runoob.com&quot;;</span><br><span class="line"> </span><br><span class="line">   fp = fopen( &quot;file.txt&quot; , &quot;w&quot; );</span><br><span class="line">   fwrite(str, sizeof(str) , 1, fp );</span><br><span class="line"> </span><br><span class="line">   fclose(fp);</span><br><span class="line">  </span><br><span class="line">   return(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>让我们编译并运行上面的程序，这将创建一个文件 <strong>file.txt</strong>，它的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This is runoob.com</span><br></pre></td></tr></table></figure>
+
+<h1 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h1><h2 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h2><p>C 库函数 <strong>size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)</strong> 从给定流 <strong>stream</strong> 读取数据到 <strong>ptr</strong> 所指向的数组中。</p>
+<h2 id="声明-1"><a href="#声明-1" class="headerlink" title="声明"></a>声明</h2><p>下面是 fread() 函数的声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><strong>ptr</strong> – 这是指向带有最小尺寸 <em>size*nmemb</em> 字节的内存块的指针。</li>
+<li><strong>size</strong> – 这是要读取的每个元素的大小，以字节为单位。</li>
+<li><strong>nmemb</strong> – 这是元素的个数，每个元素的大小为 size 字节。</li>
+<li><strong>stream</strong> – 这是指向 FILE 对象的指针，该 FILE 对象指定了一个输入流。</li>
+</ul>
+<h2 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a>返回值</h2><p>成功读取的元素总数会以 size_t 对象返回，size_t 对象是一个整型数据类型。如果总数与 nmemb 参数不同，则可能发生了一个错误或者到达了文件末尾。</p>
+<h2 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h2><p>下面的实例演示了 fread() 函数的用法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">   FILE *fp;</span><br><span class="line">   char c[] = &quot;This is runoob&quot;;</span><br><span class="line">   char buffer[20];</span><br><span class="line"> </span><br><span class="line">   /* 打开文件用于读写 */</span><br><span class="line">   fp = fopen(&quot;file.txt&quot;, &quot;w+&quot;);</span><br><span class="line"> </span><br><span class="line">   /* 写入数据到文件 */</span><br><span class="line">   fwrite(c, strlen(c) + 1, 1, fp);</span><br><span class="line"> </span><br><span class="line">   /* 查找文件的开头 */</span><br><span class="line">   fseek(fp, 0, SEEK_SET);</span><br><span class="line"> </span><br><span class="line">   /* 读取并显示数据 */</span><br><span class="line">   fread(buffer, strlen(c)+1, 1, fp);</span><br><span class="line">   printf(&quot;%s\n&quot;, buffer);</span><br><span class="line">   fclose(fp);</span><br><span class="line">   </span><br><span class="line">   return(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>让我们编译并运行上面的程序，这将创建一个文件 <strong>file.txt</strong>，然后写入内容 <em>This is runoob</em>。接下来我们使用 <strong>fseek()</strong> 函数来重置写指针到文件的开头，文件内容如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This is runoob</span><br></pre></td></tr></table></figure>
+
+<h1 id="fseek"><a href="#fseek" class="headerlink" title="fseek"></a>fseek</h1><h2 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h2><p>C 库函数 <strong>int fseek(FILE *stream, long int offset, int whence)</strong> 设置流 <strong>stream</strong> 的文件位置为给定的偏移 <strong>offset</strong>，参数 offset 意味着从给定的 <strong>whence</strong> 位置查找的字节数。</p>
+<h2 id="声明-2"><a href="#声明-2" class="headerlink" title="声明"></a>声明</h2><p>下面是 fseek() 函数的声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int fseek(FILE *stream, long int offset, int whence)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><strong>stream</strong> – 这是指向 FILE 对象的指针，该 FILE 对象标识了流。</li>
+<li><strong>offset</strong> – 这是相对 whence 的偏移量，以字节为单位。</li>
+<li><strong>whence</strong> – 这是表示开始添加偏移 offset 的位置。它一般指定为下列常量之一：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">常量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SEEK_SET</td>
+<td align="left">文件的开头</td>
+</tr>
+<tr>
+<td align="left">SEEK_CUR</td>
+<td align="left">文件指针的当前位置</td>
+</tr>
+<tr>
+<td align="left">SEEK_END</td>
+<td align="left">文件的末尾</td>
+</tr>
+</tbody></table>
+<h2 id="返回值-2"><a href="#返回值-2" class="headerlink" title="返回值"></a>返回值</h2><p>如果成功，则该函数返回零，否则返回非零值。</p>
+<h2 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h2><p>下面的实例演示了 fseek() 函数的用法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">   FILE *fp;</span><br><span class="line"></span><br><span class="line">   fp = fopen(&quot;file.txt&quot;,&quot;w+&quot;);</span><br><span class="line">   fputs(&quot;This is runoob.com&quot;, fp);</span><br><span class="line">  </span><br><span class="line">   fseek( fp, 7, SEEK_SET );</span><br><span class="line">   fputs(&quot; C Programming Langauge&quot;, fp);</span><br><span class="line">   fclose(fp);</span><br><span class="line">   </span><br><span class="line">   return(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们编译并运行上面的程序，这将创建文件 <strong>file.txt</strong>，它的内容如下。最初程序创建文件和写入 <em>This is runoob.com</em>，但是之后我们在第七个位置重置了写指针，并使用 puts() 语句来重写文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This is C Programming Langauge</span><br></pre></td></tr></table></figure>
+
+<p>现在让我们使用下面的程序查看上面文件的内容：</p>
+<h1 id="memset函数及其用法"><a href="#memset函数及其用法" class="headerlink" title="memset函数及其用法"></a>memset函数及其用法</h1><p>在前面不止一次说过，定义变量时一定要进行初始化，尤其是数组和结构体这种占用内存大的<a href="http://c.biancheng.net/data_structure/" target="_blank" rel="noopener">数据结构</a>。在使用数组的时候经常因为没有初始化而产生“烫烫烫烫烫烫”这样的野值，俗称“乱码”。</p>
+<p>每种类型的变量都有各自的初始化方法，memset() 函数可以说是初始化内存的“万能函数”，通常为新申请的内存进行初始化工作。它是直接操作内存空间，mem即“内存”（memory）的意思。该函数的原型为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;string.h&gt;</span><br><span class="line">void *memset(void *s, int c, unsigned long n);</span><br></pre></td></tr></table></figure>
+
+<p>函数的功能是：将指针变量 s 所指向的前 n 字节的内存单元用一个“整数” c 替换，注意 c 是 int 型。s 是 void* 型的指针变量，所以它可以为任何类型的数据进行初始化。</p>
+<p>memset() 的作用是在一段内存块中填充某个给定的值。因为它只能填充一个值，所以该函数的初始化为原始初始化，无法将变量初始化为程序中需要的数据。用memset初始化完后，后面程序中再向该内存空间中存放需要的数据。</p>
+<p>memset 一般使用“0”初始化内存单元，而且通常是给数组或结构体进行初始化。一般的变量如 char、int、float、double 等类型的变量直接初始化即可，没有必要用 memset。如果用 memset 的话反而显得麻烦。</p>
+<p>当然，数组也可以直接进行初始化，但 memset 是对较大的数组或结构体进行清零初始化的最快方法，因为它是直接对内存进行操作的。</p>
+<p>这时有人会问：“字符串数组不是最好用’\0’进行初始化吗？那么可以用 memset 给字符串数组进行初始化吗？也就是说参数 c 可以赋值为’\0’吗？”</p>
+<p>可以的。虽然参数 c 要求是一个整数，但是整型和字符型是互通的。但是赋值为 ‘\0’ 和 0 是等价的，因为字符 ‘\0’ 在内存中就是 0。所以在 memset 中初始化为 0 也具有结束标志符 ‘\0’ 的作用，所以通常我们就写“0”。</p>
+<p>memset 函数的第三个参数 n 的值一般用 sizeof() 获取，这样比较专业。注意，如果是对指针变量所指向的内存单元进行清零初始化，那么一定要先对这个指针变量进行初始化，即一定要先让它指向某个有效的地址。而且用memset给指针变量如p所指向的内存单元进行初始化时，n 千万别写成 sizeof(p)，这是新手经常会犯的错误。因为 p 是指针变量，不管 p 指向什么类型的变量，sizeof(p) 的值都是 4。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line"># include &lt;string.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i;  //循环变量</span><br><span class="line">    char str[10];</span><br><span class="line">    char *p = str;</span><br><span class="line">    memset(str, 0, sizeof(str));  //只能写sizeof(str), 不能写sizeof(p)</span><br><span class="line">    for (i=0; i&lt;10; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;%d\x20&quot;, str[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据memset函数的不同，输出结果也不同，分为以下几种情况：<br>memset(p, 0, sizeof(p)); //地址的大小都是4字节<br>0 0 0 0 -52 -52 -52 -52 -52 -52</p>
+<p>memset(p, 0, sizeof(<em>p)); //</em>p表示的是一个字符变量, 只有一字节<br>0 -52 -52 -52 -52 -52 -52 -52 -52 -52</p>
+<p>memset(p, 0, sizeof(str));<br>0 0 0 0 0 0 0 0 0 0</p>
+<p>memset(str, 0, sizeof(str));<br>0 0 0 0 0 0 0 0 0 0</p>
+<p>memset(p, 0, 10); //直接写10也行, 但不专业<br>0 0 0 0 0 0 0 0 0 0</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/计算机网络理论汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -481,7 +708,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.7k
+                  3.1k
                 </span>
               
 
@@ -583,6 +810,18 @@
 </tr>
 </tbody></table>
 <p>vector容器会自动扩充，当元素要超过所分配的内存大小时，分配器就会动态扩充，寻找一块地址足以存放接下来要添加的数据和以前的数据，然后将数据存储进来，将以前的内存释放掉，扩充倍数在VS2019中是1.5倍，但是每次扩充可能会很大，就会造成内存的一种浪费</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VA1mt.png" alt="8VA1mt.png"></p>
+<p>不能原地扩充，因为你用了一个内存之后，这个内存后面的内存可能就已经被使用了。所以要扩充需要在内存的某一个地方去找到另一个空间，把原来内存的东西搬过去，在push_back或者insert的时候会判断是否需要扩容。</p>
+<p>vector内部有三根指针，start，finish，end_of_storage ,vector的大小是12，就是因为这三根指针，不过最新版本是16了，应该是多了一根指针</p>
+<p>begin()对应start，finish对应的是end()</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8Ve1gg.png" alt="8Ve1gg.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VeUU0.png" alt="8VeUU0.png"></p>
+<p>2.9版本：</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VebVI.png" alt="8VebVI.png"></p>
+<p>4.9版本：</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VKjTs.png" alt="8VKjTs.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VKzYq.png" alt="8VKzYq.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VM9pV.png" alt="8VM9pV.png"></p>
 <h3 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h3><p>双向队列，前后头都可以扩充</p>
 <p><img src="https://s2.ax1x.com/2020/03/04/3o7KzT.png" alt></p>
 <p>deque号称“分段连续”，在每一buffer上是连续的，段和段之间并非连续，当迭代器超过某一段的尽头会自动找到下一段的头，例如99的地址继续++的话就会找到0那个地方。当我们的buffer用完的时候就会继续扩充出新的一段buffer</p>
@@ -846,6 +1085,12 @@
 <td>value值</td>
 </tr>
 </tbody></table>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>R-B Tree，全称是Red-Black Tree，又称为“红黑树”，它一种特殊的二叉查找树。红黑树的每个节点上都有存储位表示节点的颜色，可以是红(Red)或黑(Black)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">enum Color  </span><br><span class="line">&#123;  </span><br><span class="line">    RED = 0,  </span><br><span class="line">    BLACK = 1  </span><br><span class="line">&#125;;  </span><br><span class="line"></span><br><span class="line">struct RBTreeNode  </span><br><span class="line">&#123; </span><br><span class="line">    struct RBTreeNode*left, *right, *parent;  </span><br><span class="line">    int key;  </span><br><span class="line">    int data;  </span><br><span class="line">    Color color;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>红黑树的特性</strong>:<br><strong>（1）每个节点或者是黑色，或者是红色。</strong><br><strong>（2）根节点是黑色。</strong><br><strong>（3）每个叶子节点（NIL）是黑色。 [注意：这里叶子节点，是指为空(NIL或NULL)的叶子节点！]</strong><br><strong>（4）如果一个节点是红色的，则它的子节点必须是黑色的。</strong><br><strong>（5）从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。</strong></p>
+<p><strong>注意</strong>：<br>(01) 特性(3)中的叶子节点，是只为空(NIL或null)的节点。<br>(02) 特性(5)，确保没有一条路径会比其他路径长出俩倍。因而，红黑树是相对是接近平衡的二叉树。</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VSqUJ.jpg" alt="8VSqUJ.jpg"></p>
 <h3 id="Unordered-Set-Muitiset"><a href="#Unordered-Set-Muitiset" class="headerlink" title="Unordered Set/Muitiset"></a>Unordered Set/Muitiset</h3><p><img src="https://s2.ax1x.com/2020/03/05/3TCass.png" alt="3TCass.png"></p>
 <p>unordered_set内部解决冲突采用的是—-链地址法，当用冲突发生时把具有同一关键码的数据组成一个链表</p>
 <p>unordered_set是一种无序集合,既然跟底层实现基于hashtable那么它一定拥有快速的查找和删除，添加的优点.基于hashtable当然就失去了基于rb_tree的自动排序功能</p>
@@ -1039,7 +1284,7 @@
 <p><img src="https://s2.ax1x.com/2020/03/05/376I8H.png" alt="376I8H.png"></p>
 <p>那我们就用一个链表存放这些发生碰撞的元素，但是如果链表很长，搜寻就会很慢，因为链表就是要循序渐进的查找。如果元素个数（所有元素，不是单个篮子的元素）比篮子个数还要多，就要打散，<strong>如何打散？rehash（扩容，这样很花时间，所有元素还要重新算一遍看他放在哪个篮子上），就是把篮子增加两倍附近的素数，53两倍106，临近的素数是97</strong>。</p>
 <h4 id="源码解析："><a href="#源码解析：" class="headerlink" title="源码解析："></a>源码解析：</h4><p><img src="https://s2.ax1x.com/2020/03/05/37Ww9S.png" alt="37Ww9S.png"></p>
-<p>模板参数里面的class HashFcn传进啦的是仿函数，告诉我们每一个元素是通过这个函数取的编号，HashFcn获取的编号就叫Hashcode。</p>
+<p>模板参数里面的class HashFcn传进来的是仿函数，告诉我们每一个元素是通过这个函数取的编号，HashFcn获取的编号就叫Hashcode。</p>
 <p>ExtractKey也是仿函数（仿函数的大小是1，因为它的类里面只有函数）就是萃取出key值，要告诉我们怎么从一包东西里面取出Key来</p>
 <p>EqualKey也是仿函数要告诉我们怎么判断key相等，才知道要放到哪个位置</p>
 <p>篮子是vector，vec里面有三根指针，所以本身是12个字节，根据编译器不同所以，(题外话：要想查看一个容器v的大小：可以使用sizeof(v) + sizeof(T) * v.capacity();//T是v中元素类型)</p>
@@ -4204,149 +4449,6 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/C++2类和对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnson">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/DOGhead.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johnson">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/19/C++2类和对象/" itemprop="url">C++2类和对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-19T15:06:18+08:00">
-                2019-12-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  13.3k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>C++面向对象的三大特性：封装，继承，多态。<br>C++认为万事万物皆为对象，对象有其属性和行为。<br>本章节很啰嗦很多很基础，但是本人觉得很有必要写清楚基础！！
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/19/C++2类和对象/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4399,7 +4501,7 @@ count(*)：统计整个记录的数量</code></pre>sum()：求对应分组中某
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

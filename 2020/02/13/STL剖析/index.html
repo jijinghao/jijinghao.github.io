@@ -101,12 +101,20 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3Ixg54.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3ocgJJ.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3ogv9J.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VA1mt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8Ve1gg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VeUU0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VebVI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VKjTs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VKzYq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VM9pV.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3o7KzT.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3oq8eg.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3oqNYn.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3oWVOI.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/04/3ojA1I.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3ov2Mq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/11/8VSqUJ.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3TCass.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/37siqK.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/376I8H.png">
@@ -115,7 +123,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HkXjO.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HAgVH.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/05/3HYeNq.png">
-<meta property="og:updated_time" content="2020-03-06T12:51:38.527Z">
+<meta property="og:updated_time" content="2020-03-11T15:58:58.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL剖析——平地起高楼">
 <meta name="twitter:description" content="STL六大部件 容器：是模板类，不考虑内存 分配器：分配器支持容器，为他安排内存 算法：模板函数， 迭代器：一种泛化指针，v.begin()、v.end()就像是指针一样指着头尾 适配器：将容器，迭代器，适配器做一些转换 仿函数：  可以看到vector&amp;lt;int,allocator&amp;gt;第二个参数是分配器，现在往往忽略，分配器默默支持他，为容器分配内存空间 前闭后开区间 c.end()">
@@ -370,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.7k
+                  3.1k
                 </span>
               
 
@@ -470,6 +478,18 @@
 </tr>
 </tbody></table>
 <p>vector容器会自动扩充，当元素要超过所分配的内存大小时，分配器就会动态扩充，寻找一块地址足以存放接下来要添加的数据和以前的数据，然后将数据存储进来，将以前的内存释放掉，扩充倍数在VS2019中是1.5倍，但是每次扩充可能会很大，就会造成内存的一种浪费</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VA1mt.png" alt="8VA1mt.png"></p>
+<p>不能原地扩充，因为你用了一个内存之后，这个内存后面的内存可能就已经被使用了。所以要扩充需要在内存的某一个地方去找到另一个空间，把原来内存的东西搬过去，在push_back或者insert的时候会判断是否需要扩容。</p>
+<p>vector内部有三根指针，start，finish，end_of_storage ,vector的大小是12，就是因为这三根指针，不过最新版本是16了，应该是多了一根指针</p>
+<p>begin()对应start，finish对应的是end()</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8Ve1gg.png" alt="8Ve1gg.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VeUU0.png" alt="8VeUU0.png"></p>
+<p>2.9版本：</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VebVI.png" alt="8VebVI.png"></p>
+<p>4.9版本：</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VKjTs.png" alt="8VKjTs.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VKzYq.png" alt="8VKzYq.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VM9pV.png" alt="8VM9pV.png"></p>
 <h3 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h3><p>双向队列，前后头都可以扩充</p>
 <p><img src="https://s2.ax1x.com/2020/03/04/3o7KzT.png" alt></p>
 <p>deque号称“分段连续”，在每一buffer上是连续的，段和段之间并非连续，当迭代器超过某一段的尽头会自动找到下一段的头，例如99的地址继续++的话就会找到0那个地方。当我们的buffer用完的时候就会继续扩充出新的一段buffer</p>
@@ -733,6 +753,12 @@
 <td>value值</td>
 </tr>
 </tbody></table>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>R-B Tree，全称是Red-Black Tree，又称为“红黑树”，它一种特殊的二叉查找树。红黑树的每个节点上都有存储位表示节点的颜色，可以是红(Red)或黑(Black)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">enum Color  </span><br><span class="line">&#123;  </span><br><span class="line">    RED = 0,  </span><br><span class="line">    BLACK = 1  </span><br><span class="line">&#125;;  </span><br><span class="line"></span><br><span class="line">struct RBTreeNode  </span><br><span class="line">&#123; </span><br><span class="line">    struct RBTreeNode*left, *right, *parent;  </span><br><span class="line">    int key;  </span><br><span class="line">    int data;  </span><br><span class="line">    Color color;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>红黑树的特性</strong>:<br><strong>（1）每个节点或者是黑色，或者是红色。</strong><br><strong>（2）根节点是黑色。</strong><br><strong>（3）每个叶子节点（NIL）是黑色。 [注意：这里叶子节点，是指为空(NIL或NULL)的叶子节点！]</strong><br><strong>（4）如果一个节点是红色的，则它的子节点必须是黑色的。</strong><br><strong>（5）从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。</strong></p>
+<p><strong>注意</strong>：<br>(01) 特性(3)中的叶子节点，是只为空(NIL或null)的节点。<br>(02) 特性(5)，确保没有一条路径会比其他路径长出俩倍。因而，红黑树是相对是接近平衡的二叉树。</p>
+<p><img src="https://s1.ax1x.com/2020/03/11/8VSqUJ.jpg" alt="8VSqUJ.jpg"></p>
 <h3 id="Unordered-Set-Muitiset"><a href="#Unordered-Set-Muitiset" class="headerlink" title="Unordered Set/Muitiset"></a>Unordered Set/Muitiset</h3><p><img src="https://s2.ax1x.com/2020/03/05/3TCass.png" alt="3TCass.png"></p>
 <p>unordered_set内部解决冲突采用的是—-链地址法，当用冲突发生时把具有同一关键码的数据组成一个链表</p>
 <p>unordered_set是一种无序集合,既然跟底层实现基于hashtable那么它一定拥有快速的查找和删除，添加的优点.基于hashtable当然就失去了基于rb_tree的自动排序功能</p>
@@ -926,7 +952,7 @@
 <p><img src="https://s2.ax1x.com/2020/03/05/376I8H.png" alt="376I8H.png"></p>
 <p>那我们就用一个链表存放这些发生碰撞的元素，但是如果链表很长，搜寻就会很慢，因为链表就是要循序渐进的查找。如果元素个数（所有元素，不是单个篮子的元素）比篮子个数还要多，就要打散，<strong>如何打散？rehash（扩容，这样很花时间，所有元素还要重新算一遍看他放在哪个篮子上），就是把篮子增加两倍附近的素数，53两倍106，临近的素数是97</strong>。</p>
 <h4 id="源码解析："><a href="#源码解析：" class="headerlink" title="源码解析："></a>源码解析：</h4><p><img src="https://s2.ax1x.com/2020/03/05/37Ww9S.png" alt="37Ww9S.png"></p>
-<p>模板参数里面的class HashFcn传进啦的是仿函数，告诉我们每一个元素是通过这个函数取的编号，HashFcn获取的编号就叫Hashcode。</p>
+<p>模板参数里面的class HashFcn传进来的是仿函数，告诉我们每一个元素是通过这个函数取的编号，HashFcn获取的编号就叫Hashcode。</p>
 <p>ExtractKey也是仿函数（仿函数的大小是1，因为它的类里面只有函数）就是萃取出key值，要告诉我们怎么从一包东西里面取出Key来</p>
 <p>EqualKey也是仿函数要告诉我们怎么判断key相等，才知道要放到哪个位置</p>
 <p>篮子是vector，vec里面有三根指针，所以本身是12个字节，根据编译器不同所以，(题外话：要想查看一个容器v的大小：可以使用sizeof(v) + sizeof(T) * v.capacity();//T是v中元素类型)</p>
@@ -1056,7 +1082,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1100,7 +1126,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL六大部件"><span class="nav-number">1.</span> <span class="nav-text">STL六大部件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前闭后开区间"><span class="nav-number">1.1.</span> <span class="nav-text">前闭后开区间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#容器—结构和分类"><span class="nav-number">2.</span> <span class="nav-text">容器—结构和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序容器"><span class="nav-number">2.1.</span> <span class="nav-text">顺序容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array"><span class="nav-number">2.1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">2.1.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-number">2.1.3.</span> <span class="nav-text">deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-number">2.1.4.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">2.1.5.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">2.1.6.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-list"><span class="nav-number">2.1.7.</span> <span class="nav-text">forward-list</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联式容器"><span class="nav-number">2.2.</span> <span class="nav-text">关联式容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-Multiset"><span class="nav-number">2.2.1.</span> <span class="nav-text">set/Multiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map-Multimap"><span class="nav-number">2.2.2.</span> <span class="nav-text">Map/Multimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unordered-Set-Muitiset"><span class="nav-number">2.2.3.</span> <span class="nav-text">Unordered Set/Muitiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unordered-Map-Muitimap"><span class="nav-number">2.2.4.</span> <span class="nav-text">Unordered Map/Muitimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashtable"><span class="nav-number">2.2.5.</span> <span class="nav-text">hashtable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码解析："><span class="nav-number">2.2.5.1.</span> <span class="nav-text">源码解析：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL六大部件"><span class="nav-number">1.</span> <span class="nav-text">STL六大部件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前闭后开区间"><span class="nav-number">1.1.</span> <span class="nav-text">前闭后开区间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#容器—结构和分类"><span class="nav-number">2.</span> <span class="nav-text">容器—结构和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序容器"><span class="nav-number">2.1.</span> <span class="nav-text">顺序容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array"><span class="nav-number">2.1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">2.1.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-number">2.1.3.</span> <span class="nav-text">deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-number">2.1.4.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">2.1.5.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">2.1.6.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-list"><span class="nav-number">2.1.7.</span> <span class="nav-text">forward-list</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联式容器"><span class="nav-number">2.2.</span> <span class="nav-text">关联式容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-Multiset"><span class="nav-number">2.2.1.</span> <span class="nav-text">set/Multiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map-Multimap"><span class="nav-number">2.2.2.</span> <span class="nav-text">Map/Multimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树"><span class="nav-number">2.2.3.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unordered-Set-Muitiset"><span class="nav-number">2.2.4.</span> <span class="nav-text">Unordered Set/Muitiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unordered-Map-Muitimap"><span class="nav-number">2.2.5.</span> <span class="nav-text">Unordered Map/Muitimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashtable"><span class="nav-number">2.2.6.</span> <span class="nav-text">hashtable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码解析："><span class="nav-number">2.2.6.1.</span> <span class="nav-text">源码解析：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

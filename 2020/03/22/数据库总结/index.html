@@ -88,24 +88,23 @@
 
 
 
-<meta name="description" content="队列队列（queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。">
+<meta name="description" content="事务事务就是一组原子性的SQL查询，或者说是一个独立的工作单元，事务内的语句要么全部执行成功，要么全部执行失败。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构之队列">
-<meta property="og:url" content="http://yoursite.com/2019/09/24/数据结构之队列/index.html">
+<meta property="og:title" content="数据库总结">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/数据库总结/index.html">
 <meta property="og:site_name" content="Johnson">
-<meta property="og:description" content="队列队列（queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。">
+<meta property="og:description" content="事务事务就是一组原子性的SQL查询，或者说是一个独立的工作单元，事务内的语句要么全部执行成功，要么全部执行失败。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uAaj6e.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uAdgHA.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uAdzgU.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uABgHJ.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uADUKO.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/24/uADBad.png">
-<meta property="og:updated_time" content="2019-09-24T10:14:07.045Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/31/GlJneI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/31/GltP2D.gif">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/31/GlJ7Xd.gif">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/01/G8pi5V.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/01/G8p38O.png">
+<meta property="og:updated_time" content="2020-04-04T10:43:57.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构之队列">
-<meta name="twitter:description" content="队列队列（queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/24/uAaj6e.png">
+<meta name="twitter:title" content="数据库总结">
+<meta name="twitter:description" content="事务事务就是一组原子性的SQL查询，或者说是一个独立的工作单元，事务内的语句要么全部执行成功，要么全部执行失败。">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/31/GlJneI.png">
 
 
 
@@ -135,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/24/数据结构之队列/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/22/数据库总结/">
 
 
 
 
 
-  <title>数据结构之队列 | Johnson</title>
+  <title>数据库总结 | Johnson</title>
   
 
 
@@ -290,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/数据结构之队列/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/数据库总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnson">
@@ -307,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构之队列</h1>
+          <h1 class="post-title" itemprop="name headline">数据库总结</h1>
         
 
         <div class="post-meta">
@@ -319,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T17:29:20+08:00">
-                2019-09-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-22T14:52:27+08:00">
+                2020-03-22
               </time>
             
 
@@ -356,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  4.6k
                 </span>
               
 
@@ -381,30 +380,246 @@
       
 
       
-        <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列（queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。<a id="more"></a><br>队列是一种先进先出（First In First Out）的线性表，简称FIFO。允许插入的一端称为队尾，允许删除的一端称为队头。</p>
-<h2 id="顺序存储的改进–循环队列"><a href="#顺序存储的改进–循环队列" class="headerlink" title="顺序存储的改进–循环队列"></a>顺序存储的改进–循环队列</h2><p>引入两个指针，front指针指向队头元素，rear指针指向队尾元素的下一个位置，这样当front等于rear时，此队列不是还剩一个元素，而是空队列。</p>
-<img src="https://s2.ax1x.com/2019/09/24/uAaj6e.png" alt="uAaj6e.png" border="0">
+        <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p><strong>事务就是一组原子性的SQL查询，或者说是一个独立的工作单元，事务内的语句要么全部执行成功，要么全部执行失败。</strong><a id="more"></a></p>
+<p><strong>并不是所有引擎都支持事务，如 MyISAM 就不支持，InnoDB 就支持</strong></p>
+<h2 id="事务的ACID"><a href="#事务的ACID" class="headerlink" title="事务的ACID"></a>事务的ACID</h2><p><strong>原子性：</strong></p>
+<p>一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部回滚失败，对于一个食物来说，不可能只执行其中的一部分，这就是事务的原子性。</p>
+<p><strong>一致性：</strong></p>
+<p>数据库总是从一个一致性的状态转换到另一个一致性的状态。例如在执行银行账户的转账，一个扣钱一个加钱两个之间的操作时，系统崩溃，支票账户中也不会损失200美元，因为事务最终没有提交，所以事务中所做的修改也不会保存到数据库。</p>
+<p><strong>隔离性：</strong></p>
+<p>一个事务所做的修改在最终提交前，对其他事务是不可见的。如转账在一方扣钱的时候，另一个程序开启，则他看到的支票账户的余额并没有减去200美元。</p>
+<p><strong>持久性：</strong></p>
+<p>一旦事务提交，则其所做的修改就会永久保存到数据库中，此时即使系统崩溃，修改的数据也不会丢失，但是未必能做到100%持久性。</p>
+<h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2><p><strong>较低级别的隔离通常可以执行更高的并发</strong></p>
+<p><strong>READ UNCOMMITTED(未提交读)：</strong></p>
+<p>事务的修改，即使没有提交，对其他事务也是可见的。<strong>事务可以读取未提交的数据，这也被称为脏读</strong></p>
+<p><strong>READ COMMITTED(提交读)：</strong></p>
+<p>满足之前隔离性的简单定义：一个事务开始时，只能看见已经提交的事务所做的修改。换句话说，一个事务从开始直到提交之前，所做的任何修改对其他事务都是不可见的，<strong>也叫不可重复读。</strong></p>
+<p><strong>REPEATABLE READ(可重复读)：</strong></p>
+<p>解决了脏读，该级别保证了在同一个事务中多次读取同样记录的结果是一致的。<strong>多次读取同一范围的数据会返回第一次查询的快照，即使其他事务对该数据做了更新修改。事务在执行期间看到的数据前后必须是一致的。</strong>但如果这个事务在读取某个范围内的记录时，其他事务又在该范围内插入了新的记录，当之前的事务再次读取该范围的记录时，会产生幻行，这就是<strong>幻读</strong>。<strong>间隙锁可以防止幻读。</strong></p>
+<p><strong>幻读举例</strong></p>
+<table>
+<thead>
+<tr>
+<th>时间点</th>
+<th>事务A</th>
+<th>事务B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>开启事务A</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td>开启事务B</td>
+</tr>
+<tr>
+<td>3</td>
+<td>查询id&lt;3的所有记录，共3条</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>插入一条记录id=2</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>提交事务</td>
+</tr>
+<tr>
+<td>6</td>
+<td>查询id&lt;3的所有记录，共4条</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>SERIALIZABLE(可串行化)：</strong></p>
+<p>是最高的隔离级别，他通过强制事务串行执行，<strong>避免了幻读，</strong>会在读取的每一行数据上都加锁，所以可能导致大量的超时和锁争用的问题</p>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>两个或者多个事务在同一资源上相互占用，并请求锁定对方占用的资源，从而导致恶性循环的现象。当多个事务试图以不同的顺序锁定资源时，就可能会产生死锁。多个事务同时锁定同一个资源时，也会产生死锁。</p>
+<h2 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h2><p>使用事务日志，存储引擎在修改标的数据时只需要修改其内存拷贝，再把该修改行为记录到持久在硬盘上的事务日志中，而不用每次都将修改的数据本身持久到磁盘。事务采用的是追加的方式，因此写日志的操作时磁盘上一小块区域内的顺序I/O，而不像随机I/O需要在磁盘的多个地方移动磁头。</p>
+<p>事务日志持久以后，内存中被修改的数据在后台可以慢慢地刷回到磁盘。我们通常称为预写式日志，修改数据需要写两次磁盘。</p>
+<p>如果乬的修改已经记录到事务日志并持久化，但数据本身还没有写回磁盘，此时系统崩溃，存储引擎在重启时能够自动回复这部分修改的数据。</p>
+<h2 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a><strong>悲观锁和乐观锁</strong></h2><p><strong>悲观锁</strong><br>正如其名，它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处 于锁定状态。悲观锁的实现，往往依靠数据库提供的锁机制（也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加锁机 制，也无法保证外部系统不会修改数据）。</p>
+<p>在悲观锁的情况下，为了保证事务的隔离性，就需要一致性锁定读。读取数据时给加锁，其它事务无法修改这些数据。修改删除数据时也要加锁，其它事务无法读取这些数据。</p>
+<p><strong>乐观锁</strong><br>相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对长事务而言，这样的开销往往无法承受。</p>
+<p>而乐观锁机制在一定程度上解决了这个问题。乐观锁，大多是基于数据版本（ Version ）记录机制实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如 果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
+<p>要说明的是，MVCC的实现没有固定的规范，每个数据库都会有不同的实现方式，这里讨论的是InnoDB的MVCC。</p>
+<h1 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h1><h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF:"></a>1NF:</h2><p><strong>字段不可分，数据字段设计必须满足原子性，无须拆分就可使用，粒度够小</strong></p>
+<p>例如学习时间中包含开始时间和结束时间，拆分成单独的两个字段——开始时间和结束时间，原子性根据业务划分。</p>
+<h2 id="2NF"><a href="#2NF" class="headerlink" title="2NF:"></a>2NF:</h2><p><strong>有主键，非主键字段依赖主键，不存在部分依赖，取消掉复合主键（一般选用逻辑主键替代），所有非主属性都依赖主属性（逻辑主键），将部分依赖独立成表</strong></p>
+<p>第二范式必须满足第一范式，当存在多个主键的时候，才会发生不符合第二范式的情况。比如有两个主键，不能存在这样的属性，它只依赖于其中一个主键，这就是不符合第二范式。通俗理解是任意一个字段都只依赖表中的同一个字段。（涉及到表的拆分）</p>
+<table>
+<thead>
+<tr>
+<th>学生（P）</th>
+<th>性别</th>
+<th>课程（P）</th>
+<th>教室</th>
+<th>成绩</th>
+<th>开始时间</th>
+<th>结束时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td>男</td>
+<td>PHP</td>
+<td>101</td>
+<td>100</td>
+<td>2月1日</td>
+<td>2月28日</td>
+</tr>
+</tbody></table>
+<p>成绩是由学生和课程决定的，是完全依赖主属性</p>
+<p>性别只依赖于学生（部分依赖）</p>
+<p>教师、开始时间和结束时间依赖课程（部分依赖）</p>
+<p><strong>解决：</strong></p>
+<p>学生表：</p>
+<table>
+<thead>
+<tr>
+<th>Stu_id（P）</th>
+<th>姓名</th>
+<th>性别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+<td>男</td>
+</tr>
+</tbody></table>
+<p>课程表：</p>
+<table>
+<thead>
+<tr>
+<th>Class_id（P）</th>
+<th>课程</th>
+<th>教室</th>
+<th>开始时间</th>
+<th>结束时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>PHP</td>
+<td>101</td>
+<td>2月1日</td>
+<td>2月28日</td>
+</tr>
+</tbody></table>
+<p>成绩表：</p>
+<table>
+<thead>
+<tr>
+<th>Stu_id（P）</th>
+<th>Class_id（P）</th>
+<th>成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>100</td>
+</tr>
+</tbody></table>
+<h2 id="3NF"><a href="#3NF" class="headerlink" title="3NF:"></a>3NF:</h2><p>满足第二范式的基础上，不能存在传递依赖。</p>
+<p><strong>传递依赖：</strong>字段某个非主属性不直接依赖主属性，而是通过某个其他非主属性而传递到主属性之上</p>
+<p><strong>部分依赖解决：</strong>让依赖非主属性的字段与依赖字段独立成表</p>
+<p>例如专业编号依赖于学号，专业名字服务专业编号，专业编号对于学号来说是传递依赖，解决方法是将专业编号和专业姓名独立成表。</p>
+<h2 id="反范式"><a href="#反范式" class="headerlink" title="反范式"></a>反范式</h2><p>为了提升数据查询的效率而可以违背范式的规则，所谓反范式就是减少表之间的关联查询（效率降低），刻意增加数据冗余。</p>
+<p>当表中的部分数据来源于其他表，当前表会被高频次查询，数据表数据量很大，考虑使用你滚繁华</p>
+<p>例如：</p>
+<p>学生成绩表经常需要查询，而且数据量很大，但是：</p>
+<ul>
+<li>成绩表中只有学号，显示的时候需要学生姓名（去学生表中连表查询）</li>
+<li>成绩表中只有课程号，显示的时候需要先显示课程名（去课程表中连表查询）</li>
+<li>反范式：将学生姓名和课程表在表中冗余维护（不满足2NF）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>学号（P）</th>
+<th>学生姓名</th>
+<th>课程号（P）</th>
+<th>课程名字</th>
+<th>成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+<td>1</td>
+<td>PHP</td>
+<td>100</td>
+</tr>
+</tbody></table>
+<p>反范式只有在数据量大，查询效率低下的时候为了提升查询效率而牺牲磁盘空间的一种做法。</p>
+<p>反范式后数据表的设计必然是不完全符合范式的要求（2NF 3NF，1NF的原子性基本满足）。</p>
+<p><strong>反范式的数据表因为所有的数据都在一张表中，可以很好地避免关联。</strong></p>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h2><h3 id="B-Tree索引"><a href="#B-Tree索引" class="headerlink" title="B-Tree索引"></a>B-Tree索引</h3><p><strong>一颗m阶的B树（B-tree） 定义如下：</strong></p>
+<ul>
+<li>结点最多含有m颗子树（指针），m-1个关键字（m&gt;=2）</li>
+<li>除根节点和叶子节点外，其他每个节点至少有ceil（m/2）个子节点（子树），ceil为上取整</li>
+<li>若根节点不是叶子结点，则至少有两颗子树</li>
+<li>每个节点中的key都按照从小到大的顺序排列，每个key的左子树中的所有key都小于它，而右子树中的所有key都大于它</li>
+<li>所有叶子节点都位于同一层，即根节点到每个叶子节点的长度都相同。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/03/31/GlJneI.png" alt="GlJneI.png"></p>
+<p><strong>B树节点的插入</strong>，可以类比2-3-4树，即，<strong>若节点插入节点的key还未“丰满”，则直接插入，若节点插入节点的key已“丰满”，则插入节点之后分裂，再以分裂之后的父节点看作向上层插入的节点调整，直至满足该 m 阶的B树</strong>。如下，为5阶B树插入节点的动态图，</p>
+<p><img src="https://s1.ax1x.com/2020/03/31/GltP2D.gif" alt="GltP2D.gif"></p>
+<p>对于B树节点的删除，也一样类比2-3-4树，如下，</p>
+<p>（1）若删除非叶子节点， 找后继节点替换之，将问题转化为删除叶子节点；</p>
+<p>（2）若删除叶子节点，且叶子节点的key数大于定义中的最小值（根节点至少有1个key，非根节点至少有 Math.ceil(m/2)-1 个key），则直接删除即可，无需调整，</p>
+<p>（3）若删除叶子节点，且叶子节点的key数刚好满足定义中的最小值，即刚好“脱贫”，则将节点删除，此时树肯定需要调整，即：</p>
+<p>    a.若删除节点的相邻兄弟节点的key数“富裕”（节点的key大于定义中的最小值），则父节点的1个key下移与待删除的节点合并，相邻兄弟节点的1个key上移与父节点合并，完成调整；</p>
+<p>    b.若删除节点的相邻兄弟节点的key数刚好“脱贫”（节点的key刚好满足定义的最小值），则父节点的1个key下移与待删除的节点及相邻兄弟节点，三者进行合并成一个节点，若下移1个key后的父节点的key数刚好“脱贫”或“富裕”，则调整完成，反之，即此时父节点已经陷入“贫穷”，则将父节点看作当前待删除的节点，重复a，b的判断。</p>
+<p>  如下，是5阶B树删除节点的动态图，</p>
+<p><img src="https://s1.ax1x.com/2020/03/31/GlJ7Xd.gif" alt="GlJ7Xd.gif"></p>
+<p><strong>B+树：</strong></p>
+<p>虽然B树这种数据结构，应用在内外存交互，可以极大的减少磁盘的IO次数，但还是有些小瑕疵，如下5阶的B树图，若我需要读取key为“66”与“73”的数据，则此时从根节点“50”开始，“66”大于“50”，找右孩子，即到“60 70 120”的节点，再锁定到“64 66”的节点，找到key为“66”的数据，然后读“73”的数据，再重新从根开始往下寻找key为“73”的数据，如果需要查询的数据量一多，性能就很糟糕。还有一点，就是B树的每个节点都包含key及其value数据，这样的话，我每次读取叶子节点的数据时，在经过路径上的非叶子节点也会被读出，但实际上这部分数据我是不需要的，这样又占用了没有必要的内存空间。<br><img src="https://s1.ax1x.com/2020/04/01/G8pi5V.png" alt="G8pi5V.png"></p>
+<p> 所以，B+树在B树的基础上做了优化，它与B树的差异在于：</p>
+<p>（1）有 k 个子节点的节点必然有 k 个key；</p>
+<p>（2）非叶子节点仅具有索引作用，跟记录有关的信息均存放在叶子节点中。</p>
+<p>（3）树的所有叶子节点构成一个有序链表，可以按照key排序的次序遍历全部记录。</p>
+<p><img src="https://s1.ax1x.com/2020/04/01/G8p38O.png" alt="G8p38O.png"></p>
+<p> 即，B和B+树的区别在于，B+树的非叶子结点只包含导航信息，不包含实际的值，所有的叶子结点和相连的节点使用链表相连，便于区间查找和遍历。</p>
+<p>B+树的优点在于：<br>1.由于B+树在内部节点上不包含数据信息，因此在内存页中能够存放更多的key。<br>  数据存放的更加紧密，具有更好的空间局部性。<br>  因此访问叶子节点上关联的数据也具有更好的缓存命中率。<br>2.B+树的叶子结点都是相链的，因此对整棵树的便利只需要一次线性遍历叶子结点即可。<br>  而且由于数据顺序排列并且相连，所以便于区间查找和搜索。<br>  而B树则需要进行每一层的递归遍历，相邻的元素可能在内存中不相邻，所以缓存命中性没有B+树好。</p>
+<p>但是B树也有优点，其优点在于：<br>  由于B树的每一个节点都包含key和value，因此经常访问的元素可能离根节点更近，因此访问也更迅速。</p>
+<h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>通过哈希函数f()计算出槽值，使用该值寻找对应的记录指针(value)，可以找到指向第几行的指针，最后已不是比较第几行的值是否符合，以确保就是要查找的行</p>
+<p>f(‘Peter’)=2323</p>
+<table>
+<thead>
+<tr>
+<th>槽（Slot）</th>
+<th>值（Value）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2323</td>
+<td>指向第一行的指针</td>
+</tr>
+</tbody></table>
+<p><strong>哈希索引的优势：</strong></p>
+<p><strong>等值查询</strong>，哈希索引具有绝对优势（前提是：没有大量重复键值，如果大量重复键值时，哈希索引的效率很低，因为存在所谓的哈希碰撞问题。）</p>
+<p><strong>哈希索引不适用的场景：</strong></p>
+<p>不支持范围查询</p>
+<p>不支持索引完成排序</p>
+<p>不支持联合索引的最左前缀匹配规则</p>
+<h3 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h3><p>​    聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，也将聚集索引的叶子节点称为数据页。这个特性决定了索引组织表中数据也是索引的一部分，每张表只能拥有一个聚簇索引。</p>
+<p>​    Innodb通过主键聚集数据，如果没有定义主键，innodb会选择非空的唯一索引代替。如果没有这样的索引，innodb会隐式的定义一个主键来作为聚簇索引。</p>
+<p>聚簇索引的优缺点</p>
+<p><strong>优点：</strong></p>
+<p>　　　　1.数据访问更快，因为聚簇索引将索引和数据保存在同一个B+树中，因此从聚簇索引中获取数据比非聚簇索引更快</p>
+<p>　　　　2.聚簇索引对于主键的排序查找和范围查找速度非常快<br><strong>缺点：</strong></p>
+<p>　　　　1.插入速度严重依赖于插入顺序，按照主键的<strong>顺序插入</strong>是最快的方式，否则将会出现页分裂，严重影响性能。因此，对于InnoDB表，我们一般都会定义一个<strong>自增的ID列为主键</strong><br>　　　　2.<strong>更新主键的代价很高</strong>，因为将会导致被更新的行移动。因此，对于InnoDB表，我们一般定义主键为不可更新。<br>　　　　3.二级索引访问需要两次索引查找，第一次找到主键值，第二次根据主键值找到行数据。</p>
+<h3 id="非聚簇索引（二级索引）"><a href="#非聚簇索引（二级索引）" class="headerlink" title="非聚簇索引（二级索引）"></a>非聚簇索引（二级索引）</h3><p>非聚簇索引，又叫二级索引。二级索引的叶子节点中保存的不是指向行的物理指针，而是行的主键值。当通过二级索引查找行，存储引擎需要在二级索引中找到相应的叶子节点，获得行的主键值，然后使用主键去聚簇索引中查找数据行，这需要两次B-Tree查找。</p>
+<p>最通俗的解释是:聚簇索引的顺序就是数据的物理存储顺序，而对非聚簇索引的索引顺序与数据物理排列顺序无关。举例来说，你翻到新华字典的汉字“爬”那一页就是P开头的部分，这就是物理存储顺序（聚簇索引）；而不用你到目录，找到汉字“爬”所在的页码，然后根据页码找到这个字（非聚簇索引）。</p>
 
-<p>空队列时，front等于rear，现在当队列满时，也是front等于rear，那么如何判断此时的队列究竟是空还是满呢？<br><img src="https://s2.ax1x.com/2019/09/24/uAdgHA.png" alt="uAdgHA.png" border="0"></p>
-<p>条件就是front=rear，当队列满时，我们修改其条件，保留一个元素空间。也就是说，队列满时，数组中还有一个空闲单元。如下图所示，我们就认为此队列已经满了，也就是说，我们不允许上图情况出现。</p>
-<img src="https://s2.ax1x.com/2019/09/24/uAdzgU.png" alt="uAdzgU.png" border="0">
-
-<p>若队列的最大尺寸为QueueSize，那么队列满的条件是(rear+1)%QueueSize==front（取模“%”的目的就是为了整合rear与front大小为一个问题）。比如上面这个例子，QueueSize=5，图中front=0，而rear=4，(4+1)%5=0，所以此时队列满。再比如图中的右图，front=2而rear=1。(1+1)%5=2，所以此时队列也是满的。而对于图4-12-6，front=2而rear=0，(0+1)%5=1，1≠2，所以此时队列并没有满。</p>
-<p>通用的计算队列长度公式为：(rear-front+QueueSize)%QueueSize。</p>
-<h3 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> /* 若队列未满，则插入元素e为Q新的队尾元素 */</span><br><span class="line">Status EnQueue(SqQueue *Q, QElemType e)</span><br><span class="line">&#123;</span><br><span class="line">    /* 队列满的判断 */</span><br><span class="line">    if ((Q-&gt;rear + 1) % MAXSIZE == Q-&gt;front)    </span><br><span class="line">        return ERROR;</span><br><span class="line">    /* 将元素e赋值给队尾 */</span><br><span class="line">    Q-&gt;data[Q-&gt;rear] = e;                       </span><br><span class="line">    /* rear指针向后移一位置， */</span><br><span class="line">    Q-&gt;rear = (Q-&gt;rear + 1) % MAXSIZE;          </span><br><span class="line">    /* 若到最后则转到数组头部 */</span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/* 若队列不空，则删除Q中队头元素，用e返回其值 */</span><br><span class="line">Status DeQueue(SqQueue *Q, QElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">    /* 队列空的判断 */</span><br><span class="line">    if (Q-&gt;front == Q-&gt;rear)                </span><br><span class="line">        return ERROR;</span><br><span class="line">    /* 将队头元素赋值给e */</span><br><span class="line">    *e = Q-&gt;data[Q-&gt;front];                 </span><br><span class="line">    /* front指针向后移一位置， */</span><br><span class="line">    Q-&gt;front = (Q-&gt;front + 1) % MAXSIZE;    </span><br><span class="line">    /* 若到最后则转到数组头部 */</span><br><span class="line">    return  OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="队列的链式存储结构"><a href="#队列的链式存储结构" class="headerlink" title="队列的链式存储结构"></a>队列的链式存储结构</h2><p>队列的链式存储结构，其实就是线性表的单链表，只不过它只能尾进头出而已，我们把它简称为链队列。为了操作上的方便，我们将队头指针指向链队列的头结点，而队尾指针指向终端结点<br>空队列时，front和rear都指向头结点<br><img src="https://s2.ax1x.com/2019/09/24/uABgHJ.png" alt="uABgHJ.png" border="0"></p>
-<h3 id="入队-1"><a href="#入队-1" class="headerlink" title="入队"></a>入队</h3><img src="https://s2.ax1x.com/2019/09/24/uADUKO.png" alt="uADUKO.png" border="0">
-入队操作时，其实就是在链表尾部插入结点
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/* 插入元素e为Q的新的队尾元素 */</span><br><span class="line">Status EnQueue(LinkQueue *Q, QElemType e)</span><br><span class="line">&#123;</span><br><span class="line">    QueuePtr s = </span><br><span class="line">(QueuePtr)malloc(sizeof(QNode));</span><br><span class="line">    /* 存储分配失败 */</span><br><span class="line">    if (!s)               </span><br><span class="line">        exit(OVERFLOW);</span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    s-&gt;next = NULL;</span><br><span class="line">    /* 把拥有元素e新结点s赋值给原队尾结点的后继， */</span><br><span class="line">    Q-&gt;rear-&gt;next = s;    </span><br><span class="line">    /* 见上图中① */</span><br><span class="line">    /* 把当前的s设置为队尾结点，rear指向s，见上图中② */</span><br><span class="line">    Q-&gt;rear = s;          </span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="出队-1"><a href="#出队-1" class="headerlink" title="出队"></a>出队</h3><img src="https://s2.ax1x.com/2019/09/24/uADBad.png" alt="uADBad.png" border="0">
-
-<p>出队操作时，就是头结点的后继结点出队，将头结点的后继改为它后面的结点，若链表除头结点外只剩一个元素时，则需将rear指向头结点.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/* 若队列不空，删除Q的队头元素，用e返回其值，</span><br><span class="line">并返回OK，否则返回ERROR */</span><br><span class="line">Status DeQueue(LinkQueue *Q, QElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">    QueuePtr p;</span><br><span class="line">	if (Q-&gt;front == Q-&gt;rear)</span><br><span class="line">        return ERROR;</span><br><span class="line">    /* 将欲删除的队头结点暂存给p，见上图中① */</span><br><span class="line">    p = Q-&gt;front-&gt;next;          </span><br><span class="line">    /* 将欲删除的队头结点的值赋值给e */</span><br><span class="line">    *e = p-&gt;data;                </span><br><span class="line">    /* 将原队头结点后继p-&gt;next赋值给头结点后继， */</span><br><span class="line">    Q-&gt;front-&gt;next = p-&gt;next;    </span><br><span class="line">    /* 见上图中② */</span><br><span class="line">    /* 若队头是队尾，则删除后将rear指向头结点，见上图中③ */</span><br><span class="line">    if (Q-&gt;rear == p)            </span><br><span class="line">        Q-&gt;rear = Q-&gt;front;</span><br><span class="line">    free(p);</span><br><span class="line">    return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -428,8 +643,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/24/数据结构之栈/" rel="next" title="数据结构之栈">
-                <i class="fa fa-chevron-left"></i> 数据结构之栈
+              <a href="/2020/03/12/c函数/" rel="next" title="c库函数">
+                <i class="fa fa-chevron-left"></i> c库函数
               </a>
             
           </div>
@@ -438,8 +653,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/27/数据结构之六大排序/" rel="prev" title="数据结构之六大排序">
-                数据结构之六大排序 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/02/QT/" rel="prev" title="QT">
+                QT <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">1.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序存储的改进–循环队列"><span class="nav-number">2.</span> <span class="nav-text">顺序存储的改进–循环队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#入队"><span class="nav-number">2.1.</span> <span class="nav-text">入队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出队"><span class="nav-number">2.2.</span> <span class="nav-text">出队</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列的链式存储结构"><span class="nav-number">3.</span> <span class="nav-text">队列的链式存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#入队-1"><span class="nav-number">3.1.</span> <span class="nav-text">入队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出队-1"><span class="nav-number">3.2.</span> <span class="nav-text">出队</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的ACID"><span class="nav-number">1.1.</span> <span class="nav-text">事务的ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的隔离级别"><span class="nav-number">1.2.</span> <span class="nav-text">事务的隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">1.3.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务日志"><span class="nav-number">1.4.</span> <span class="nav-text">事务日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#悲观锁和乐观锁"><span class="nav-number">1.5.</span> <span class="nav-text">悲观锁和乐观锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范式"><span class="nav-number">2.</span> <span class="nav-text">范式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1NF"><span class="nav-number">2.1.</span> <span class="nav-text">1NF:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2NF"><span class="nav-number">2.2.</span> <span class="nav-text">2NF:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3NF"><span class="nav-number">2.3.</span> <span class="nav-text">3NF:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反范式"><span class="nav-number">2.4.</span> <span class="nav-text">反范式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引"><span class="nav-number">3.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的类型"><span class="nav-number">3.1.</span> <span class="nav-text">索引的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree索引"><span class="nav-number">3.1.1.</span> <span class="nav-text">B-Tree索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希索引"><span class="nav-number">3.1.2.</span> <span class="nav-text">哈希索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引"><span class="nav-number">3.1.3.</span> <span class="nav-text">聚簇索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非聚簇索引（二级索引）"><span class="nav-number">3.1.4.</span> <span class="nav-text">非聚簇索引（二级索引）</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

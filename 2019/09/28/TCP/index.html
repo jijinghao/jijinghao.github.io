@@ -97,10 +97,10 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulBBkt.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulBIhV.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/09/28/ulDoVA.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/06/GywAJJ.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/09/uI04pV.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/10/09/uI03QO.png">
-<meta property="og:updated_time" content="2020-03-06T13:04:26.957Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/06/Gywtyt.png">
+<meta property="og:updated_time" content="2020-04-06T10:28:15.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="超级详细的TCP总结">
 <meta name="twitter:description" content="最近学习的时候浏览到一个网站感觉有点无敌，传送门Door 何为TCP">
@@ -400,7 +400,7 @@
 <p>客户端将数据包发出，进入ESTABLISED状态，表示连接已经成功建立。</p>
 <p>4) 服务器端收到数据包，检测到已经设置了 ACK 标志位，就知道这是客户端发来的“确认包”。服务器会检测“确认号（Ack）”字段，看它的值是否为 2000+1，如果是就说明连接建立成功，服务器进入ESTABLISED状态。</p>
 <p>至此，客户端和服务器都进入了ESTABLISED状态，连接建立成功，接下来就可以收发数据了<br>三次握手的关键是要确认对方收到了自己的数据包，这个目标就是通过“确认号（Ack）”字段实现的。计算机会记录下自己发送的数据包序号 Seq，待收到对方的数据包后，检测“确认号（Ack）”字段，看Ack = Seq + 1是否成立，如果成立说明对方正确收到了自己的数据包。</p>
-<h2 id="TCP数据的数据传输过程"><a href="#TCP数据的数据传输过程" class="headerlink" title="TCP数据的数据传输过程"></a>TCP数据的数据传输过程</h2><p>建立连接后，两台主机就可以相互传输数据了。如下图所示：<br><a href="https://imgchr.com/i/ulDoVA" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/09/28/ulDoVA.jpg" alt="ulDoVA.jpg" border="0"></a></p>
+<h2 id="TCP数据的数据传输过程"><a href="#TCP数据的数据传输过程" class="headerlink" title="TCP数据的数据传输过程"></a>TCP数据的数据传输过程</h2><p>建立连接后，两台主机就可以相互传输数据了。如下图所示：<br><img src="https://s1.ax1x.com/2020/04/06/GywAJJ.png" alt="GywAJJ.png"></p>
 <p>上图给出了主机A分2次（分2个数据包）向主机B传递200字节的过程。首先，主机A通过1个数据包发送100个字节的数据，数据包的 Seq 号设置为 1200。主机B为了确认这一点，向主机A发送 ACK 包，并将 Ack 号设置为 1301。<br>为了保证数据准确到达，目标机器在收到数据包（包括SYN包、FIN包、普通数据包等）包后必须立即回传ACK包，这样发送方才能确认数据传输成功。<br>此时 Ack 号为 1301 而不是 1201，原因在于 Ack 号的增量为传输的数据字节数。假设每次 Ack 号不加传输的字节数，这样虽然可以确认数据包的传输，但无法明确100字节全部正确传递还是丢失了一部分，比如只传递了80字节。因此按如下的公式确认 Ack 号：<br>Ack号 = Seq号 + 传递的字节数 + 1</p>
 <p>与三次握手协议相同，最后加 1 是为了告诉对方要传递的 Seq 号。<br>下面分析传输过程中数据包丢失的情况，如下图所示：<br><img src="https://s2.ax1x.com/2019/10/09/uI04pV.png" alt="uI04pV.png" border="0"></p>
 <p>上图表示通过 Seq 1301 数据包向主机B传递100字节的数据，但中间发生了错误，主机B未收到。经过一段时间后，主机A仍未收到对于 Seq 1301 的ACK确认，因此尝试重传数据。</p>
@@ -408,7 +408,7 @@
 <p>重传超时时间（RTO, Retransmission Time Out）:<br>这个值太大了会导致不必要的等待，太小会导致不必要的重传，理论上最好是网络 RTT 时间，但又受制于网络距离与瞬态时延变化，所以实际上使用自适应的动态算法（例如 Jacobson 算法和 Karn 算法等）来确定超时时间。<br>往返时间（RTT，Round-Trip Time）表示从发送端发送数据开始，到发送端收到来自接收端的 ACK 确认包（接收端收到数据后便立即确认），总共经历的时延。<br>重传次数:<br>TCP数据包重传次数根据系统设置的不同而有所区别。有些系统，一个数据包只会被重传3次，如果重传3次后还未收到该数据包的 ACK 确认，就不再尝试重传。但有些要求很高的业务系统，会不断地重传丢失的数据包，以尽最大可能保证业务数据的正常交互。</p>
 <h2 id="TCP的四次挥手断开连接"><a href="#TCP的四次挥手断开连接" class="headerlink" title="TCP的四次挥手断开连接"></a>TCP的四次挥手断开连接</h2><p>建立连接非常重要，它是数据正确传输的前提；断开连接同样重要，它让计算机释放不再使用的资源。如果连接不能正常断开，不仅会造成数据传输错误，还会导致套接字不能关闭，持续占用资源，如果并发量高，服务器压力堪忧。</p>
 <p>建立连接需要三次握手，断开连接需要四次握手，可以形象的比喻为下面的对话：<br>[Shake 1] 套接字A：“任务处理完毕，我希望断开连接。”<br>[Shake 2] 套接字B：“哦，是吗？请稍等，我准备一下。”<br>等待片刻后……<br>[Shake 3] 套接字B：“我准备好了，可以断开连接了。”<br>[Shake 4] 套接字A：“好的，谢谢合作。”</p>
-<p>下图演示了客户端主动断开连接的场景：<br><img src="https://s2.ax1x.com/2019/10/09/uI03QO.png" alt="uI03QO.png" border="0"></p>
+<p>下图演示了客户端主动断开连接的场景：<br><img src="https://s1.ax1x.com/2020/04/06/Gywtyt.png" alt="Gywtyt.png"></p>
 <p>建立连接后，客户端和服务器都处于ESTABLISED状态。这时，客户端发起断开连接的请求：<br>1) 客户端调用 close() 函数后，向服务器发送 FIN 数据包，进入FIN_WAIT_1状态。FIN 是 Finish 的缩写，表示完成任务需要断开连接。</p>
 <p>2) 服务器收到数据包后，检测到设置了 FIN 标志位，知道要断开连接，于是向客户端发送“确认包”，进入CLOSE_WAIT状态。</p>
 <p>注意：服务器收到请求后并不是立即断开连接，而是先向客户端发送“确认包”，告诉它我知道了，我需要准备一下才能断开连接。</p>
@@ -552,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
